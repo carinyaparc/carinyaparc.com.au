@@ -1,7 +1,5 @@
 import { withSentryConfig } from '@sentry/nextjs';
 import createMDX from '@next/mdx';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -77,12 +75,7 @@ const nextConfig = {
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [
-      // Parse YAML frontmatter
-      [remarkFrontmatter, { type: 'yaml', marker: '-' }],
-      // Make frontmatter available as exports but remove from content
-      [remarkMdxFrontmatter, { name: 'frontmatter' }]
-    ],
+    remarkPlugins: [],
     rehypePlugins: [],
   },
 });

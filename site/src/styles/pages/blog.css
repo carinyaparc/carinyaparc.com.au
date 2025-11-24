@@ -1,4 +1,5 @@
 /* Blog Page Custom Styles */
+@reference "../globals.css";
 
 /* Blog Post Meta Styles */
 .blog-meta {
