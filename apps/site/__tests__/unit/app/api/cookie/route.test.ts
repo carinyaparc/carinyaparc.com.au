@@ -33,7 +33,7 @@ vi.mock('next/headers', () => ({
 }));
 
 // Mock the constants module
-vi.mock('../../../../../apps/site/src/lib/constants', () => ({
+vi.mock('@/lib/constants', () => ({
   CONSENT_COOKIE_NAME: 'cookieConsent',
 }));
 
@@ -43,14 +43,14 @@ describe('cookie route', () => {
   });
 
   it('should export POST function', async () => {
-    const routeModule = await import('../../../../../apps/site/src/app/api/cookie/route');
+    const routeModule = await import('@/app/api/cookie/route');
 
     expect(routeModule.POST).toBeDefined();
     expect(typeof routeModule.POST).toBe('function');
   });
 
   it('should handle POST request with consent data', async () => {
-    const { POST } = await import('../../../../../apps/site/src/app/api/cookie/route');
+    const { POST } = await import('@/app/api/cookie/route');
 
     const mockBody = { consent: 'accepted' };
     const request = new Request('http://localhost:3000/api/cookie', {
@@ -70,7 +70,7 @@ describe('cookie route', () => {
   });
 
   it('should return error response when cookies fail', async () => {
-    const { POST } = await import('../../../../../apps/site/src/app/api/cookie/route');
+    const { POST } = await import('@/app/api/cookie/route');
 
     const request = new Request('http://localhost:3000/api/cookie', {
       method: 'POST',
@@ -87,7 +87,7 @@ describe('cookie route', () => {
   });
 
   it('should handle invalid request body', async () => {
-    const { POST } = await import('../../../../../apps/site/src/app/api/cookie/route');
+    const { POST } = await import('@/app/api/cookie/route');
 
     const request = new Request('http://localhost:3000/api/cookie', {
       method: 'POST',

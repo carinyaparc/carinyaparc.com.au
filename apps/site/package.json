@@ -23,6 +23,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "test:smoke": "vitest run --project smoke",
+    "test:ci": "vitest run --reporter=junit --reporter=default --outputFile=junit.xml",
     "optimize-images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {

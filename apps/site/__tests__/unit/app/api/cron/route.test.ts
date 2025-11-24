@@ -2,14 +2,14 @@ import { describe, it, expect, vi } from 'vitest';
 
 describe('cron route', () => {
   it('should export GET function', async () => {
-    const routeModule = await import('../../../../../apps/site/src/app/api/cron/route');
+    const routeModule = await import('@/app/api/cron/route');
 
     expect(routeModule.GET).toBeDefined();
     expect(typeof routeModule.GET).toBe('function');
   });
 
   it('should return response with ok status', async () => {
-    const { GET } = await import('../../../../../apps/site/src/app/api/cron/route');
+    const { GET } = await import('@/app/api/cron/route');
 
     const response = await GET();
 
@@ -19,7 +19,7 @@ describe('cron route', () => {
   });
 
   it('should have correct response status', async () => {
-    const { GET } = await import('../../../../../apps/site/src/app/api/cron/route');
+    const { GET } = await import('@/app/api/cron/route');
 
     const response = await GET();
 
@@ -27,7 +27,7 @@ describe('cron route', () => {
   });
 
   it('should return JSON content type', async () => {
-    const { GET } = await import('../../../../../apps/site/src/app/api/cron/route');
+    const { GET } = await import('@/app/api/cron/route');
 
     const response = await GET();
 

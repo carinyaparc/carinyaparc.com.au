@@ -1,25 +1,58 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig, defineProject } from 'vitest/config';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
+const sharedConfig = {
   plugins: [react()],
+  resolve: {
+    alias: {
+      // More specific aliases first
+      '@/src/app': resolve(__dirname, './src/app'),
+      '@/src/components': resolve(__dirname, './src/components'),
+      '@/src/lib': resolve(__dirname, './src/lib'),
+      '@/src/types': resolve(__dirname, './src/types'),
+      '@/src/hooks': resolve(__dirname, './src/hooks'),
+      '@/src/utils': resolve(__dirname, './src/utils'),
+      '@/src/styles': resolve(__dirname, './src/styles'),
+      '@/src': resolve(__dirname, './src'),
+      // Then general aliases
+      '@/app': resolve(__dirname, './src/app'),
+      '@/components': resolve(__dirname, './src/components'),
+      '@/lib': resolve(__dirname, './src/lib'),
+      '@/types': resolve(__dirname, './src/types'),
+      '@/hooks': resolve(__dirname, './src/hooks'),
+      '@/utils': resolve(__dirname, './src/utils'),
+      '@/styles': resolve(__dirname, './src/styles'),
+      '@': resolve(__dirname, './src'),
+      // Test utilities
+      'test-utils': resolve(__dirname, './__tests__/helpers/renderWithProviders.tsx'),
+    },
+  },
+  define: {
+    'process.env': process.env,
+  },
+};
+
+export default defineConfig({
+  ...sharedConfig,
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['../../tests/setup/vitest.setup.ts'],
+    setupFiles: ['./__tests__/setup/vitest.setup.ts'],
     include: [
-      '../../tests/unit/**/*.test.{ts,tsx}',
-      '../../tests/integration/**/*.test.{ts,tsx}',
-      '../../tests/smoke/**/*.test.{ts,tsx}',
+      './__tests__/unit/**/*.test.{ts,tsx}',
+      './__tests__/integration/**/*.test.{ts,tsx}',
+      './__tests__/smoke/**/*.test.{ts,tsx}',
     ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       exclude: [
         'node_modules/',
-        'tests/setup/',
-        'tests/mocks/',
+        '__tests__/setup/',
+        '__tests__/mocks/',
+        '__tests__/fixtures/',
+        '__tests__/helpers/',
         '.next/',
         '.turbo/',
         'coverage/',
@@ -39,15 +72,5 @@ export default defineConfig({
     deps: {
       external: ['@sentry/nextjs'],
     },
-  },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, './'),
-      '@/src': resolve(__dirname, './src'),
-      'test-utils': resolve(__dirname, '../../tests/helpers/renderWithProviders.tsx'),
-    },
-  },
-  define: {
-    'process.env': process.env,
   },
 });

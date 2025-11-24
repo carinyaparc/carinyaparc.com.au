@@ -19,27 +19,27 @@ vi.mock('@/src/lib/metadata', () => ({
 
 describe('blog metadata', () => {
   it('should export metadata object', async () => {
-    const { metadata } = await import('../../../../apps/site/src/app/blog/metadata');
+    const { metadata } = await import('@/app/blog/metadata');
 
     expect(metadata).toBeDefined();
     expect(typeof metadata).toBe('object');
   });
 
   it('should have correct title', async () => {
-    const { metadata } = await import('../../../../apps/site/src/app/blog/metadata');
+    const { metadata } = await import('@/app/blog/metadata');
 
     expect(metadata.title).toBe('Blog - Life on Pasture - Carinya Parc');
   });
 
   it('should have correct description', async () => {
-    const { metadata } = await import('../../../../apps/site/src/app/blog/metadata');
+    const { metadata } = await import('@/app/blog/metadata');
 
     expect(metadata.description).toContain('regeneration journey');
     expect(metadata.description).toContain('ecosystem');
   });
 
   it('should have correct path', async () => {
-    const { metadata } = await import('../../../../apps/site/src/app/blog/metadata');
+    const { metadata } = await import('@/app/blog/metadata');
 
     expect(metadata.path).toBe('/blog');
   });

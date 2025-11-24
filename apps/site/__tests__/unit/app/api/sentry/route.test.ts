@@ -18,14 +18,14 @@ vi.mock('next/server', () => ({
 
 describe('sentry route', () => {
   it('should export GET function', async () => {
-    const routeModule = await import('../../../../../apps/site/src/app/api/sentry/route');
+    const routeModule = await import('@/app/api/sentry/route');
 
     expect(routeModule.GET).toBeDefined();
     expect(typeof routeModule.GET).toBe('function');
   });
 
   it('should handle requests with error parameter', async () => {
-    const { GET } = await import('../../../../../apps/site/src/app/api/sentry/route');
+    const { GET } = await import('@/app/api/sentry/route');
 
     // Create a mock request with error parameter
     const request = new Request('http://localhost:3000/api/sentry?error=true');
@@ -39,7 +39,7 @@ describe('sentry route', () => {
   });
 
   it('should always throw SentryExampleAPIError', async () => {
-    const { GET } = await import('../../../../../apps/site/src/app/api/sentry/route');
+    const { GET } = await import('@/app/api/sentry/route');
 
     // Create a mock request
     const request = new Request('http://localhost:3000/api/sentry');
@@ -49,7 +49,7 @@ describe('sentry route', () => {
   });
 
   it('should throw error with correct error type', async () => {
-    const { GET } = await import('../../../../../apps/site/src/app/api/sentry/route');
+    const { GET } = await import('@/app/api/sentry/route');
 
     const request = new Request('http://localhost:3000/api/sentry');
 

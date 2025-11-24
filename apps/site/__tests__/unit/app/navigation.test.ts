@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { navigation, type NavItem } from '../../../apps/site/src/app/navigation';
+import { navigation, type NavItem } from '@/app/navigation';
 
 describe('navigation', () => {
   describe('NavItem type', () => {
