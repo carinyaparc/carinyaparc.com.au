@@ -68,7 +68,7 @@
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/cli": "^4.1.17",
-    "@types/react": "^19.2.6",
+    "@types/react": "^19.2.7",
     "eslint": "^9.39.1",
     "tailwindcss": "^4.1.17",
     "tailwindcss-animate": "^1.0.7",
