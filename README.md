@@ -1,4 +1,4 @@
-# CarinyaParc Website
+# Carinya Parc Website
 
 This repository contains the website for Carinya Parc, a regenerative farm committed to sustainable practices and community engagement.
 
