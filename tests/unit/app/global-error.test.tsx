@@ -61,7 +61,7 @@ describe('GlobalError', () => {
   it('should capture exception in production', async () => {
     process.env.NODE_ENV = 'production';
 
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     render(<GlobalError error={mockError} />);
 
@@ -72,7 +72,7 @@ describe('GlobalError', () => {
   it('should log error to console in development', async () => {
     process.env.NODE_ENV = 'development';
 
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     render(<GlobalError error={mockError} />);
 
@@ -83,7 +83,7 @@ describe('GlobalError', () => {
   it('should log error to console in test environment', async () => {
     process.env.NODE_ENV = 'test';
 
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     render(<GlobalError error={mockError} />);
 
@@ -92,7 +92,7 @@ describe('GlobalError', () => {
   });
 
   it('should reload page when try again button is clicked', async () => {
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     render(<GlobalError error={mockError} />);
 
@@ -105,7 +105,7 @@ describe('GlobalError', () => {
   it('should handle error with digest property', async () => {
     const errorWithDigest = Object.assign(new Error('Test error'), { digest: 'abc123' });
 
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     render(<GlobalError error={errorWithDigest} />);
 
@@ -116,7 +116,7 @@ describe('GlobalError', () => {
   it('should handle error without digest property', async () => {
     const simpleError = new Error('Simple error');
 
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     render(<GlobalError error={simpleError} />);
 
@@ -124,7 +124,7 @@ describe('GlobalError', () => {
   });
 
   it('should re-run effect when error changes', async () => {
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     const firstError = new Error('First error');
     const secondError = new Error('Second error');
@@ -150,7 +150,7 @@ describe('GlobalError', () => {
       throw new Error('Sentry error');
     });
 
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     // Should not throw
     expect(() => {
@@ -159,7 +159,7 @@ describe('GlobalError', () => {
   });
 
   it('should have accessible button', async () => {
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     render(<GlobalError error={mockError} />);
 
@@ -169,7 +169,7 @@ describe('GlobalError', () => {
   });
 
   it('should maintain component structure across re-renders', async () => {
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     const { rerender } = render(<GlobalError error={mockError} />);
 
@@ -184,7 +184,7 @@ describe('GlobalError', () => {
   });
 
   it('should handle multiple button clicks', async () => {
-    const GlobalError = await import('../src/app/global-error').then((m) => m.default);
+    const GlobalError = await import('@/app/global-error').then((m) => m.default);
 
     render(<GlobalError error={mockError} />);
 

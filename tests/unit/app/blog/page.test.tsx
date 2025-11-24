@@ -40,7 +40,7 @@ vi.mock('@repo/ui/button', () => ({
 }));
 
 // Mock page components
-vi.mock('../src/components/sections/PageHeader', () => ({
+vi.mock('@/components/sections/PageHeader', () => ({
   default: vi.fn((props) => (
     <div
       data-testid="page-header"
@@ -57,7 +57,7 @@ vi.mock('../src/components/sections/PageHeader', () => ({
   )),
 }));
 
-vi.mock('../src/components/posts/LatestPosts', () => ({
+vi.mock('@/components/posts/LatestPosts', () => ({
   LatestPosts: vi.fn((props) => (
     <div
       data-testid="latest-posts"
@@ -72,7 +72,7 @@ vi.mock('../src/components/posts/LatestPosts', () => ({
   )),
 }));
 
-vi.mock('../src/components/posts/FeaturedPosts', () => ({
+vi.mock('@/components/posts/FeaturedPosts', () => ({
   default: vi.fn((props) => (
     <div data-testid="featured-posts" data-limit={props.limit}>
       Featured Posts
@@ -104,7 +104,7 @@ describe('BlogPage', () => {
   });
 
   it('should configure page header correctly', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     render(await BlogPage());
 
@@ -118,7 +118,7 @@ describe('BlogPage', () => {
   });
 
   it('should configure featured posts with correct limit', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     render(await BlogPage());
 
@@ -127,7 +127,7 @@ describe('BlogPage', () => {
   });
 
   it('should render all category filter buttons', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     render(await BlogPage());
 
@@ -146,7 +146,7 @@ describe('BlogPage', () => {
   });
 
   it('should style "All" category button as default variant', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     render(await BlogPage());
 
@@ -160,7 +160,7 @@ describe('BlogPage', () => {
   });
 
   it('should style other category buttons as outline variant', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     render(await BlogPage());
 
@@ -173,7 +173,7 @@ describe('BlogPage', () => {
   });
 
   it('should configure latest posts correctly', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     render(await BlogPage());
 
@@ -189,7 +189,7 @@ describe('BlogPage', () => {
   });
 
   it('should have proper layout structure', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     const { container } = render(await BlogPage());
 
@@ -208,7 +208,7 @@ describe('BlogPage', () => {
   });
 
   it('should have proper CSS classes for styling', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     const { container } = render(await BlogPage());
 
@@ -226,7 +226,7 @@ describe('BlogPage', () => {
   });
 
   it('should render category buttons with correct size', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     render(await BlogPage());
 
@@ -244,7 +244,7 @@ describe('BlogPage', () => {
   });
 
   it('should have semantic HTML structure', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     const { container } = render(await BlogPage());
 
@@ -258,7 +258,7 @@ describe('BlogPage', () => {
   });
 
   it('should be accessible', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     render(await BlogPage());
 
@@ -279,7 +279,7 @@ describe('BlogPage', () => {
   });
 
   it('should handle async rendering correctly', async () => {
-    const BlogPage = await import('../src/app/blog/page').then((m) => m.default);
+    const BlogPage = await import('@/app/blog/page').then((m) => m.default);
 
     // Should be an async function
     expect(BlogPage.constructor.name).toBe('AsyncFunction');

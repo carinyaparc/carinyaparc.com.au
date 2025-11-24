@@ -57,7 +57,7 @@ describe('subscribe route', () => {
   });
 
   it('should export POST function', async () => {
-    const routeModule = await import('../../../../../site/src/app/api/subscribe/route');
+    const routeModule = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
     expect(routeModule.POST).toBeDefined();
     expect(typeof routeModule.POST).toBe('function');
@@ -72,7 +72,7 @@ describe('subscribe route', () => {
 
   describe('request validation', () => {
     it('should reject requests without email', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const request = new Request('http://localhost/api/subscribe', {
         method: 'POST',
@@ -88,7 +88,7 @@ describe('subscribe route', () => {
     });
 
     it('should reject invalid email formats', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const invalidEmails = ['invalid', 'invalid@', '@invalid.com', 'invalid.com'];
 
@@ -108,7 +108,7 @@ describe('subscribe route', () => {
     });
 
     it('should reject invalid names', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const request = new Request('http://localhost/api/subscribe', {
         method: 'POST',
@@ -130,7 +130,7 @@ describe('subscribe route', () => {
     });
 
     it('should accept valid names with special characters', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -158,7 +158,7 @@ describe('subscribe route', () => {
 
   describe('honeypot protection', () => {
     it('should silently reject requests with website field populated', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const request = new Request('http://localhost/api/subscribe', {
         method: 'POST',
@@ -181,7 +181,7 @@ describe('subscribe route', () => {
 
   describe('timing protection', () => {
     it('should silently reject requests submitted too quickly', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const request = new Request('http://localhost/api/subscribe', {
         method: 'POST',
@@ -203,7 +203,7 @@ describe('subscribe route', () => {
 
   describe('rate limiting', () => {
     it('should enforce email rate limiting', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const email = 'ratelimit@validtest.com';
 
@@ -241,7 +241,7 @@ describe('subscribe route', () => {
 
   describe('spam email detection', () => {
     it('should silently reject spam email patterns', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const emails = [
         'realuser@validtest.com', // Should pass (not matching spam patterns)
@@ -295,7 +295,7 @@ describe('subscribe route', () => {
       // Temporarily remove API key
       delete process.env.MAILERLITE_API_KEY;
 
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const request = new Request('http://localhost/api/subscribe', {
         method: 'POST',
@@ -318,7 +318,7 @@ describe('subscribe route', () => {
     });
 
     it('should make correct API call to MailerLite', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -357,7 +357,7 @@ describe('subscribe route', () => {
     });
 
     it('should handle MailerLite API errors', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       mockFetch.mockResolvedValueOnce({
         ok: false,
@@ -380,7 +380,7 @@ describe('subscribe route', () => {
     });
 
     it('should handle network errors', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       mockFetch.mockRejectedValueOnce(new Error('Network error'));
 
@@ -398,7 +398,7 @@ describe('subscribe route', () => {
     });
 
     it('should handle malformed JSON response from MailerLite', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       mockFetch.mockResolvedValueOnce({
         ok: false,
@@ -422,7 +422,7 @@ describe('subscribe route', () => {
 
   describe('request parsing', () => {
     it('should handle malformed request body', async () => {
-      const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+      const { POST } = await import('../../../../../apps/site/src/app/api/subscribe/route');
 
       const request = new Request('http://localhost/api/subscribe', {
         method: 'POST',

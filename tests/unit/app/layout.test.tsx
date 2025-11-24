@@ -16,17 +16,17 @@ vi.mock('@vercel/analytics/next', () => ({
 }));
 
 // Mock font module
-vi.mock('../src/lib/font', () => ({
+vi.mock('@/lib/font', () => ({
   fontClassNames: 'font-raleway',
 }));
 
 // Mock constants
-vi.mock('../src/lib/constants', () => ({
+vi.mock('@/lib/constants', () => ({
   CONSENT_COOKIE_NAME: 'cookieConsent',
 }));
 
 // Mock navigation
-vi.mock('../src/app/navigation', () => ({
+vi.mock('@/app/navigation', () => ({
   navigation: [
     { href: '/', label: 'Home', visible: false },
     { href: '/about', verb: 'Discover', rest: 'Our Story', visible: true },
@@ -34,17 +34,17 @@ vi.mock('../src/app/navigation', () => ({
 }));
 
 // Mock generateMetadata
-vi.mock('../src/lib/generateMetadata', () => ({
+vi.mock('@/lib/generateMetadata', () => ({
   generateMetadata: vi.fn(),
   viewport: vi.fn(),
 }));
 
 // Mock components
-vi.mock('../src/components/ui/Banner', () => ({
+vi.mock('@/components/ui/Banner', () => ({
   default: vi.fn(() => <div data-testid="banner">Banner</div>),
 }));
 
-vi.mock('../src/components/layouts/Header', () => ({
+vi.mock('@/components/layouts/Header', () => ({
   default: vi.fn(({ navigation }) => (
     <header data-testid="header" data-nav-length={navigation?.length}>
       Header
@@ -52,15 +52,15 @@ vi.mock('../src/components/layouts/Header', () => ({
   )),
 }));
 
-vi.mock('../src/components/ui/Newsletter', () => ({
+vi.mock('@/components/ui/Newsletter', () => ({
   default: vi.fn(() => <div data-testid="newsletter">Newsletter</div>),
 }));
 
-vi.mock('../src/components/layouts/Footer', () => ({
+vi.mock('@/components/layouts/Footer', () => ({
   default: vi.fn(() => <footer data-testid="footer">Footer</footer>),
 }));
 
-vi.mock('../src/components/ui/Policy', () => ({
+vi.mock('@/components/ui/Policy', () => ({
   default: vi.fn(() => <div data-testid="policy">Policy</div>),
 }));
 
@@ -110,7 +110,7 @@ describe('RootLayout', () => {
   });
 
   it('should pass navigation to Header component', async () => {
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     render(
       await RootLayout({
@@ -125,7 +125,7 @@ describe('RootLayout', () => {
   it('should not load analytics without consent', async () => {
     mockCookieStore.get.mockReturnValue(undefined);
 
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     render(
       await RootLayout({
@@ -140,7 +140,7 @@ describe('RootLayout', () => {
   it('should load analytics with consent', async () => {
     mockCookieStore.get.mockReturnValue({ value: 'accepted' });
 
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     render(
       await RootLayout({
@@ -157,7 +157,7 @@ describe('RootLayout', () => {
     // Test with rejected consent
     mockCookieStore.get.mockReturnValue({ value: 'rejected' });
 
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     render(
       await RootLayout({
@@ -174,7 +174,7 @@ describe('RootLayout', () => {
     process.env.NEXT_PUBLIC_GTM_ID = '';
     mockCookieStore.get.mockReturnValue({ value: 'accepted' });
 
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     render(
       await RootLayout({
@@ -190,7 +190,7 @@ describe('RootLayout', () => {
   });
 
   it('should have correct HTML attributes', async () => {
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     const result = render(
       await RootLayout({
@@ -205,7 +205,7 @@ describe('RootLayout', () => {
   });
 
   it('should have proper semantic HTML structure', async () => {
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     render(
       await RootLayout({
@@ -221,7 +221,7 @@ describe('RootLayout', () => {
   });
 
   it('should call draftMode during render', async () => {
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     await RootLayout({
       children: <div>Test Content</div>,
@@ -231,7 +231,7 @@ describe('RootLayout', () => {
   });
 
   it('should call cookies to get consent status', async () => {
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     await RootLayout({
       children: <div>Test Content</div>,
@@ -242,14 +242,14 @@ describe('RootLayout', () => {
   });
 
   it('should export generateMetadata and viewport', async () => {
-    const layoutModule = await import('../src/app/layout');
+    const layoutModule = await import('@/app/layout');
 
     expect(layoutModule.generateMetadata).toBeDefined();
     expect(layoutModule.viewport).toBeDefined();
   });
 
   it('should include critical CSS in head', async () => {
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     render(
       await RootLayout({
@@ -270,7 +270,7 @@ describe('RootLayout', () => {
     // Mock cookies to throw an error
     (cookies as any).mockRejectedValue(new Error('Cookie error'));
 
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     // Should not throw
     await expect(
@@ -283,7 +283,7 @@ describe('RootLayout', () => {
   it('should handle missing consent cookie gracefully', async () => {
     mockCookieStore.get.mockReturnValue(null);
 
-    const RootLayout = await import('../src/app/layout').then((m) => m.default);
+    const RootLayout = await import('@/app/layout').then((m) => m.default);
 
     render(
       await RootLayout({

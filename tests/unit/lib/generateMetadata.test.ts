@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { generateMetadata, generatePageMetadata, getPathFromParams } from '@/site/src/lib/metadata';
 
 // Mock the constants
-vi.mock('../../../site/src/lib/constants', () => ({
+vi.mock('../../../apps/site/src/lib/constants', () => ({
   SITE_TITLE: 'Carinya Parc',
   SITE_DESCRIPTION: 'Carinya Parc - Regenerative farming and sustainable living',
   BASE_URL: 'https://carinyaparc.com.au',

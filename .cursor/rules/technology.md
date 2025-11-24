@@ -4,7 +4,7 @@ A production-ready, enterprise-grade Next.js application with comprehensive tool
 
 ## **Core Framework & Runtime**
 
-- Next.js App Router v15 with TypeScript
+- Next.js App Router v16 with TypeScript
 - React v19 with React DOM v19
 - Node.js v22+ engine requirement
 

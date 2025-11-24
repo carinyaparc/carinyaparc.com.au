@@ -7,11 +7,11 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['../tests/setup/vitest.setup.ts'],
+    setupFiles: ['../../tests/setup/vitest.setup.ts'],
     include: [
-      '../tests/unit/**/*.test.{ts,tsx}',
-      '../tests/integration/**/*.test.{ts,tsx}',
-      '../tests/smoke/**/*.test.{ts,tsx}',
+      '../../tests/unit/**/*.test.{ts,tsx}',
+      '../../tests/integration/**/*.test.{ts,tsx}',
+      '../../tests/smoke/**/*.test.{ts,tsx}',
     ],
     coverage: {
       provider: 'v8',
@@ -44,7 +44,7 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './'),
       '@/src': resolve(__dirname, './src'),
-      'test-utils': resolve(__dirname, '../tests/helpers/renderWithProviders.tsx'),
+      'test-utils': resolve(__dirname, '../../tests/helpers/renderWithProviders.tsx'),
     },
   },
   define: {

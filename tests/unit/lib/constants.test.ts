@@ -6,7 +6,7 @@ import {
   APP_DIR,
   CONSENT_COOKIE_NAME,
   SESSION_COOKIE_NAME,
-} from '../../../site/src/lib/constants';
+} from '../../../apps/site/src/lib/constants';
 
 describe('Constants', () => {
   it('should export SITE_TITLE', () => {

@@ -63,7 +63,7 @@ describe('NotFound', () => {
   });
 
   it('should have proper semantic HTML structure', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     const { container } = render(<NotFound />);
 
@@ -76,7 +76,7 @@ describe('NotFound', () => {
   });
 
   it('should have proper CSS classes for styling', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     const { container } = render(<NotFound />);
 
@@ -109,7 +109,7 @@ describe('NotFound', () => {
   });
 
   it('should have proper text styling classes', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     render(<NotFound />);
 
@@ -144,7 +144,7 @@ describe('NotFound', () => {
   });
 
   it('should have proper link styling and arrow', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     render(<NotFound />);
 
@@ -158,7 +158,7 @@ describe('NotFound', () => {
   });
 
   it('should have proper container structure', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     const { container } = render(<NotFound />);
 
@@ -170,7 +170,7 @@ describe('NotFound', () => {
   });
 
   it('should be accessible', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     render(<NotFound />);
 
@@ -191,7 +191,7 @@ describe('NotFound', () => {
   });
 
   it('should have proper responsive classes', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     render(<NotFound />);
 
@@ -209,7 +209,7 @@ describe('NotFound', () => {
   });
 
   it('should render correctly multiple times', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     const { rerender } = render(<NotFound />);
 
@@ -223,7 +223,7 @@ describe('NotFound', () => {
   });
 
   it('should have correct image optimization settings', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     render(<NotFound />);
 
@@ -233,7 +233,7 @@ describe('NotFound', () => {
   });
 
   it('should use semantic HTML elements correctly', async () => {
-    const NotFound = await import('./src/app/not-found').then((m) => m.default);
+    const NotFound = await import('@/app/not-found').then((m) => m.default);
 
     const { container } = render(<NotFound />);
 

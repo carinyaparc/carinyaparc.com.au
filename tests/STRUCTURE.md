@@ -25,7 +25,7 @@ We follow these best practices for testing dependencies:
   - Configures shared aliases and setup
   - Sets default test environment
 
-- **Package configs (`site/vitest.config.mjs`):**
+- **Package configs (`apps/site/vitest.config.mjs`):**
   - Package-specific test configuration
   - Points to the tests directory for that package
   - Configures framework-specific plugins

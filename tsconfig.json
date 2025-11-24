@@ -10,11 +10,11 @@
     "strict": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./site/*"],
-      "@/src/*": ["./site/src/*"],
-      "@site/*": ["./site/src/*"]
+      "@/*": ["apps/site/*"],
+      "@/src/*": ["apps/site/src/*"],
+      "@site/*": ["apps/site/src/*"]
     }
   },
-  "include": ["tests/**/*", "site/**/*"],
+  "include": ["tests/**/*", "apps/site/**/*"],
   "exclude": ["node_modules", "**/node_modules", ".next", "coverage"]
 }

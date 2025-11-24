@@ -132,7 +132,7 @@
   - [ ] "Sustainable farming Newcastle region"
   - [ ] "Farm gate sales Hunter Valley"
 - [ ] Add location pages or location-focused blog posts
-- [ ] Register with Google Business Profile
+- [x] Register with Google Business Profile
 - [ ] Add local business schema markup enhancement
 - [ ] Create content mentioning nearby attractions (Barrington Tops, Port Stephens, Great Lakes)
 - [ ] Add local event listings and participation
