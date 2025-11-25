@@ -1,20 +1,20 @@
 # robots.txt for Carinya Parc Website
-# https://www.carinyaparc.com.au
+# https://carinyaparc.com.au
 
+# Default rule for all crawlers
 User-agent: *
+
+# Allow all public content
 Allow: /
-Disallow: /admin/
+
+# Disallow API endpoints (internal use only)
 Disallow: /api/
-Disallow: /_next/static/development/
+
+# Disallow Next.js internal data endpoints
 Disallow: /_next/data/
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-Crawl-delay: 10
+# Disallow incomplete profile section
+Disallow: /profile/
 
 # Sitemap location
-Sitemap: https://www.carinyaparc.com.au/sitemap.xml 
+Sitemap: https://carinyaparc.com.au/sitemap.xml 

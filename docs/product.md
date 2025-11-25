@@ -145,10 +145,11 @@ The website brings this value to life by:
 The website is **not** intended to:
 
 - Operate a full-featured ---
-title: Carinya Parc – Product Overview
-status: active
-owner: product
-last_updated: 2025-11-25
+  title: Carinya Parc – Product Overview
+  status: active
+  owner: product
+  last_updated: 2025-11-25
+
 ---
 
 ## Overview
@@ -375,6 +376,7 @@ These metrics should be reviewed regularly and adjusted as new offerings (e.g., 
 
 Where these assumptions change (e.g., full booking engine or online courses), this document should be updated and the impacted features clearly marked with ✓ (new commitments) or ✗ (retired approaches).
 booking engine (real-time availability, payment capture) in the first iteration.
+
 - Become a generic blog platform detached from the specific place and people.
 - Support multi-property or multi-brand functionality.
 - Serve as an e-commerce store for products at launch (e.g., no complex cart/checkout flows).

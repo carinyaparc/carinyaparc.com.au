@@ -100,7 +100,7 @@ export default async function RootLayout({
         {/* Preconnect to Google Fonts for optimal performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* Inline critical CSS for immediate rendering */}
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
         {/* Organization schema present on all pages */}

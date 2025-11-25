@@ -63,15 +63,13 @@ describe('sitemap', () => {
         return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
-      mockFs.statSync.mockImplementation(
-        (filePath) => {
-          const filePathStr = filePath.toString();
-          return {
-            isDirectory: () => !filePathStr.endsWith('.tsx') && !filePathStr.endsWith('.js'),
-            mtime: new Date('2024-01-01'),
-          } as any;
-        },
-      );
+      mockFs.statSync.mockImplementation((filePath) => {
+        const filePathStr = filePath.toString();
+        return {
+          isDirectory: () => !filePathStr.endsWith('.tsx') && !filePathStr.endsWith('.js'),
+          mtime: new Date('2024-01-01'),
+        } as any;
+      });
 
       const { default: sitemap } = await import('@/app/sitemap');
       const result = await sitemap();
@@ -110,15 +108,13 @@ describe('sitemap', () => {
         return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
-      mockFs.statSync.mockImplementation(
-        (filePath) => {
-          const filePathStr = filePath.toString();
-          return {
-            isDirectory: () => !filePathStr.endsWith('.tsx'),
-            mtime: new Date('2024-01-01'),
-          } as any;
-        },
-      );
+      mockFs.statSync.mockImplementation((filePath) => {
+        const filePathStr = filePath.toString();
+        return {
+          isDirectory: () => !filePathStr.endsWith('.tsx'),
+          mtime: new Date('2024-01-01'),
+        } as any;
+      });
 
       const { default: sitemap } = await import('@/app/sitemap');
       const result = await sitemap();
@@ -144,15 +140,13 @@ describe('sitemap', () => {
         return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
-      mockFs.statSync.mockImplementation(
-        (filePath) => {
-          const filePathStr = filePath.toString();
-          return {
-            isDirectory: () => !filePathStr.endsWith('.tsx'),
-            mtime: new Date('2024-01-01'),
-          } as any;
-        },
-      );
+      mockFs.statSync.mockImplementation((filePath) => {
+        const filePathStr = filePath.toString();
+        return {
+          isDirectory: () => !filePathStr.endsWith('.tsx'),
+          mtime: new Date('2024-01-01'),
+        } as any;
+      });
 
       const { default: sitemap } = await import('@/app/sitemap');
       const result = await sitemap();
@@ -228,15 +222,13 @@ describe('sitemap', () => {
         return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
-      mockFs.statSync.mockImplementation(
-        (filePath) => {
-          const filePathStr = filePath.toString();
-          return {
-            isDirectory: () => !filePathStr.includes('.tsx') && !filePathStr.includes('.mdx'),
-            mtime: new Date('2024-01-01'),
-          } as any;
-        },
-      );
+      mockFs.statSync.mockImplementation((filePath) => {
+        const filePathStr = filePath.toString();
+        return {
+          isDirectory: () => !filePathStr.includes('.tsx') && !filePathStr.includes('.mdx'),
+          mtime: new Date('2024-01-01'),
+        } as any;
+      });
 
       const { default: sitemap } = await import('@/app/sitemap');
       const result = await sitemap();
@@ -279,15 +271,13 @@ describe('sitemap', () => {
         return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
-      mockFs.statSync.mockImplementation(
-        (filePath) => {
-          const filePathStr = filePath.toString();
-          return {
-            isDirectory: () => !filePathStr.endsWith('.tsx'),
-            mtime: new Date('2024-01-01'),
-          } as any;
-        },
-      );
+      mockFs.statSync.mockImplementation((filePath) => {
+        const filePathStr = filePath.toString();
+        return {
+          isDirectory: () => !filePathStr.endsWith('.tsx'),
+          mtime: new Date('2024-01-01'),
+        } as any;
+      });
 
       const { default: sitemap } = await import('@/app/sitemap');
       const result = await sitemap();

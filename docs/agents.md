@@ -42,6 +42,8 @@ Run these in the repository root unless specified.
 
   ```bash
   pnpm install
+  ```
+
 ````
 
 * **Start development server**
@@ -359,3 +361,4 @@ When summarising changes to a human:
 * Explain *why* important decisions were made (especially around UX, performance, and data handling).
 
 If you are unsure whether a change fits the product direction, consult `docs/product.md` and prefer alignment over adding speculative complexity.
+````

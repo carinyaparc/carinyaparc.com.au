@@ -8,7 +8,7 @@ This document explains how to set up the project locally, the expectations for c
 
 ## 1. Project overview
 
-Carinya Parc is a Next.js v16 App Router website for a working regenerative farm in NSW.  
+Carinya Parc is a Next.js v16 App Router website for a working regenerative farm in NSW.
 
 Key points:
 
@@ -37,7 +37,7 @@ Install pnpm if you don’t already have it:
 
 ```bash
 npm install -g pnpm
-````
+```
 
 ### Clone and install
 
@@ -72,11 +72,11 @@ Visit the local URL printed in the terminal (typically `http://localhost:3000`).
 
 You can contribute in several ways:
 
-* **Bug fixes** – fixing broken behaviour, layout issues, accessibility problems.
-* **Features** – adding new pages or flows that align with the product vision (e.g. “experiences”, “stay”).
-* **Refactors** – improving structure, naming, or reuse without changing behaviour.
-* **Documentation** – improving or extending docs in `docs/` or inline code comments.
-* **Tests** – adding or strengthening unit, integration, smoke or security tests.
+- **Bug fixes** – fixing broken behaviour, layout issues, accessibility problems.
+- **Features** – adding new pages or flows that align with the product vision (e.g. “experiences”, “stay”).
+- **Refactors** – improving structure, naming, or reuse without changing behaviour.
+- **Documentation** – improving or extending docs in `docs/` or inline code comments.
+- **Tests** – adding or strengthening unit, integration, smoke or security tests.
 
 If you’re unsure whether an idea fits, open a lightweight issue or discussion first and reference the relevant doc (usually `docs/product.md`).
 
@@ -97,10 +97,9 @@ If you’re using Git branches and pull requests:
 3. Run the checks described below.
 
 4. Open a pull request with:
-
-   * A clear title.
-   * A short description of what changed and why.
-   * Notes on any follow-up work or limitations.
+   - A clear title.
+   - A short description of what changed and why.
+   - Notes on any follow-up work or limitations.
 
 Try to keep PRs reasonably small and focused on a single change or feature.
 
@@ -110,17 +109,17 @@ Try to keep PRs reasonably small and focused on a single change or feature.
 
 ### Language and framework
 
-* Use **TypeScript** for all application and library code (`.ts`, `.tsx`).
-* Use **React function components** only.
-* Prefer **server components** by default; opt into `"use client"` only when necessary.
+- Use **TypeScript** for all application and library code (`.ts`, `.tsx`).
+- Use **React function components** only.
+- Prefer **server components** by default; opt into `"use client"` only when necessary.
 
 ### Project structure
 
-* Routes live under `apps/site/src/app/` (Next.js App Router).
-* Shared components live under `apps/site/src/components/`.
-* Hooks live under `apps/site/src/hooks/`.
-* Utilities and data helpers live under `apps/site/src/lib/` and `apps/site/src/utils/`.
-* Long-form content is in MDX under `apps/site/content/`.
+- Routes live under `apps/site/src/app/` (Next.js App Router).
+- Shared components live under `apps/site/src/components/`.
+- Hooks live under `apps/site/src/hooks/`.
+- Utilities and data helpers live under `apps/site/src/lib/` and `apps/site/src/utils/`.
+- Long-form content is in MDX under `apps/site/content/`.
 
 For more detail, see `docs/structure.md`.
 
@@ -128,32 +127,32 @@ For more detail, see `docs/structure.md`.
 
 Use the configured aliases instead of long relative paths:
 
-* `@/app/...`
-* `@/components/...`
-* `@/hooks/...`
-* `@/lib/...`
-* `@/styles/...`
-* `@/utils/...`
-* `@repo/ui/...` for shared UI components.
+- `@/app/...`
+- `@/components/...`
+- `@/hooks/...`
+- `@/lib/...`
+- `@/styles/...`
+- `@/utils/...`
+- `@repo/ui/...` for shared UI components.
 
 Example:
 
 ```ts
-import { RegenerateSection } from "@/components/sections/regenerate-section";
-import { getAllPosts } from "@/lib/posts";
+import { RegenerateSection } from '@/components/sections/regenerate-section';
+import { getAllPosts } from '@/lib/posts';
 ```
 
 ### Styling
 
-* Prefer **Tailwind CSS** utilities and shared UI components from `@repo/ui`.
-* Keep Tailwind usage consistent with the existing patterns (spacing, typography, colours).
-* Use CSS modules or global styles in `src/styles/` only when necessary.
+- Prefer **Tailwind CSS** utilities and shared UI components from `@repo/ui`.
+- Keep Tailwind usage consistent with the existing patterns (spacing, typography, colours).
+- Use CSS modules or global styles in `src/styles/` only when necessary.
 
 ### Comments and naming
 
-* Name components in **PascalCase** (`HeroSection`, `SubscribeForm`).
-* Name hooks starting with `use` (`useMobile`, `useToast`).
-* Focus comments on **why** something is done, not what the code obviously does.
+- Name components in **PascalCase** (`HeroSection`, `SubscribeForm`).
+- Name hooks starting with `use` (`useMobile`, `useToast`).
+- Focus comments on **why** something is done, not what the code obviously does.
 
 ---
 
@@ -191,10 +190,10 @@ pnpm test:coverage
 
 ### Where to put tests
 
-* **Unit tests**: `apps/site/__tests__/unit/` mirroring `src/app`, `src/lib`, `src/hooks`, etc.
-* **Integration tests**: `apps/site/__tests__/integration/`.
-* **Smoke tests**: `apps/site/__tests__/smoke/`.
-* **Security tests**: `apps/site/__tests__/security/`.
+- **Unit tests**: `apps/site/__tests__/unit/` mirroring `src/app`, `src/lib`, `src/hooks`, etc.
+- **Integration tests**: `apps/site/__tests__/integration/`.
+- **Smoke tests**: `apps/site/__tests__/smoke/`.
+- **Security tests**: `apps/site/__tests__/security/`.
 
 If you add new logic or a new route, please add or update tests to cover it.
 
@@ -208,10 +207,10 @@ Whenever you make a meaningful change, ask:
 
 If yes, then update:
 
-* **`docs/product.md`** – when user-facing features, flows or objectives change.
-* **`docs/tech.md`** – when the stack, tooling, hosting or key integrations change.
-* **`docs/structure.md`** – when routing, directory layout, or conventions change.
-* **`docs/agents.md`** – when commands, checks or contribution expectations change.
+- **`docs/product.md`** – when user-facing features, flows or objectives change.
+- **`docs/tech.md`** – when the stack, tooling, hosting or key integrations change.
+- **`docs/structure.md`** – when routing, directory layout, or conventions change.
+- **`docs/agents.md`** – when commands, checks or contribution expectations change.
 
 For new feature areas (e.g. workshops, events, bookings), consider adding a separate doc in `docs/` and linking it from `docs/README.md`.
 
@@ -223,10 +222,10 @@ Treat mismatches between code and docs as a bug to fix.
 
 For larger or risky changes (for example):
 
-* Introducing a database or new data store.
-* Changing hosting platform or runtime assumptions.
-* Adding a major dependency that affects many parts of the app.
-* Changing global design system or styling approach.
+- Introducing a database or new data store.
+- Changing hosting platform or runtime assumptions.
+- Adding a major dependency that affects many parts of the app.
+- Changing global design system or styling approach.
 
 Please:
 
@@ -240,12 +239,12 @@ This keeps decisions traceable and easier to revisit later.
 
 ## 9. Security & privacy
 
-* Do **not** commit secrets or environment variable files containing secrets.
-* Environment variables should be configured via:
+- Do **not** commit secrets or environment variable files containing secrets.
+- Environment variables should be configured via:
+  - `.env.local` for local development (ignored by Git).
+  - Hosting platform configuration for deployed environments.
 
-  * `.env.local` for local development (ignored by Git).
-  * Hosting platform configuration for deployed environments.
-* Be mindful of personal data (primarily email addresses for subscriptions) and follow the behaviour described in the legal MDX content under `apps/site/content/legal/`.
+- Be mindful of personal data (primarily email addresses for subscriptions) and follow the behaviour described in the legal MDX content under `apps/site/content/legal/`.
 
 If you discover a security concern, flag it clearly (e.g. in an issue or PR) and avoid sharing sensitive details in public logs.
 
@@ -255,10 +254,10 @@ If you discover a security concern, flag it clearly (e.g. in an issue or PR) and
 
 Use clear, descriptive commit messages that explain what changed. For example:
 
-* `Add experiences page and hero section`
-* `Fix layout shift on home page hero`
-* `Refactor blog post loader to use shared MDX helper`
-* `Update tech docs for Node 22`
+- `Add experiences page and hero section`
+- `Fix layout shift on home page hero`
+- `Refactor blog post loader to use shared MDX helper`
+- `Update tech docs for Node 22`
 
 Conventional Commit style (`feat: …`, `fix: …`, etc.) is welcome but not mandatory; clarity is more important than strict formatting.
 
@@ -268,9 +267,9 @@ Conventional Commit style (`feat: …`, `fix: …`, etc.) is welcome but not man
 
 If you’re unsure about:
 
-* Where to put something,
-* Whether a feature aligns with the product,
-* How to structure a route or component,
+- Where to put something,
+- Whether a feature aligns with the product,
+- How to structure a route or component,
 
 refer back to the docs in `docs/` first. If it’s still unclear, raise a question in the issue, PR, or project chat with a link to the part of the code or doc you’re looking at.
 

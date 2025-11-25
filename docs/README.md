@@ -13,12 +13,12 @@ All critical decisions that affect users, architecture, or contributor workflows
 
 ## Quick links
 
-| File          | Purpose                                                                                          |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| `product.md`  | Product overview – who we serve, what problems we solve, and what success looks like.           |
-| `tech.md`     | Technology stack – frameworks, tools, and constraints that guide implementation.                |
-| `structure.md`| Project structure – how the repo and Next.js App Router app are organised.                      |
-| `agents.md`   | Agents guide – commands, checks, and conventions for AI agents and humans working like them.    |
+| File           | Purpose                                                                                      |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| `product.md`   | Product overview – who we serve, what problems we solve, and what success looks like.        |
+| `tech.md`      | Technology stack – frameworks, tools, and constraints that guide implementation.             |
+| `structure.md` | Project structure – how the repo and Next.js App Router app are organised.                   |
+| `agents.md`    | Agents guide – commands, checks, and conventions for AI agents and humans working like them. |
 
 ### Summaries
 
@@ -101,7 +101,9 @@ Typical patterns:
   owner: product|engineering|shared
   last_updated: YYYY-MM-DD
   ---
-````
+  ```
+
+```
 
 * Use clear `##` and `###` headings, short paragraphs, and bullet lists.
 * Where useful, adopt the ✓, ✗, !, -, + symbols to make decisions and outcomes easy to scan.
@@ -130,3 +132,4 @@ Use this directory as the shared “source of truth” for Carinya Parc, so that
   * Owned by engineering, with input from product as needed.
 
 Any contributor (human or agent) may propose changes, but long-lived docs should be reviewed by the relevant owner before being treated as the new truth.
+```
