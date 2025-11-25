@@ -1,6 +1,4 @@
-# Architecture
-
-## Rules
+# Architecture Guiding Principles
 
 1. **Separation of Concerns:** Modules **SHALL** adhere to the single‑responsibility principle. UI components **SHALL NOT** contain side‑effects such as data fetching or business logic.
 
