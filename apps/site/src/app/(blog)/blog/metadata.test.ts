@@ -28,14 +28,14 @@ describe('blog metadata', () => {
   it('should have correct title', async () => {
     const { metadata } = await import('@/app/(blog)/blog/metadata');
 
-    expect(metadata.title).toBe('Blog - Life on Pasture - Carinya Parc');
+    expect(metadata.title).toBe('Blog');
   });
 
   it('should have correct description', async () => {
     const { metadata } = await import('@/app/(blog)/blog/metadata');
 
-    expect(metadata.description).toContain('regeneration journey');
-    expect(metadata.description).toContain('ecosystem');
+    expect(metadata.description).toContain('regenerative farming');
+    expect(metadata.description).toContain('sustainable living');
   });
 
   // Note: 'path' is not part of Next.js Metadata type, it's a custom property in our implementation

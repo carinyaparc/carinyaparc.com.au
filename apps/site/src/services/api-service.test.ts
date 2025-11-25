@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterEach, afterAll, vi } from 'vitest';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
-import { handlers } from '../../mocks/handlers';
+import { handlers } from '../../__tests__/mocks/handlers';
 
 // Since we don't have a direct API service file to import, we'll create a mock service for testing
 class ApiService {

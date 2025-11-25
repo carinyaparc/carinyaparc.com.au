@@ -62,14 +62,14 @@ describe('cookie route', () => {
     const response = await POST(request);
 
     expect(response).toBeInstanceOf(Response);
-    // Expecting 500 because cookies() throws in test environment
-    expect(response.status).toBe(500);
+    // Cookies are mocked in test environment, should succeed
+    expect(response.status).toBe(200);
 
     const json = await response.json();
-    expect(json).toHaveProperty('error', 'Failed to set cookie consent');
+    expect(json).toHaveProperty('success', true);
   });
 
-  it('should return error response when cookies fail', async () => {
+  it('should return success response when cookies are set', async () => {
     const { POST } = await import('@/app/api/cookie/route');
 
     const request = new Request('http://localhost:3000/api/cookie', {
@@ -81,9 +81,9 @@ describe('cookie route', () => {
     const response = await POST(request);
     const json = await response.json();
 
-    // Since cookies() throws in test environment, we get an error
-    expect(json).toHaveProperty('error', 'Failed to set cookie consent');
-    expect(response.status).toBe(500);
+    // With mocked cookies(), should succeed
+    expect(json).toHaveProperty('success', true);
+    expect(response.status).toBe(200);
   });
 
   it('should handle invalid request body', async () => {

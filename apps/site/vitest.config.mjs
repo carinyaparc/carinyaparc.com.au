@@ -45,6 +45,7 @@ export default defineConfig({
       './__tests__/smoke/**/*.test.{ts,tsx}',
       './__tests__/security/**/*.test.{ts,tsx}',
     ],
+    css: true, // Enable CSS but with simplified processing
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
