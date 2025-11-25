@@ -1,7 +1,7 @@
 import '@/src/styles/globals.css';
 
 import { draftMode } from 'next/headers';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { fontClassNames } from '../lib/font';
 import { CONSENT_COOKIE_NAME } from '@/src/lib/constants';
 
@@ -88,6 +88,10 @@ export default async function RootLayout({
   const cookieConsent = cookieStore.get(CONSENT_COOKIE_NAME);
   const hasConsentedToAnalytics = cookieConsent?.value === 'accepted';
 
+  // Read nonce from middleware headers (T3.1, SEC-001, SEC-002)
+  const headersList = await headers();
+  const nonce = headersList.get('x-nonce') || '';
+
   // Generate organization schema for all pages
   const organizationSchema = generateOrganizationSchema({
     name: SITE_TITLE,
@@ -103,10 +107,11 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Inline critical CSS for immediate rendering */}
-        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
-        {/* Organization schema present on all pages */}
+        {/* Inline critical CSS for immediate rendering (T3.2, SEC-002) */}
+        <style nonce={nonce} dangerouslySetInnerHTML={{ __html: criticalCSS }} />
+        {/* Organization schema present on all pages (T3.3, SEC-002) */}
         <script
+          nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
