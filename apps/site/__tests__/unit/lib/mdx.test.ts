@@ -42,7 +42,7 @@ describe('mdx', () => {
 
   it('should test gray-matter mock configuration', () => {
     // Test mock functionality
-    const mockMatter = vi.fn(() => ({
+    const mockMatter = vi.fn((_content: string) => ({
       data: { title: 'Test' },
       content: 'Test content',
     }));

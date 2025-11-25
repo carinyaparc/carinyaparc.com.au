@@ -56,7 +56,7 @@ export const screen = {
       throw new Error(`Could not find label: ${textContent}`);
     }
 
-    const input = document.getElementById(labels[0].htmlFor);
+    const input = document.getElementById(labels[0]!.htmlFor);
     if (!input) {
       throw new Error(`No input found for label: ${textContent}`);
     }

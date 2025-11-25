@@ -64,7 +64,7 @@ describe('subscribe route', () => {
   });
 
   it('should reject non-POST methods', async () => {
-    const { POST } = await import('../../../../../site/src/app/api/subscribe/route');
+    const { POST } = await import('@/app/api/subscribe/route');
 
     // POST should be defined but other methods should not be exported
     expect(POST).toBeDefined();

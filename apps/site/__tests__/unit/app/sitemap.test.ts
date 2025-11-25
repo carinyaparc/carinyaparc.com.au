@@ -53,20 +53,24 @@ describe('sitemap', () => {
         '/test/project/site/src/app/blog/[slug]': ['page.tsx'],
       };
 
-      mockFs.existsSync.mockImplementation((path: string) => {
-        return path.includes('/app') || path.includes('/content');
+      mockFs.existsSync.mockImplementation((path) => {
+        const pathStr = path.toString();
+        return pathStr.includes('/app') || pathStr.includes('/content');
       });
 
-      mockFs.readdirSync.mockImplementation((dir: string) => {
-        return fileSystem[dir as keyof typeof fileSystem] || ([] as any);
+      mockFs.readdirSync.mockImplementation((dir) => {
+        const dirStr = dir.toString();
+        return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
       mockFs.statSync.mockImplementation(
-        (filePath: string) =>
-          ({
-            isDirectory: () => !filePath.endsWith('.tsx') && !filePath.endsWith('.js'),
+        (filePath) => {
+          const filePathStr = filePath.toString();
+          return {
+            isDirectory: () => !filePathStr.endsWith('.tsx') && !filePathStr.endsWith('.js'),
             mtime: new Date('2024-01-01'),
-          }) as any,
+          } as any;
+        },
       );
 
       const { default: sitemap } = await import('@/app/sitemap');
@@ -101,16 +105,19 @@ describe('sitemap', () => {
       };
 
       mockFs.existsSync.mockReturnValue(true);
-      mockFs.readdirSync.mockImplementation((dir: string) => {
-        return fileSystem[dir as keyof typeof fileSystem] || ([] as any);
+      mockFs.readdirSync.mockImplementation((dir) => {
+        const dirStr = dir.toString();
+        return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
       mockFs.statSync.mockImplementation(
-        (filePath: string) =>
-          ({
-            isDirectory: () => !filePath.endsWith('.tsx'),
+        (filePath) => {
+          const filePathStr = filePath.toString();
+          return {
+            isDirectory: () => !filePathStr.endsWith('.tsx'),
             mtime: new Date('2024-01-01'),
-          }) as any,
+          } as any;
+        },
       );
 
       const { default: sitemap } = await import('@/app/sitemap');
@@ -132,16 +139,19 @@ describe('sitemap', () => {
       };
 
       mockFs.existsSync.mockReturnValue(true);
-      mockFs.readdirSync.mockImplementation((dir: string) => {
-        return fileSystem[dir as keyof typeof fileSystem] || ([] as any);
+      mockFs.readdirSync.mockImplementation((dir) => {
+        const dirStr = dir.toString();
+        return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
       mockFs.statSync.mockImplementation(
-        (filePath: string) =>
-          ({
-            isDirectory: () => !filePath.endsWith('.tsx'),
+        (filePath) => {
+          const filePathStr = filePath.toString();
+          return {
+            isDirectory: () => !filePathStr.endsWith('.tsx'),
             mtime: new Date('2024-01-01'),
-          }) as any,
+          } as any;
+        },
       );
 
       const { default: sitemap } = await import('@/app/sitemap');
@@ -163,8 +173,9 @@ describe('sitemap', () => {
       };
 
       mockFs.existsSync.mockReturnValue(true);
-      mockFs.readdirSync.mockImplementation((dir: string) => {
-        return fileSystem[dir as keyof typeof fileSystem] || ([] as any);
+      mockFs.readdirSync.mockImplementation((dir) => {
+        const dirStr = dir.toString();
+        return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
       mockFs.statSync.mockImplementation(
@@ -188,8 +199,9 @@ describe('sitemap', () => {
     });
 
     it('should handle missing content directory gracefully', async () => {
-      mockFs.existsSync.mockImplementation((path: string) => {
-        return path.includes('/app');
+      mockFs.existsSync.mockImplementation((path) => {
+        const pathStr = path.toString();
+        return pathStr.includes('/app');
       });
       mockFs.readdirSync.mockReturnValue([]);
 
@@ -211,16 +223,19 @@ describe('sitemap', () => {
       };
 
       mockFs.existsSync.mockReturnValue(true);
-      mockFs.readdirSync.mockImplementation((dir: string) => {
-        return fileSystem[dir as keyof typeof fileSystem] || ([] as any);
+      mockFs.readdirSync.mockImplementation((dir) => {
+        const dirStr = dir.toString();
+        return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
       mockFs.statSync.mockImplementation(
-        (filePath: string) =>
-          ({
-            isDirectory: () => !filePath.includes('.tsx') && !filePath.includes('.mdx'),
+        (filePath) => {
+          const filePathStr = filePath.toString();
+          return {
+            isDirectory: () => !filePathStr.includes('.tsx') && !filePathStr.includes('.mdx'),
             mtime: new Date('2024-01-01'),
-          }) as any,
+          } as any;
+        },
       );
 
       const { default: sitemap } = await import('@/app/sitemap');
@@ -259,16 +274,19 @@ describe('sitemap', () => {
       };
 
       mockFs.existsSync.mockReturnValue(true);
-      mockFs.readdirSync.mockImplementation((dir: string) => {
-        return fileSystem[dir as keyof typeof fileSystem] || ([] as any);
+      mockFs.readdirSync.mockImplementation((dir) => {
+        const dirStr = dir.toString();
+        return fileSystem[dirStr as keyof typeof fileSystem] || ([] as any);
       });
 
       mockFs.statSync.mockImplementation(
-        (filePath: string) =>
-          ({
-            isDirectory: () => !filePath.endsWith('.tsx'),
+        (filePath) => {
+          const filePathStr = filePath.toString();
+          return {
+            isDirectory: () => !filePathStr.endsWith('.tsx'),
             mtime: new Date('2024-01-01'),
-          }) as any,
+          } as any;
+        },
       );
 
       const { default: sitemap } = await import('@/app/sitemap');

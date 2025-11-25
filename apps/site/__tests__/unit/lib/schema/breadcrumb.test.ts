@@ -17,7 +17,7 @@ describe('Breadcrumb Schema', () => {
     it('should handle empty pathname', () => {
       const result = generateBreadcrumbsFromPath('');
       expect(result).toHaveLength(1);
-      expect(result[0].name).toBe('Home');
+      expect(result[0]!.name).toBe('Home');
     });
 
     it('should generate breadcrumbs for simple path', () => {
@@ -33,7 +33,7 @@ describe('Breadcrumb Schema', () => {
     it('should generate breadcrumbs for nested path', () => {
       const result = generateBreadcrumbsFromPath('/about/jonathan');
       expect(result).toHaveLength(3);
-      expect(result[1].name).toBe('About');
+      expect(result[1]!.name).toBe('About');
       expect(result[2]).toEqual({
         name: 'Jonathan Daddia',
         url: `${BASE_URL}/about/jonathan`,
@@ -44,14 +44,14 @@ describe('Breadcrumb Schema', () => {
     it('should handle hyphenated segments', () => {
       const result = generateBreadcrumbsFromPath('/legal/privacy-policy');
       expect(result).toHaveLength(3);
-      expect(result[2].name).toBe('Privacy Policy');
+      expect(result[2]!.name).toBe('Privacy Policy');
     });
 
     it('should format unknown segments properly', () => {
       const result = generateBreadcrumbsFromPath('/unknown-segment/test-page');
       expect(result).toHaveLength(3);
-      expect(result[1].name).toBe('Unknown Segment');
-      expect(result[2].name).toBe('Test Page');
+      expect(result[1]!.name).toBe('Unknown Segment');
+      expect(result[2]!.name).toBe('Test Page');
     });
   });
 
@@ -86,7 +86,7 @@ describe('Breadcrumb Schema', () => {
       const schema = generateBreadcrumbSchema(breadcrumbs);
 
       expect(schema.itemListElement).toHaveLength(3);
-      expect(schema.itemListElement[2].name).toBe('Test Post');
+      expect(schema.itemListElement[2]!.name).toBe('Test Post');
     });
   });
 });
