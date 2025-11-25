@@ -119,10 +119,11 @@ describe('Critical Paths - Nonce Generation', () => {
     expect(nonce1.nonce).not.toBe(nonce3.nonce);
   });
 
-  it('should generate valid UUID v4 nonces', () => {
+  it('should generate valid base64-encoded nonces', () => {
     const nonceContext = generateNonce();
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    const base64Regex = /^[A-Za-z0-9+/]+=*$/;
 
-    expect(nonceContext.nonce).toMatch(uuidRegex);
+    expect(nonceContext.nonce).toMatch(base64Regex);
+    expect(nonceContext.nonce.length).toBeGreaterThan(0);
   });
 });

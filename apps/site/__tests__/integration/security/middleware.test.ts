@@ -1,5 +1,5 @@
 /**
- * Integration tests for middleware security headers
+ * Integration tests for proxy security headers
  * Implements: T4.1, SEC-001, SEC-003, SEC-004
  */
 
@@ -9,7 +9,7 @@ import { generateCacheControl, createDefaultCacheConfig } from '@/src/lib/securi
 import { generateSecurityHeaders, createSecurityHeadersConfig } from '@/src/lib/security/headers';
 import { CSP_DIRECTIVES } from '@/src/lib/security/constants';
 
-describe('Middleware Integration - CSP with Nonce', () => {
+describe('Proxy Integration - CSP with Nonce', () => {
   it('should generate nonce and build CSP header with nonce injected', () => {
     // Simulate middleware flow
     const nonceContext = generateNonce();
@@ -54,7 +54,7 @@ describe('Middleware Integration - CSP with Nonce', () => {
   });
 });
 
-describe('Middleware Integration - Cache Control', () => {
+describe('Proxy Integration - Cache Control', () => {
   it('should apply correct cache control based on route', () => {
     const cacheConfig = createDefaultCacheConfig();
 
@@ -75,7 +75,7 @@ describe('Middleware Integration - Cache Control', () => {
   });
 });
 
-describe('Middleware Integration - Security Headers', () => {
+describe('Proxy Integration - Security Headers', () => {
   it('should generate all security headers', () => {
     const config = createSecurityHeadersConfig();
     const headers = generateSecurityHeaders(config);
@@ -98,9 +98,9 @@ describe('Middleware Integration - Security Headers', () => {
   });
 });
 
-describe('Middleware Integration - Complete Flow', () => {
-  it('should execute complete middleware flow without errors', () => {
-    // Simulate complete middleware execution
+describe('Proxy Integration - Complete Flow', () => {
+  it('should execute complete proxy flow without errors', () => {
+    // Simulate complete proxy execution
     const nonceContext = generateNonce();
     const cspResult = buildCSPHeader(
       {
@@ -124,7 +124,7 @@ describe('Middleware Integration - Complete Flow', () => {
   });
 });
 
-describe('Middleware Integration - Error Handling', () => {
+describe('Proxy Integration - Error Handling', () => {
   it('should handle invalid CSP configuration gracefully', () => {
     const nonceContext = generateNonce();
 

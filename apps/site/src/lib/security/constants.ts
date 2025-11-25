@@ -7,14 +7,15 @@ import type { SecurityHeadersConfig, CacheControlConfig } from './types';
 
 /**
  * Balanced CSP directives preset
+ * Follows Next.js v16 best practices with strict-dynamic and frame-ancestors
  * Allows GTM, Google Analytics, Google Fonts while maintaining strong security
  */
 export const CSP_DIRECTIVES: Record<string, Record<string, string[]>> = {
   BALANCED: {
     'default-src': ["'self'"],
-    'script-src': ["'self'", 'https://www.googletagmanager.com'],
+    'script-src': ["'self'", "'strict-dynamic'", 'https://www.googletagmanager.com'],
     'style-src': ["'self'", 'https://fonts.googleapis.com'],
-    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com'],
+    'img-src': ["'self'", 'blob:', 'data:', 'https://www.google-analytics.com'],
     'font-src': ["'self'", 'https://fonts.gstatic.com'],
     'connect-src': [
       "'self'",
@@ -26,6 +27,8 @@ export const CSP_DIRECTIVES: Record<string, Record<string, string[]>> = {
     'object-src': ["'none'"],
     'base-uri': ["'self'"],
     'form-action': ["'self'"],
+    'frame-ancestors': ["'none'"],
+    'upgrade-insecure-requests': [],
   },
 };
 

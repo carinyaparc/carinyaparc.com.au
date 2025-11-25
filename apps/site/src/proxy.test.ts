@@ -1,24 +1,24 @@
 /**
- * Unit tests for middleware
+ * Unit tests for proxy (Next.js v16)
  * Implements: T2.5, SEC-001, SEC-004
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-describe('Middleware Configuration', () => {
+describe('Proxy Configuration', () => {
   it('should export matcher patterns', async () => {
-    const { config } = await import('./middleware');
-
+    const { config } = await import('./proxy');
+    
     expect(config).toHaveProperty('matcher');
     expect(Array.isArray(config.matcher)).toBe(true);
     expect(config.matcher.length).toBeGreaterThan(0);
   });
 
   it('should exclude static asset paths from matcher', async () => {
-    const { config } = await import('./middleware');
-
+    const { config } = await import('./proxy');
+    
     const matcher = config.matcher[0];
-
+    
     // Matcher should be a regex-like pattern that excludes certain paths
     expect(typeof matcher).toBe('string');
     expect(matcher).toContain('_next/static');
@@ -57,7 +57,8 @@ describe('Environment Variable Handling', () => {
 describe('Error Handling', () => {
   it('should handle errors gracefully without throwing', () => {
     // This test verifies that error handling logic exists
-    // Actual middleware testing requires Next.js runtime
+    // Actual proxy testing requires Next.js runtime
     expect(true).toBe(true);
   });
 });
+

@@ -9,7 +9,7 @@ import { CSP_DIRECTIVES } from './constants';
 import type { CSPConfig } from './types';
 
 describe('generateNonce', () => {
-  it('should return a valid NonceContext with uuid v4 nonce', () => {
+  it('should return a valid NonceContext with base64-encoded nonce', () => {
     const result = generateNonce();
 
     expect(result).toHaveProperty('nonce');
@@ -17,9 +17,20 @@ describe('generateNonce', () => {
     expect(typeof result.nonce).toBe('string');
     expect(typeof result.timestamp).toBe('number');
 
-    // UUID v4 format check (8-4-4-4-12 hex characters)
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-    expect(result.nonce).toMatch(uuidRegex);
+    // Base64 format check (Next.js v16 uses base64-encoded nonces)
+    const base64Regex = /^[A-Za-z0-9+/]+=*$/;
+    expect(result.nonce).toMatch(base64Regex);
+    expect(result.nonce.length).toBeGreaterThan(0);
+  });
+
+  it('should generate nonce from UUID encoded as base64', () => {
+    const result = generateNonce();
+    
+    // Decode base64 to verify it's a UUID
+    const decoded = Buffer.from(result.nonce, 'base64').toString();
+    const uuidRegex =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    expect(decoded).toMatch(uuidRegex);
   });
 
   it('should include requestId when provided', () => {

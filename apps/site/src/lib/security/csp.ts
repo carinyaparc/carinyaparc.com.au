@@ -9,13 +9,18 @@ import type { NonceContext, CSPConfig, CSPResult } from './types';
  * Generate a cryptographically secure nonce for CSP
  * Implements: T1.3, SEC-001
  * Uses Web Crypto API for Edge Runtime compatibility
+ * Encodes nonce as base64 per Next.js v16 best practices
  *
  * @param requestId - Optional request correlation ID
- * @returns NonceContext with uuid v4 nonce and metadata
+ * @returns NonceContext with base64-encoded nonce and metadata
  */
 export function generateNonce(requestId?: string): NonceContext {
+  // Generate UUID and encode as base64 (Next.js v16 recommendation)
+  const uuid = crypto.randomUUID();
+  const nonce = Buffer.from(uuid).toString('base64');
+  
   return {
-    nonce: crypto.randomUUID(),
+    nonce,
     timestamp: Date.now(),
     requestId,
   };
@@ -67,7 +72,13 @@ function injectNonceIntoDirectives(
  */
 function buildCSPHeaderValue(directives: Record<string, string[]>): string {
   return Object.entries(directives)
-    .map(([directive, sources]) => `${directive} ${sources.join(' ')}`)
+    .map(([directive, sources]) => {
+      // Handle directives with no sources (e.g., upgrade-insecure-requests)
+      if (sources.length === 0) {
+        return directive;
+      }
+      return `${directive} ${sources.join(' ')}`;
+    })
     .join('; ');
 }
 
