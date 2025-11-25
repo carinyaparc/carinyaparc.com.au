@@ -1,5 +1,5 @@
-// app/legal/[slug]/page.tsx
-import '../../../styles/pages/legal.css';
+// app/(www)/legal/[slug]/page.tsx
+import '../../../../styles/pages/legal.css';
 
 import fs from 'fs';
 import path from 'path';

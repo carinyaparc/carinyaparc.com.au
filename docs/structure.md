@@ -62,16 +62,22 @@ Within `apps/site`, the primary directories relevant to web behaviour are:
 * `src/app/`
 
   * `layout.tsx` – root layout for the app.
-  * `page.tsx` – home page.
-  * `about/` with nested routes (e.g., `the-property`, `jonathan`).
-  * `regenerate/` – regeneration overview.
-  * `blog/` with:
+  * `(www)/` – routing group for main marketing site:
 
-    * `page.tsx` – blog index.
-    * `[post]/page.tsx` – individual post route.
-  * `recipes/` with `[recipe]/page.tsx` – individual recipe route.
-  * `legal/[slug]/page.tsx` – legal pages resolved by slug.
-  * `subscribe/page.tsx` – subscription / newsletter flows.
+    * `page.tsx` – home page.
+    * `about/` with nested routes (e.g., `the-property`, `jonathan`).
+    * `regenerate/` – regeneration overview.
+    * `legal/[slug]/page.tsx` – legal pages resolved by slug.
+    * `subscribe/page.tsx` – subscription / newsletter flows.
+  * `(blog)/` – routing group for blog content:
+
+    * `blog/page.tsx` – blog index at `/blog`.
+    * `[post]/page.tsx` – individual post route at `/[post]` (root level).
+    * Future: `blog/category/[slug]/page.tsx`, `blog/tag/[tag]/page.tsx`.
+  * `(recipes)/` – routing group for recipe content:
+
+    * `[recipe]/page.tsx` – individual recipe route at `/[recipe]` (root level).
+    * Future: `recipes/page.tsx`, `recipes/category/[slug]/page.tsx`, `recipes/tag/[tag]/page.tsx`.
   * `api/` – API route handlers (`subscribe`, `cookie`, `sentry`, `cron`).
   * `global-error.tsx`, `not-found.tsx`, `sitemap.ts`, and other app-wide files.
   * Optional route-level `loading.tsx`, `error.tsx`, and `layout.tsx` as needed.
