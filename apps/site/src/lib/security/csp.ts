@@ -3,19 +3,19 @@
  * Implements: T1.3, T1.4, SEC-001
  */
 
-import { randomUUID } from 'crypto';
 import type { NonceContext, CSPConfig, CSPResult } from './types';
 
 /**
  * Generate a cryptographically secure nonce for CSP
  * Implements: T1.3, SEC-001
+ * Uses Web Crypto API for Edge Runtime compatibility
  *
  * @param requestId - Optional request correlation ID
  * @returns NonceContext with uuid v4 nonce and metadata
  */
 export function generateNonce(requestId?: string): NonceContext {
   return {
-    nonce: randomUUID(),
+    nonce: crypto.randomUUID(),
     timestamp: Date.now(),
     requestId,
   };
