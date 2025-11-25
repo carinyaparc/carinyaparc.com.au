@@ -1,7 +1,5 @@
 import '@/src/styles/globals.css';
 
-import { GoogleTagManager } from '@next/third-parties/google';
-import { Analytics } from '@vercel/analytics/next';
 import { draftMode } from 'next/headers';
 import { cookies } from 'next/headers';
 import { fontClassNames } from '../lib/font';
@@ -14,6 +12,10 @@ import Newsletter from '@/src/components/ui/Newsletter';
 import Footer from '@/src/components/layouts/Footer';
 import CookiePolicy from '@/src/components/ui/Policy';
 import { Toaster } from '@repo/ui/toaster';
+
+import { GoogleTagManager } from '@next/third-parties/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import type { Metadata } from 'next';
 import { viewport, generateMetadata as generateMetadataHelper } from '../lib/metadata';
@@ -121,6 +123,7 @@ export default async function RootLayout({
         <Toaster />
         {/* Only load Analytics if user consented */}
         {hasConsentedToAnalytics && <Analytics />}
+        <SpeedInsights />
       </body>
     </html>
   );
