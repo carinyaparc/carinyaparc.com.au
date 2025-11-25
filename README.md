@@ -4,19 +4,13 @@ This repository contains the website for Carinya Parc, a regenerative farm commi
 
 ## Technology Stack
 
-- Next.js App Router v15 with TypeScript
+- Next.js App Router v16 with TypeScript
 - React v19 with React DOM v19
 - Tailwind CSS
 - MDX
 - Vercel
 
 ## Development Workflow
-
-### Branch Structure
-
-- `dev` - Development branch where active work happens
-- `staging` - Pre-production branch for testing and validation
-- `main` - Production branch, deployed to live site
 
 ### Local Development
 

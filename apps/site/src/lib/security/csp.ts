@@ -18,7 +18,7 @@ export function generateNonce(requestId?: string): NonceContext {
   // Generate UUID and encode as base64 (Next.js v16 recommendation)
   const uuid = crypto.randomUUID();
   const nonce = Buffer.from(uuid).toString('base64');
-  
+
   return {
     nonce,
     timestamp: Date.now(),

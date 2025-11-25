@@ -94,7 +94,10 @@ Within `apps/site`, the primary directories relevant to web behaviour are:
   - `cn.ts` – class name utility.
   - `mdx.ts` – MDX loading/rendering utilities.
   - `metadata/` – helper functions for route metadata.
-  - `schema/`, `session.ts`, and other cross-cutting library code.
+  - `schema/` – schema generation utilities (article, breadcrumb, recipe, etc.).
+  - `session/` – session management (types, server-only functions).
+  - `security/` – security utilities (CSP, headers, caching).
+  - Other cross-cutting library code.
 
 - `src/styles/`
   - `globals.css`, `components.css`, typography, and page-level overrides.
@@ -215,7 +218,20 @@ Any structural shift (e.g., introducing route groups like `(marketing)` or `(app
   - Data-fetching helpers: `getX`, `listX`, `fetchX`.
   - Parsing/formatting helpers: `parseX`, `formatX`.
 
-`src/lib/metadata/` centralises metadata generation; route files should rely on these helpers where possible.
+- **Module organisation (✓)**:
+  - **Single files** (e.g., `cn.ts`, `mdx.ts`, `posts.ts`) for focused utilities.
+  - **Folders** (e.g., `metadata/`, `schema/`, `session/`, `security/`) for related functionality with:
+    - Multiple implementation files
+    - Separate type definitions
+    - Co-located tests
+    - A barrel export (`index.ts`) for clean imports
+
+Examples of established folder patterns:
+
+- `src/lib/metadata/` – metadata generation helpers with barrel export.
+- `src/lib/schema/` – schema generators (article, breadcrumb, recipe) with tests.
+- `src/lib/session/` – session management with types, server functions, and barrel export.
+- `src/lib/security/` – security utilities (CSP, headers, caching) with types and tests.
 
 ## Naming Conventions
 
@@ -256,6 +272,10 @@ import { RegenerateSection } from '@/components/sections/regenerate-section';
 
 // Importing a data helper
 import { getAllPosts } from '@/lib/posts';
+
+// Importing from modular lib folders (via barrel exports)
+import { getSession, setSession } from '@/lib/session';
+import type { SessionPayload } from '@/lib/session';
 
 // Importing a hook
 import { useMobile } from '@/hooks/use-mobile';

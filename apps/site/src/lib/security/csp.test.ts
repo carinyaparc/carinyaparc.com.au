@@ -25,11 +25,10 @@ describe('generateNonce', () => {
 
   it('should generate nonce from UUID encoded as base64', () => {
     const result = generateNonce();
-    
+
     // Decode base64 to verify it's a UUID
     const decoded = Buffer.from(result.nonce, 'base64').toString();
-    const uuidRegex =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     expect(decoded).toMatch(uuidRegex);
   });
 
