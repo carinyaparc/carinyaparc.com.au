@@ -1,4 +1,4 @@
-import { defineConfig, defineProject } from 'vitest/config';
+import { defineConfig } from 'vitest/config';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
 

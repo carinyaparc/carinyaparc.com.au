@@ -27,11 +27,8 @@ describe('sentry route', () => {
   it('should handle requests with error parameter', async () => {
     const { GET } = await import('@/app/api/sentry/route');
 
-    // Create a mock request with error parameter
-    const request = new Request('http://localhost:3000/api/sentry?error=true');
-
     try {
-      await GET(request);
+      await GET();
     } catch (error) {
       expect(error).toBeDefined();
       expect(error).toBeInstanceOf(Error);
@@ -41,24 +38,19 @@ describe('sentry route', () => {
   it('should always throw SentryExampleAPIError', async () => {
     const { GET } = await import('@/app/api/sentry/route');
 
-    // Create a mock request
-    const request = new Request('http://localhost:3000/api/sentry');
-
     // The GET function always throws an error synchronously
-    expect(() => GET(request)).toThrow('This error is raised on the backend');
+    expect(() => GET()).toThrow('This error is raised on the backend');
   });
 
   it('should throw error with correct error type', async () => {
     const { GET } = await import('@/app/api/sentry/route');
 
-    const request = new Request('http://localhost:3000/api/sentry');
-
     try {
-      await GET(request);
+      await GET();
       expect.fail('Should have thrown error');
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
-      expect(error.message).toContain('backend called by the example page');
+      expect((error as Error).message).toContain('backend called by the example page');
     }
   });
 });

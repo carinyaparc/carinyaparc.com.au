@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeAll, afterEach, afterAll, vi } from 'vitest';
-import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { handlers } from '../../__tests__/mocks/handlers';
 

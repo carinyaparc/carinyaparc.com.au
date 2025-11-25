@@ -34,7 +34,7 @@ describe('navigation', () => {
     });
 
     it('should contain valid navigation items', () => {
-      navigation.forEach((item, index) => {
+      navigation.forEach((item) => {
         expect(item).toHaveProperty('href');
         expect(typeof item.href).toBe('string');
 

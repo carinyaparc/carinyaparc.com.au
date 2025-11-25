@@ -14,11 +14,12 @@ interface HeaderProps {
 }
 
 export default function Header({ navigation }: HeaderProps) {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [subscribeModalOpen, setSubscribeModalOpen] = useState(false);
-  const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const isHomePage = pathname === '/';
+  const [isScrolled, setIsScrolled] = useState(!isHomePage);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -34,9 +35,6 @@ export default function Header({ navigation }: HeaderProps) {
         setIsScrolled(false);
       }
     };
-
-    // Initialize scroll state - if not homepage, consider "scrolled"
-    setIsScrolled(!isHomePage);
 
     window.addEventListener('scroll', handleScroll);
     return () => {

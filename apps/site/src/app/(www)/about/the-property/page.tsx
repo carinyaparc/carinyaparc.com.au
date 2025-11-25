@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Droplets, MapPin, Clock } from 'lucide-react';
 import { generatePageMetadata } from '@/src/lib/metadata';
 import { SchemaMarkup } from '@/src/components/ui/SchemaMarkup';
@@ -122,15 +123,18 @@ export default function ThePropertyPage() {
                     and a living laboratory for regeneration in action.
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">
-                    <a
-                      href="/regenerate"
+                    <Link
+                      href="/regenerate/"
                       className="rounded-md bg-eucalyptus-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-eucalyptus-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eucalyptus-600"
                     >
                       Get Involved
-                    </a>
-                    <a href="/about" className="text-sm font-semibold leading-6 text-charcoal-900">
+                    </Link>
+                    <Link
+                      href="/about/"
+                      className="text-sm font-semibold leading-6 text-charcoal-900"
+                    >
                       Learn more about us <span aria-hidden="true">→</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

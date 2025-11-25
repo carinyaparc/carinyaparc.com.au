@@ -3,7 +3,16 @@ import { render, screen } from '@testing-library/react';
 
 // Mock Next.js components
 vi.mock('next/link', () => ({
-  default: ({ href, className, children, ...props }: any) => (
+  default: ({
+    href,
+    className,
+    children,
+    ...props
+  }: {
+    href: string;
+    className?: string;
+    children: React.ReactNode;
+  }) => (
     <a href={href} className={className} {...props}>
       {children}
     </a>
@@ -11,7 +20,8 @@ vi.mock('next/link', () => ({
 }));
 
 vi.mock('next/image', () => ({
-  default: ({ src, alt, ...props }: any) => (
+  default: ({ src, alt, ...props }: { src: string; alt: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
     <img src={src} alt={alt} {...props} />
   ),
 }));
@@ -90,4 +100,3 @@ describe('NotFound', () => {
     expect(paragraphs.length).toBeGreaterThan(0);
   });
 });
-

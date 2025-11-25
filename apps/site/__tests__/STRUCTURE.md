@@ -230,6 +230,7 @@ This project recently migrated from centralized unit tests to colocated unit tes
 - ✓ **Kept**: Integration, smoke, security tests remain centralized in `__tests__/`
 
 Benefits of this approach:
+
 - Easier to find and update tests
 - Better developer experience
 - Follows Next.js documentation recommendations

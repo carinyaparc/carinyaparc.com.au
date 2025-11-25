@@ -1,27 +1,18 @@
 import { nextJsConfig } from '@repo/eslint-config/next-js';
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
 import prettier from 'eslint-plugin-prettier';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import turboPlugin from 'eslint-plugin-turbo';
 
 const eslintConfig = [
   ...nextJsConfig,
-  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
   {
     plugins: {
       prettier,
+      turbo: turboPlugin,
     },
     rules: {
       'react/no-unescaped-entities': 'off',
       'prettier/prettier': 'error',
+      'react-hooks/set-state-in-effect': 'off',
       'turbo/no-undeclared-env-vars': [
         'warn',
         {

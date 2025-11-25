@@ -24,7 +24,7 @@ vi.mock('path', () => ({
 vi.mock('gray-matter', () => ({
   default: vi.fn((content: string) => ({
     data: { title: 'Test', description: 'Test', date: '2024-01-01' },
-    content: 'Test content',
+    content: content || 'Test content',
   })),
 }));
 
@@ -42,9 +42,9 @@ describe('mdx', () => {
 
   it('should test gray-matter mock configuration', () => {
     // Test mock functionality
-    const mockMatter = vi.fn((_content: string) => ({
+    const mockMatter = vi.fn((content: string) => ({
       data: { title: 'Test' },
-      content: 'Test content',
+      content: content || 'Test content',
     }));
     const result = mockMatter('test');
     expect(result.data.title).toBe('Test');

@@ -15,11 +15,10 @@ describe('RootLayout', () => {
       isAsyncComponent: true,
       acceptsChildren: true,
     };
-    
+
     // Document expected structure for reference
     expect(expectedStructure.hasGenerateMetadata).toBe(true);
     expect(expectedStructure.hasViewport).toBe(true);
     expect(expectedStructure.hasDefaultExport).toBe(true);
   });
 });
-

@@ -15,7 +15,7 @@ describe('Breadcrumb Component - Smoke Tests', () => {
       ],
       className: 'optional-class',
     };
-    
+
     // Document expected props for reference
     expect(expectedProps.items).toHaveLength(2);
     expect(expectedProps.items[0]).toHaveProperty('name');
@@ -30,9 +30,8 @@ describe('Breadcrumb Component - Smoke Tests', () => {
       hasLiElements: true,
       hasAriaLabel: true,
     };
-    
+
     expect(expectedStructure.tag).toBe('nav');
     expect(expectedStructure.hasOlElement).toBe(true);
   });
 });
-

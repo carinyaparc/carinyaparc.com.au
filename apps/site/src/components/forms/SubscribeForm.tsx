@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 import { cn } from '@/src/lib/cn';
@@ -30,12 +30,7 @@ export default function SubscribeForm({
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-  const [formLoadTime, setFormLoadTime] = useState<number>(0);
-
-  // Record the time when the form loads
-  useEffect(() => {
-    setFormLoadTime(Date.now());
-  }, []);
+  const [formLoadTime] = useState<number>(() => Date.now());
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

@@ -1,23 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CONSENT_COOKIE_NAME } from '@/src/lib/constants';
 
 export default function CookiePolicy() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(() => {
+    // Check for cookie consent cookie using document.cookie on initialization
+    if (typeof document !== 'undefined') {
+      const hasCookieConsent = document.cookie
+        .split('; ')
+        .some((cookie) => cookie.startsWith(`${CONSENT_COOKIE_NAME}=`));
+      return !hasCookieConsent;
+    }
+    return false;
+  });
   const router = useRouter();
-
-  useEffect(() => {
-    // Check for cookie consent cookie using document.cookie
-    const hasCookieConsent = document.cookie
-      .split('; ')
-      .some((cookie) => cookie.startsWith(`${CONSENT_COOKIE_NAME}=`));
-
-    // Only show the banner if no consent has been given
-    setIsVisible(!hasCookieConsent);
-  }, []);
 
   const handleAccept = async () => {
     try {

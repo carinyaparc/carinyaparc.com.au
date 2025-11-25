@@ -7,7 +7,9 @@ describe('cn', () => {
     expect(cn('class1', 'class2')).toBe('class1 class2');
 
     // Test with conditional classes
-    expect(cn('base', true && 'visible', false && 'hidden')).toBe('base visible');
+    const isVisible = true;
+    const isHidden = false;
+    expect(cn('base', isVisible && 'visible', isHidden && 'hidden')).toBe('base visible');
 
     // Test with class objects
     expect(cn('base', { visible: true, hidden: false })).toBe('base visible');
@@ -21,6 +23,7 @@ describe('cn', () => {
     expect(cn('px-2 py-1', 'px-4')).toBe('py-1 px-4');
 
     // Test with conditional Tailwind classes
-    expect(cn('text-red-500', true && 'text-blue-500')).toBe('text-blue-500');
+    const useBlueText = true;
+    expect(cn('text-red-500', useBlueText && 'text-blue-500')).toBe('text-blue-500');
   });
 });

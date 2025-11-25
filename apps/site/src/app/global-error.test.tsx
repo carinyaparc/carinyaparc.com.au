@@ -20,9 +20,6 @@ describe('GlobalError', () => {
       writable: true,
       configurable: true,
     });
-
-    // Reset environment
-    process.env.NODE_ENV = 'test';
   });
 
   it('should render error message', async () => {
@@ -77,4 +74,3 @@ describe('GlobalError', () => {
     expect(mockReload).toHaveBeenCalledTimes(3);
   });
 });
-

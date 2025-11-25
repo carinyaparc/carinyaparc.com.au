@@ -4,7 +4,7 @@ describe('generateMetadata', () => {
   describe('viewport', () => {
     it('should export viewport configuration', async () => {
       const { viewport } = await import('@/src/lib/metadata');
-      
+
       expect(viewport).toBeDefined();
       expect(viewport.themeColor).toBe('#4CA77F');
     });
@@ -13,18 +13,14 @@ describe('generateMetadata', () => {
   describe('generateMetadata function', () => {
     it('should be a function', async () => {
       const { generateMetadata } = await import('@/src/lib/metadata');
-      
+
       expect(typeof generateMetadata).toBe('function');
     });
 
     it('should return metadata object', async () => {
       const { generateMetadata } = await import('@/src/lib/metadata');
-      
-      const mockParent = Promise.resolve({
-        openGraph: { images: [] },
-      });
 
-      const result = await generateMetadata({ params: {}, searchParams: {} }, mockParent as any);
+      const result = await generateMetadata({ path: '/', pageTitle: 'Test' });
 
       expect(result).toBeDefined();
       expect(result).toHaveProperty('title');
@@ -35,13 +31,13 @@ describe('generateMetadata', () => {
   describe('generatePageMetadata function', () => {
     it('should be a function', async () => {
       const { generatePageMetadata } = await import('@/src/lib/metadata');
-      
+
       expect(typeof generatePageMetadata).toBe('function');
     });
 
     it('should generate metadata with required fields', async () => {
       const { generatePageMetadata } = await import('@/src/lib/metadata');
-      
+
       const result = generatePageMetadata({
         title: 'Test Page',
         description: 'Test Description',
@@ -55,7 +51,7 @@ describe('generateMetadata', () => {
 
     it('should handle optional fields', async () => {
       const { generatePageMetadata } = await import('@/src/lib/metadata');
-      
+
       const result = generatePageMetadata({
         title: 'Test',
         description: 'Desc',
@@ -74,25 +70,24 @@ describe('generateMetadata', () => {
   describe('getPathFromParams function', () => {
     it('should be a function', async () => {
       const { getPathFromParams } = await import('@/src/lib/metadata');
-      
+
       expect(typeof getPathFromParams).toBe('function');
     });
 
     it('should handle empty params', async () => {
       const { getPathFromParams } = await import('@/src/lib/metadata');
-      
+
       const result = getPathFromParams({});
-      
+
       expect(result).toBe('/');
     });
 
     it('should handle post param', async () => {
       const { getPathFromParams } = await import('@/src/lib/metadata');
-      
+
       const result = getPathFromParams({ post: 'test-post' });
-      
+
       expect(result).toContain('test-post');
     });
   });
 });
-
