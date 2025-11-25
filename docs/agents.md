@@ -178,7 +178,8 @@ For large or risky changes, also run `pnpm test` or `pnpm test:ci`.
 
 * **Unit tests (✓ required)**:
 
-  * Co-located under `apps/site/__tests__/unit/` mirroring the app structure.
+  * Colocated with source files using `.test.ts` / `.test.tsx` suffix
+  * Example: `src/lib/cn.ts` → `src/lib/cn.test.ts`
   * Add or update unit tests whenever you change logic in `src/app`, `src/lib`, `src/hooks`, or `src/utils`.
 * **Integration & smoke tests**:
 

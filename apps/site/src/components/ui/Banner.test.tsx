@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { cleanup } from '../../helpers/test-utils';
+import { cleanup } from '../../../__tests__/helpers/test-utils';
 
 // Create a Banner mock function directly in the test file
 function createBannerElement(text: string) {

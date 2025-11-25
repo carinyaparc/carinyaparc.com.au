@@ -40,9 +40,10 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./__tests__/setup/vitest.setup.ts'],
     include: [
-      './__tests__/unit/**/*.test.{ts,tsx}',
+      './src/**/*.test.{ts,tsx}', // Colocated unit tests
       './__tests__/integration/**/*.test.{ts,tsx}',
       './__tests__/smoke/**/*.test.{ts,tsx}',
+      './__tests__/security/**/*.test.{ts,tsx}',
     ],
     coverage: {
       provider: 'v8',

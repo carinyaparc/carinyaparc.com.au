@@ -1,34 +1,42 @@
 # Carinya Parc Test Suite
 
-This directory contains all the tests for the Carinya Parc website, organized following a comprehensive testing strategy.
+This directory contains centralized test infrastructure and end-to-end tests for the Carinya Parc website.
 
 ## Test Structure
 
-The test suite is organized into the following structure:
+The test suite follows Next.js best practices with **colocated unit tests** and **centralized integration/smoke tests**:
 
 ```
-tests/
-├── unit/                           # Fast-running isolated tests for individual components and functions
-│   ├── components/                 # React component tests
-│   ├── hooks/                      # Custom hook tests
-│   ├── lib/                        # Utility function tests
-│   └── services/                   # API wrapper tests
+apps/site/
+├── src/                            # Source code with colocated unit tests
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── layout.test.tsx         # ✓ Colocated unit test
+│   │   ├── api/subscribe/
+│   │   │   ├── route.ts
+│   │   │   └── route.test.ts       # ✓ Colocated unit test
+│   ├── components/ui/
+│   │   ├── Banner.tsx
+│   │   └── Banner.test.tsx         # ✓ Colocated unit test
+│   ├── hooks/
+│   │   ├── use-mobile.tsx
+│   │   └── use-mobile.test.tsx     # ✓ Colocated unit test
+│   └── lib/
+│       ├── cn.ts
+│       └── cn.test.ts              # ✓ Colocated unit test
 │
-├── integration/                    # Tests that verify how multiple components work together
-│   └── components/                 # Integration tests for component interactions
-│
-├── smoke/                          # Basic tests to verify critical pages render without errors
-│
-├── fixtures/                       # Static test data (JSON, mock content)
-│
-├── mocks/                          # API mocking handlers (MSW) and other test doubles
-│
-├── helpers/                        # Reusable test utilities and custom renderers
-│   └── renderWithProviders.tsx     # Custom renderer with context providers
-│
-└── setup/                          # Global test configuration
-    ├── vitest.setup.ts            # Vitest configuration and global mocks
-    └── teardown.ts                # Global test cleanup
+└── __tests__/                      # Centralized test infrastructure
+    ├── integration/                # Multi-component interaction tests
+    ├── smoke/                      # Critical path tests
+    ├── security/                   # Security-specific tests
+    ├── fixtures/                   # Static test data (JSON, mock content)
+    ├── mocks/                      # API mocking handlers (MSW)
+    ├── helpers/                    # Reusable test utilities
+    │   ├── renderWithProviders.tsx # Custom renderer with context providers
+    │   └── test-utils.ts           # Shared test utilities
+    └── setup/                      # Global test configuration
+        ├── vitest.setup.ts         # Vitest configuration and global mocks
+        └── teardown.ts             # Global test cleanup
 ```
 
 ## Running Tests
@@ -51,20 +59,20 @@ pnpm test:watch
 
 ### Running Specific Test Types
 
-To run specific types of tests, you can use the Vitest filtering options:
+To run specific types of tests:
 
 ```bash
-# Run tests that match a specific filename pattern
-pnpm test -- "Banner"
-
-# Run only unit tests
-pnpm test -- --dir tests/unit
+# Run only unit tests (colocated in src/)
+pnpm test:unit
 
 # Run only integration tests
-pnpm test -- --dir tests/integration
+pnpm test:integration
 
 # Run only smoke tests
-pnpm test -- --dir tests/smoke
+pnpm test:smoke
+
+# Run only security tests
+pnpm test -- __tests__/security
 ```
 
 ### Code Coverage
@@ -91,6 +99,7 @@ The test suite uses the following technologies:
 
 ### Unit Tests
 
+- **Colocate with source**: Unit tests live next to the code they test (`*.test.ts` or `*.test.tsx`)
 - Test individual components, hooks, and functions in isolation
 - Mock all external dependencies
 - Follow the Arrange-Act-Assert pattern
@@ -98,14 +107,20 @@ The test suite uses the following technologies:
 
 ### Integration Tests
 
-- Test how components work together
+- **Centralized in `__tests__/integration/`**: Test how components work together
 - Mock only external API calls
 - Verify data flows correctly between components
 
 ### Smoke Tests
 
-- Verify critical pages render without errors
+- **Centralized in `__tests__/smoke/`**: Verify critical pages render without errors
 - Basic sanity checks for the application
+- Focus on critical user paths
+
+### Security Tests
+
+- **Centralized in `__tests__/security/`**: Test security headers, CSP, and authentication
+- Ensure proper security measures are in place
 
 ## Writing Effective Tests
 
@@ -114,3 +129,11 @@ The test suite uses the following technologies:
 3. **Use Specific Queries**: Prefer queries like `getByLabelText` over generic queries like `getByRole`
 4. **Isolate Tests**: Each test should be independent of others
 5. **Handle Asynchronous Code**: Use `waitFor` and `async/await` for testing async behavior
+
+## Benefits of Colocated Unit Tests
+
+- **Discoverability**: Tests live next to the code they test
+- **Maintainability**: Easier to update tests when refactoring
+- **Import Simplicity**: Use relative imports instead of long paths
+- **Coverage Visibility**: Instantly see which files have tests
+- **Framework Alignment**: Follows Next.js and modern React best practices

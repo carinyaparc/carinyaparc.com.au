@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { cleanup } from '../../helpers/test-utils';
+import { cleanup } from '../../../__tests__/helpers/test-utils';
 
 // Create a simple date formatter function similar to what the Date component would do
 function formatDate(dateString: string | undefined): string {

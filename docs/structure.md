@@ -103,7 +103,9 @@ Within `apps/site`, the primary directories relevant to web behaviour are:
   - Smaller, focused utility functions.
 
 - `__tests__/`
-  - Unit, integration, smoke, security tests, fixtures, and helpers (see `apps/site/__tests__/STRUCTURE.md`).
+  - Integration, smoke, security tests, fixtures, mocks, helpers, and test setup
+  - Unit tests are colocated with source files (e.g., `Button.tsx` → `Button.test.tsx`)
+  - See `apps/site/__tests__/STRUCTURE.md` for full details
 
 ## Routing & Layout (Next.js App Router)
 
@@ -228,8 +230,9 @@ Any structural shift (e.g., introducing route groups like `(marketing)` or `(app
   - `useSomething` naming with strong, focused purpose.
 
 - **Tests**:
-  - Mirror source structure under `apps/site/__tests__/unit/app`, `components`, `hooks`, `lib`, etc.
-  - Use `.test.ts` / `.test.tsx` suffix (not `.spec.ts`).
+  - **Unit tests**: Colocated with source files using `.test.ts` / `.test.tsx` suffix (not `.spec.ts`)
+    - Example: `src/lib/cn.ts` → `src/lib/cn.test.ts`
+  - **Integration/Smoke/Security tests**: Centralized in `apps/site/__tests__/` subdirectories
 
 ## Import Aliases & Examples
 
@@ -286,7 +289,7 @@ When adding a new feature (page, component, or flow):
    - Place content or data helpers in `src/lib/` (e.g., `experiences.ts` for MDX loaders).
 
 5. **Add tests**
-   - For route logic or data helpers, add unit tests to `apps/site/__tests__/unit/app` or `apps/site/__tests__/unit/lib`.
+   - For components, hooks, utilities, or route logic, add unit tests colocated with the source file (e.g., `Button.tsx` → `Button.test.tsx`).
    - For important user flows (e.g., subscription), add integration or smoke tests under `apps/site/__tests__/integration` or `apps/site/__tests__/smoke`.
 
 6. **Update navigation and metadata**
@@ -341,10 +344,11 @@ Goal: Add `/experiences` as a marketing page that introduces on-farm experiences
    - Add a metadata helper for `/experiences` under `apps/site/src/lib/metadata/` if that pattern exists (or inline `export const metadata` on the page).
 
 5. **Add tests**
-   - `apps/site/__tests__/unit/app/experiences/page.test.tsx`:
-     - Ensure the page renders key headings and content.
+   - `apps/site/src/app/experiences/page.test.tsx`:
+     - Colocate unit test with the page file
+     - Ensure the page renders key headings and content
 
-   - Optional integration/smoke tests if this is a critical path.
+   - Optional integration/smoke tests in `apps/site/__tests__/` if this is a critical path.
 
 6. **Run checks**
    - From the monorepo root:
