@@ -152,7 +152,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   try {
     // Import the MDX file directly
-    const Content = (await import(`@/content/posts/${fileName}`)).default;
+    const Content = (
+      await import(
+        /* webpackInclude: /\.mdx$/ */
+        /* webpackMode: "eager" */
+        `@/content/posts/${fileName}`
+      )
+    ).default;
 
     return (
       <>

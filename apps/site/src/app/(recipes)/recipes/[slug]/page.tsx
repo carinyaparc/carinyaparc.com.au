@@ -94,7 +94,13 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
 
   try {
     // Import the MDX file directly
-    const Content = (await import(`@/content/recipes/${slug}.mdx`)).default;
+    const Content = (
+      await import(
+        /* webpackInclude: /\.mdx$/ */
+        /* webpackMode: "eager" */
+        `@/content/recipes/${slug}.mdx`
+      )
+    ).default;
 
     // Function to format ISO duration to human readable format
     const formatDuration = (isoDuration?: string) => {

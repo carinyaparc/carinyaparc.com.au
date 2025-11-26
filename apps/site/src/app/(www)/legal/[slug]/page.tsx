@@ -59,7 +59,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   }
 
   try {
-    const content = await import(`@/content/legal/${slug}.mdx`);
+    const content = await import(
+      /* webpackInclude: /\.mdx$/ */
+      /* webpackMode: "eager" */
+      `@/content/legal/${slug}.mdx`
+    );
     const Content = content.default;
 
     return (
