@@ -1,8 +1,5 @@
-import * as React from 'react';
-import { cn } from './utils';
-
-function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('animate-pulse rounded-md bg-muted', className)} {...props} />;
-}
-
-export { Skeleton };
+/**
+ * Re-export Skeleton primitive from primitives directory
+ * Provides clean public API: import { Skeleton } from '@repo/ui/skeleton'
+ */
+export * from './primitives/skeleton';
