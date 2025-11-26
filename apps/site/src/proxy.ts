@@ -102,7 +102,11 @@ export default function proxy(request: NextRequest) {
 
       // In development, also allow unsafe-eval for debugging/hot reload
       if (IS_DEV && directives['script-src']) {
-        directives['script-src'] = [...directives['script-src'], "'unsafe-eval'", "'unsafe-inline'"];
+        directives['script-src'] = [
+          ...directives['script-src'],
+          "'unsafe-eval'",
+          "'unsafe-inline'",
+        ];
       }
 
       const cspResult = buildCSPHeader(

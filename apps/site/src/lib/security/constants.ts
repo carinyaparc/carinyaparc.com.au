@@ -21,7 +21,13 @@ export const CSP_DIRECTIVES: Record<string, Record<string, string[]>> = {
       'https://*.vercel-scripts.com',
     ],
     'style-src': ["'self'", 'https://fonts.googleapis.com'],
-    'img-src': ["'self'", 'blob:', 'data:', 'https://www.google-analytics.com', 'https://*.googleusercontent.com'],
+    'img-src': [
+      "'self'",
+      'blob:',
+      'data:',
+      'https://www.google-analytics.com',
+      'https://*.googleusercontent.com',
+    ],
     'font-src': ["'self'", 'https://fonts.gstatic.com'],
     'connect-src': [
       "'self'",

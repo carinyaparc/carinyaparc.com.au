@@ -52,7 +52,8 @@ function buildPermissionsPolicyHeader(policy: Record<string, string[]>): string 
  */
 export function generateSecurityHeaders(
   config: SecurityHeadersConfig,
-  options: SecurityHeadersOptions = {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Reserved for future nonce support
+  _options: SecurityHeadersOptions = {},
 ): Record<string, string> {
   const headers: Record<string, string> = {
     'Strict-Transport-Security': buildHSTSHeader(config.hsts),
