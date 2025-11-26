@@ -91,17 +91,18 @@ export default function proxy(request: NextRequest) {
       const nonceContext = generateNonce();
       nonce = nonceContext.nonce;
 
-      // Build CSP with dev mode support (Next.js v16 best practice)
+      // Build CSP directives
       const directives = { ...CSP_DIRECTIVES.BALANCED };
 
-      // In development, allow unsafe-eval for debugging
-      if (IS_DEV && directives['script-src']) {
-        directives['script-src'] = [...directives['script-src'], "'unsafe-eval'"];
+      // Allow unsafe-inline for styles (Next.js injects styles without nonces)
+      // This is required for Next.js to work properly
+      if (directives['style-src']) {
+        directives['style-src'] = [...directives['style-src'], "'unsafe-inline'"];
       }
 
-      // In development, allow unsafe-inline for styles (hot reload)
-      if (IS_DEV && directives['style-src']) {
-        directives['style-src'] = [...directives['style-src'], "'unsafe-inline'"];
+      // In development, also allow unsafe-eval for debugging/hot reload
+      if (IS_DEV && directives['script-src']) {
+        directives['script-src'] = [...directives['script-src'], "'unsafe-eval'", "'unsafe-inline'"];
       }
 
       const cspResult = buildCSPHeader(
