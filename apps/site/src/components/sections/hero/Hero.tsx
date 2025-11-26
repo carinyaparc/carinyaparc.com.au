@@ -1,3 +1,12 @@
+/**
+ * Hero organism - Refactored with compound components
+ * Maps to: FR-5, NFR-3
+ * Task: T3.2
+ * 
+ * Simplified from original - preserved animations and styling
+ * Now in subdirectory with explicit exports
+ */
+
 'use client';
 
 import { ReactNode } from 'react';
@@ -162,3 +171,4 @@ export function HeroLink({ href, children }: { href: string; children: ReactNode
     </Link>
   );
 }
+

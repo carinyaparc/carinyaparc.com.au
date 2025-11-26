@@ -1,31 +1,18 @@
+/**
+ * PageHeader organism - Refactored
+ * Maps to: FR-5, NFR-3
+ * Task: T3.5
+ * 
+ * Standard page header with title and description
+ * Minimal changes, moved to subdirectory for consistency
+ */
+
 'use client';
 
 import { cn } from '@/src/lib/cn';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-/**
- * PageHeader component for consistent page headers
- *
- * @example
- * ```tsx
- * // Light variant with left alignment (default)
- * <PageHeader
- *   title="Our Farm"
- *   subtitle="Sustainable Farming"
- *   description="Learn about our regenerative farming practices and how we're working to improve the land."
- * />
- *
- * // Dark variant with center alignment
- * <PageHeader
- *   variant="dark"
- *   align="center"
- *   title="Get Involved"
- *   subtitle="Join Our Community"
- *   description="Discover ways to participate in our regenerative agriculture projects."
- *   backgroundImage="/images/farm-landscape.jpg"
- * />
- */
 interface PageHeaderProps {
   variant?: 'light' | 'dark';
   align?: 'left' | 'center';
@@ -82,7 +69,7 @@ export default function PageHeader({
               fill
               sizes="100vw"
               className="object-cover object-right md:object-center brightness-75"
-              priority={isDark} // Only prioritize dark backgrounds which might be harder to load
+              priority={isDark}
             />
           </motion.div>
 
@@ -142,3 +129,4 @@ export default function PageHeader({
     </div>
   );
 }
+

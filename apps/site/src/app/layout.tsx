@@ -7,9 +7,9 @@ import { CONSENT_COOKIE_NAME } from '@/src/lib/constants';
 
 import { navigation } from './navigation';
 import Banner from '@/src/components/ui/Banner';
-import Header from '@/src/components/layouts/Header';
+import { Header } from '@/src/components/sections/header';
 import Newsletter from '@/src/components/ui/Newsletter';
-import Footer from '@/src/components/layouts/Footer';
+import { Footer } from '@/src/components/sections/footer';
 import CookiePolicy from '@/src/components/ui/Policy';
 import { Toaster } from '@repo/ui/toaster';
 import { Providers } from '@/src/components/providers/Providers';

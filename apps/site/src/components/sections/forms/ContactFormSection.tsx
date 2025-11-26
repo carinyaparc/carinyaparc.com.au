@@ -1,5 +1,10 @@
 /**
- * Contact form component with React Hook Form and TanStack Query
+ * ContactFormSection organism - Refactored with FormField molecule
+ * Maps to: FR-5, NFR-3
+ * Task: T4.3
+ * 
+ * Uses FormField molecule from @repo/ui
+ * Preserved all existing validation and submission logic
  */
 
 'use client';
@@ -8,14 +13,14 @@ import { useRef, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@repo/ui/button';
 import { Input } from '@repo/ui/input';
 import { Textarea } from '@repo/ui/textarea';
-import { Label } from '@repo/ui/label';
 import { Select } from '@repo/ui/select-native';
 import { Alert } from '@repo/ui/alert';
+import { FormField } from '@repo/ui/form-field';
 import {
   contactFormClientSchema,
   type ContactFormClientData,
@@ -55,10 +60,12 @@ async function submitContact(
   return result;
 }
 
-/**
- * Contact form component with React Hook Form and TanStack Query
- */
-export default function ContactForm() {
+interface ContactFormSectionProps {
+  onSuccess?: () => void;
+  onError?: (error: Error) => void;
+}
+
+export default function ContactFormSection({ onSuccess, onError }: ContactFormSectionProps = {}) {
   // Track form load time for anti-bot measures
   const formLoadTime = useRef<number>(Date.now());
   const [isFormReady, setIsFormReady] = useState(false);
@@ -81,9 +88,11 @@ export default function ContactForm() {
       trackEvent('contact_form_success');
       reset();
       formLoadTime.current = Date.now();
+      onSuccess?.();
     },
     onError: (err) => {
       trackEvent('contact_form_error', { error: err.message });
+      onError?.(err as Error);
     },
   });
 
@@ -150,8 +159,7 @@ export default function ContactForm() {
           <div>
             <p className="text-sm font-semibold">Unable to send message</p>
             <p className="text-sm mt-1">
-              {error?.message ||
-                'Please try again or contact us directly at contact@carinyaparc.com.au'}
+              {error?.message || 'Please try again or contact us directly at contact@carinyaparc.com.au'}
             </p>
           </div>
         </Alert>
@@ -160,60 +168,46 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           {/* First Name */}
-          <div>
-            <Label htmlFor="firstName">
-              First Name <span className="text-earth-red">*</span>
-            </Label>
-            <div className="mt-2.5">
-              <Input
-                id="firstName"
-                type="text"
-                autoComplete="given-name"
-                {...register('firstName')}
-                onFocus={handleFormInteraction}
-                disabled={isPending || isSubmitting}
-                aria-required="true"
-                aria-invalid={!!errors.firstName}
-                aria-describedby={errors.firstName ? 'firstName-error' : undefined}
-              />
-            </div>
-            {errors.firstName && (
-              <p id="firstName-error" className="mt-1 text-sm text-earth-red" role="alert">
-                {errors.firstName.message}
-              </p>
-            )}
-          </div>
+          <FormField
+            name="firstName"
+            label="First Name"
+            error={errors.firstName?.message}
+            required
+          >
+            <Input
+              id="firstName"
+              type="text"
+              autoComplete="given-name"
+              {...register('firstName')}
+              onFocus={handleFormInteraction}
+              disabled={isPending || isSubmitting}
+            />
+          </FormField>
 
           {/* Last Name */}
-          <div>
-            <Label htmlFor="lastName">
-              Last Name <span className="text-earth-red">*</span>
-            </Label>
-            <div className="mt-2.5">
-              <Input
-                id="lastName"
-                type="text"
-                autoComplete="family-name"
-                {...register('lastName')}
-                disabled={isPending || isSubmitting}
-                aria-required="true"
-                aria-invalid={!!errors.lastName}
-                aria-describedby={errors.lastName ? 'lastName-error' : undefined}
-              />
-            </div>
-            {errors.lastName && (
-              <p id="lastName-error" className="mt-1 text-sm text-earth-red" role="alert">
-                {errors.lastName.message}
-              </p>
-            )}
-          </div>
+          <FormField
+            name="lastName"
+            label="Last Name"
+            error={errors.lastName?.message}
+            required
+          >
+            <Input
+              id="lastName"
+              type="text"
+              autoComplete="family-name"
+              {...register('lastName')}
+              disabled={isPending || isSubmitting}
+            />
+          </FormField>
 
           {/* Email Address */}
           <div className="sm:col-span-2">
-            <Label htmlFor="email">
-              Email Address <span className="text-earth-red">*</span>
-            </Label>
-            <div className="mt-2.5">
+            <FormField
+              name="email"
+              label="Email Address"
+              error={errors.email?.message}
+              required
+            >
               <Input
                 id="email"
                 type="email"
@@ -221,24 +215,18 @@ export default function ContactForm() {
                 {...register('email')}
                 disabled={isPending || isSubmitting}
                 placeholder="you@example.com"
-                aria-required="true"
-                aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? 'email-error' : undefined}
               />
-            </div>
-            {errors.email && (
-              <p id="email-error" className="mt-1 text-sm text-earth-red" role="alert">
-                {errors.email.message}
-              </p>
-            )}
+            </FormField>
           </div>
 
           {/* Phone Number - optional */}
           <div className="sm:col-span-2">
-            <Label htmlFor="phone">
-              Phone Number <span className="text-sm text-charcoal-400">(optional)</span>
-            </Label>
-            <div className="mt-2.5">
+            <FormField
+              name="phone"
+              label="Phone Number"
+              description="Optional"
+              error={errors.phone?.message}
+            >
               <Input
                 id="phone"
                 type="tel"
@@ -246,30 +234,22 @@ export default function ContactForm() {
                 placeholder="+61 4XX XXX XXX"
                 {...register('phone')}
                 disabled={isPending || isSubmitting}
-                aria-invalid={!!errors.phone}
-                aria-describedby={errors.phone ? 'phone-error' : undefined}
               />
-            </div>
-            {errors.phone && (
-              <p id="phone-error" className="mt-1 text-sm text-earth-red" role="alert">
-                {errors.phone.message}
-              </p>
-            )}
+            </FormField>
           </div>
 
           {/* Type of Inquiry */}
           <div className="sm:col-span-2">
-            <Label htmlFor="inquiryType">
-              Type of Inquiry <span className="text-earth-red">*</span>
-            </Label>
-            <div className="mt-2.5">
+            <FormField
+              name="inquiryType"
+              label="Type of Inquiry"
+              error={errors.inquiryType?.message}
+              required
+            >
               <Select
                 id="inquiryType"
                 {...register('inquiryType')}
                 disabled={isPending || isSubmitting}
-                aria-required="true"
-                aria-invalid={!!errors.inquiryType}
-                aria-describedby={errors.inquiryType ? 'inquiryType-error' : undefined}
               >
                 <option value="">Select your inquiry type</option>
                 {inquiryTypes.map((type) => (
@@ -278,40 +258,27 @@ export default function ContactForm() {
                   </option>
                 ))}
               </Select>
-            </div>
-            {errors.inquiryType && (
-              <p id="inquiryType-error" className="mt-1 text-sm text-earth-red" role="alert">
-                {errors.inquiryType.message}
-              </p>
-            )}
+            </FormField>
           </div>
 
           {/* Message */}
           <div className="sm:col-span-2">
-            <Label htmlFor="message">
-              Message <span className="text-earth-red">*</span>
-            </Label>
-            <div className="mt-2.5">
+            <FormField
+              name="message"
+              label="Message"
+              description="Please provide details about your inquiry (50-500 characters)"
+              error={errors.message?.message}
+              required
+            >
               <Textarea
                 id="message"
                 rows={5}
                 {...register('message')}
                 disabled={isPending || isSubmitting}
                 placeholder="Tell us about your inquiry..."
-                aria-required="true"
-                aria-invalid={!!errors.message}
-                aria-describedby={errors.message ? 'message-error' : 'message-hint'}
                 maxLength={500}
               />
-            </div>
-            <p id="message-hint" className="mt-1 text-sm text-charcoal-400">
-              Please provide details about your inquiry (50-500 characters)
-            </p>
-            {errors.message && (
-              <p id="message-error" className="mt-1 text-sm text-earth-red" role="alert">
-                {errors.message.message}
-              </p>
-            )}
+            </FormField>
           </div>
 
           {/* Honeypot field - hidden from users */}
@@ -336,9 +303,9 @@ export default function ContactForm() {
             <Button
               type="submit"
               disabled={isPending || isSubmitting || !isFormReady}
+              isLoading={isPending}
               className="w-full"
             >
-              {isPending && <Loader2 className="animate-spin mr-2 h-4 w-4" />}
               {isPending ? 'Sending Message...' : 'Send Message'}
             </Button>
 
@@ -358,3 +325,4 @@ export default function ContactForm() {
     </div>
   );
 }
+

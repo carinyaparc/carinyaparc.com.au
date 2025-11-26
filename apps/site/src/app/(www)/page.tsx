@@ -12,7 +12,7 @@ import {
   HeroLocation,
   HeroActions,
   HeroButton,
-} from '@/src/components/sections/Hero';
+} from '@/src/components/sections/hero';
 import {
   SectionWithImage,
   SectionImage,
@@ -23,8 +23,8 @@ import {
   SectionActions,
   SectionButton,
   SectionLink,
-} from '@/src/components/sections/SectionWithImage';
-import { LatestPosts } from '@/src/components/posts/LatestPosts';
+} from '@/src/components/sections/section';
+import { LatestPosts } from '@/src/components/sections/blog';
 import { SchemaMarkup } from '@/src/components/ui/SchemaMarkup';
 
 export default async function HomePage() {
@@ -108,7 +108,7 @@ export default async function HomePage() {
         {/*Our Story Section*/}
         <section className="bg-eucalyptus-600 py-8 sm:py-12">
           <SectionWithImage variant="dark" imagePosition="right">
-            <SectionImage>
+            <SectionImage imagePosition="right">
               <Image
                 src="/images/img_23.jpg"
                 alt="Farm landscape"
@@ -118,17 +118,17 @@ export default async function HomePage() {
                 quality={80}
               />
             </SectionImage>
-            <SectionContent>
-              <SectionSubtitle>Our Story</SectionSubtitle>
-              <SectionTitle>Regenerating Land, Growing Community</SectionTitle>
-              <SectionText>
+            <SectionContent imagePosition="right">
+              <SectionSubtitle variant="dark">Our Story</SectionSubtitle>
+              <SectionTitle variant="dark">Regenerating Land, Growing Community</SectionTitle>
+              <SectionText variant="dark">
                 We're transforming 42 hectares (104 acres) of previously degraded land into thriving
                 woodland, diverse habitat corridors, and productive agroforestry systems. Founded by
                 Jonathan Daddia — strategic leader turned regenerative farmer — our approach
                 combines evidence-based ecological practices with community engagement.
               </SectionText>
               <SectionActions>
-                <SectionButton href="/about">
+                <SectionButton href="/about" variant="dark">
                   Read Our Story<span aria-hidden="true">&nbsp;→</span>
                 </SectionButton>
               </SectionActions>
@@ -139,7 +139,7 @@ export default async function HomePage() {
         {/*Regenerate Section*/}
         <section className="bg-white py-8 sm:py-12">
           <SectionWithImage variant="light" imagePosition="left">
-            <SectionImage>
+            <SectionImage imagePosition="left">
               <Image
                 src="/images/img_5.jpg"
                 alt="Farm gate"
@@ -149,10 +149,10 @@ export default async function HomePage() {
                 quality={80}
               />
             </SectionImage>
-            <SectionContent>
-              <SectionSubtitle>Regenerate with Us</SectionSubtitle>
-              <SectionTitle>Help Restore Diversity, For our Native Wildlife</SectionTitle>
-              <SectionText>
+            <SectionContent imagePosition="left">
+              <SectionSubtitle variant="light">Regenerate with Us</SectionSubtitle>
+              <SectionTitle variant="light">Help Restore Diversity, For our Native Wildlife</SectionTitle>
+              <SectionText variant="light">
                 How are we restoring biodiversity? Through planting 30,000+ native trees, enhancing
                 waterways and creating wildlife corridors spanning our Branch River frontage. You
                 can help:
@@ -181,7 +181,7 @@ export default async function HomePage() {
                 </ul>
               </SectionText>
               <SectionActions>
-                <SectionButton href="/regeneration">
+                <SectionButton href="/regeneration" variant="light">
                   Get Involved<span aria-hidden="true">&nbsp;→</span>
                 </SectionButton>
               </SectionActions>
@@ -192,7 +192,7 @@ export default async function HomePage() {
         {/*Experience Section*/}
         <section className="bg-eucalyptus-600 py-8 sm:py-12">
           <SectionWithImage variant="dark" imagePosition="right">
-            <SectionImage>
+            <SectionImage imagePosition="right">
               <Image
                 src="/images/img_9.jpg"
                 alt="Farm gate"
@@ -202,10 +202,10 @@ export default async function HomePage() {
                 quality={80}
               />
             </SectionImage>
-            <SectionContent>
-              <SectionSubtitle>Experience the Farm</SectionSubtitle>
-              <SectionTitle>Explore Regenerative Farming, Reconnect with Nature</SectionTitle>
-              <SectionText>
+            <SectionContent imagePosition="right">
+              <SectionSubtitle variant="dark">Experience the Farm</SectionSubtitle>
+              <SectionTitle variant="dark">Explore Regenerative Farming, Reconnect with Nature</SectionTitle>
+              <SectionText variant="dark">
                 Discover regerative farming. Immerse yourself through guided tours, hands-on
                 workshops and eco-stays. Explore our permaculture gardens, syntropic food forest and
                 wildlife corridors.
@@ -234,8 +234,8 @@ export default async function HomePage() {
                 </ul>
               </SectionText>
               <SectionActions>
-                <SectionButton href="#">Coming Soon!</SectionButton>
-                <SectionLink href="#">Sign Up! Be the first to know</SectionLink>
+                <SectionButton href="#" variant="dark">Coming Soon!</SectionButton>
+                <SectionLink href="#" variant="dark">Sign Up! Be the first to know</SectionLink>
               </SectionActions>
             </SectionContent>
           </SectionWithImage>

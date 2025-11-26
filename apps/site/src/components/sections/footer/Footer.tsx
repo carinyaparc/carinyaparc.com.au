@@ -1,36 +1,47 @@
+/**
+ * Footer organism - Refactored with extracted sub-components
+ * Maps to: FR-5, NFR-3
+ * Task: T4.2
+ */
+
 'use client';
 
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
+import FooterNav from './FooterNav';
+import SocialLinks from './SocialLinks';
 
-interface NavigationItem {
-  name: string;
-  href: string;
-}
-
-const navigation: {
-  FooterList1: NavigationItem[];
-  FooterList2: NavigationItem[];
-  FooterList3: NavigationItem[];
-  FooterList4: NavigationItem[];
-} = {
-  FooterList1: [
-    { name: 'Our Story', href: '/about' },
-    { name: 'Meet Jonno', href: '/about/jonathan' },
-    { name: 'The Property', href: '/about/the-property' },
-  ],
-  FooterList2: [
-    { name: 'Regeneration Project', href: '/regenerate' },
-    { name: 'Future Produce', href: '/products' },
-  ],
-  FooterList3: [{ name: 'Read Life on Pasture', href: '/blog' }],
-  FooterList4: [
-    { name: 'Contact Us', href: '/contact' },
-    { name: 'Subscribe', href: '/subscribe' },
+const navigation = {
+  sections: [
+    {
+      title: 'About Carinya Parc',
+      items: [
+        { name: 'Our Story', href: '/about' },
+        { name: 'Meet Jonno', href: '/about/jonathan' },
+        { name: 'The Property', href: '/about/the-property' },
+      ],
+    },
+    {
+      title: 'Explore',
+      items: [
+        { name: 'Regeneration Project', href: '/regenerate' },
+        { name: 'Future Produce', href: '/products' },
+      ],
+    },
+    {
+      title: 'Resources',
+      items: [{ name: 'Read Life on Pasture', href: '/blog' }],
+    },
+    {
+      title: 'Community',
+      items: [
+        { name: 'Contact Us', href: '/contact' },
+        { name: 'Subscribe', href: '/subscribe' },
+      ],
+    },
   ],
 };
 
-// Social links from SubFooter component
 const socialLinks = [
   {
     name: 'Facebook',
@@ -111,72 +122,7 @@ export default function Footer() {
                 </span>
               </p>
             </div>
-            <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold text-charcoal-600">About Carinya Parc</h3>
-                  <ul role="list" className="mt-4 space-y-3">
-                    {navigation.FooterList1.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          href={item.href}
-                          className="text-sm text-charcoal-400 hover:text-eucalyptus-600 dark:text-charcoal-400 dark:hover:text-charcoal-100"
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-sm font-semibold text-charcoal-600">Explore</h3>
-                  <ul role="list" className="mt-4 space-y-3">
-                    {navigation.FooterList2.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          href={item.href}
-                          className="text-sm text-charcoal-400 hover:text-eucalyptus-600 dark:text-charcoal-400 dark:hover:text-charcoal-100"
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold text-charcoal-600">Resources</h3>
-                  <ul role="list" className="mt-4 space-y-3">
-                    {navigation.FooterList3.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          href={item.href}
-                          className="text-sm text-charcoal-400 hover:text-eucalyptus-600 dark:text-charcoal-400 dark:hover:text-charcoal-100"
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-sm font-semibold text-charcoal-600">Community</h3>
-                  <ul role="list" className="mt-4 space-y-3">
-                    {navigation.FooterList4.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          href={item.href}
-                          className="text-sm text-charcoal-400 hover:text-eucalyptus-600 dark:text-charcoal-400 dark:hover:text-charcoal-100"
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <FooterNav sections={navigation.sections} />
           </div>
         </div>
       </div>
@@ -203,21 +149,7 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <div className="flex justify-center mt-4 md:mt-0 md:order-2">
-            {socialLinks.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-charcoal-400 hover:text-eucalyptus-600 mx-2 transition-colors"
-                aria-label={`${item.name} social link`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon aria-hidden="true" className="h-6 w-6" />
-              </a>
-            ))}
-          </div>
+          <SocialLinks links={socialLinks} />
         </div>
       </div>
 
@@ -237,3 +169,4 @@ export default function Footer() {
     </footer>
   );
 }
+

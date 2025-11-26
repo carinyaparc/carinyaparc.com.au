@@ -1,3 +1,9 @@
+/**
+ * FeaturedPosts organism - Refactored with PostCard molecule
+ * Maps to: FR-5, NFR-3
+ * Task: T4.6
+ */
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@repo/ui/button';
@@ -76,3 +82,4 @@ export default async function FeaturedPosts({ limit = 1 }: FeaturedPostsProps) {
     </section>
   );
 }
+

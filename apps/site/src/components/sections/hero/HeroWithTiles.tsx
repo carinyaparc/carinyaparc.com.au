@@ -1,3 +1,12 @@
+/**
+ * HeroWithTiles organism - Refactored
+ * Maps to: FR-5, NFR-3
+ * Task: T3.3
+ * 
+ * Hero with image tile grid
+ * Preserved existing styling, simplified structure
+ */
+
 'use client';
 
 import { cn } from '@/src/lib/cn';
@@ -10,48 +19,19 @@ interface TileImage {
   alt?: string;
 }
 
-interface Button {
+interface HeroButton {
   label: string;
   href: string;
   variant: 'primary' | 'secondary';
 }
 
-/**
- * HeroWithTiles component for hero sections with image tiles
- *
- * @example
- * ```tsx
- * // Light variant with default left alignment
- * <HeroWithTiles
- *   title="Regenerative Farming"
- *   subtitle="Our Approach"
- *   description="Discover how we're implementing regenerative practices that improve soil health and biodiversity."
- *   primaryButton={{ label: "Learn More", href: "/regenerate", variant: "primary" }}
- *   secondaryButton={{ label: "Get Involved", href: "/get-involved", variant: "secondary" }}
- *   tileImages={[
- *     { src: "/images/farm-1.jpg", alt: "Farm landscape" },
- *     { src: "/images/farm-2.jpg", alt: "Native plants" },
- *     { src: "/images/farm-3.jpg", alt: "Soil regeneration" },
- *     { src: "/images/farm-4.jpg", alt: "Wildlife habitat" },
- *     { src: "/images/farm-5.jpg", alt: "Water management" }
- *   ]}
- * />
- *
- * // Dark variant
- * <HeroWithTiles
- *   variant="dark"
- *   title="Sustainable Agriculture"
- *   description="Our commitment to ecological farming practices that regenerate the land."
- *   tileImages={[...]}
- * />
- */
 interface HeroWithTilesProps {
   variant?: 'light' | 'dark';
   title: string;
   subtitle?: string;
   description?: string;
-  primaryButton?: Button;
-  secondaryButton?: Button;
+  primaryButton?: HeroButton;
+  secondaryButton?: HeroButton;
   tileImages: TileImage[];
   className?: string;
 }
@@ -221,3 +201,4 @@ export default function HeroWithTiles({
     </div>
   );
 }
+

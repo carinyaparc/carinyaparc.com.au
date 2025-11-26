@@ -4,7 +4,7 @@
 
 import type { Metadata } from 'next';
 import { generateMetadata as generateMetadataHelper } from '@/src/lib/metadata';
-import ContactForm from '@/src/components/forms/ContactForm';
+import { ContactFormSection } from '@/src/components/sections/forms';
 
 // SEO metadata for contact page
 export async function generateMetadata(): Promise<Metadata> {
@@ -60,7 +60,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <ContactForm />
+              <ContactFormSection />
             </div>
           </div>
         </div>

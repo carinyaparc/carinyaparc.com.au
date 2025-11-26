@@ -1,9 +1,8 @@
-import PageHeader from '@/src/components/sections/PageHeader';
+import { PageHeader } from '@/src/components/sections/page-header';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@repo/ui/button';
-import { LatestPosts } from '@/src/components/posts/LatestPosts';
-import FeaturedPosts from '@/src/components/posts/FeaturedPosts';
+import { LatestPosts, FeaturedPosts } from '@/src/components/sections/blog';
 import { SchemaMarkup } from '@/src/components/ui/SchemaMarkup';
 import { Breadcrumb } from '@/src/components/ui/Breadcrumb';
 
