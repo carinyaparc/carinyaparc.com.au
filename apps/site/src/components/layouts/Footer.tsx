@@ -186,10 +186,16 @@ export default function Footer() {
               &copy; {currentYear} Carinya Parc. All rights reserved.
             </p>
             <div className="ml-0 mt-4 md:ml-6 md:mt-0 flex justify-center md:justify-start space-x-4 text-sm">
-              <Link href="/legal/privacy-policy" className="text-charcoal-400 hover:text-eucalyptus-600">
+              <Link
+                href="/legal/privacy-policy"
+                className="text-charcoal-400 hover:text-eucalyptus-600"
+              >
                 Privacy
               </Link>
-              <Link href="/legal/terms-of-service" className="text-charcoal-400 hover:text-eucalyptus-600">
+              <Link
+                href="/legal/terms-of-service"
+                className="text-charcoal-400 hover:text-eucalyptus-600"
+              >
                 Terms
               </Link>
             </div>
@@ -213,7 +219,7 @@ export default function Footer() {
       </div>
 
       {/* Acknowledgement */}
-      <div className="bg-charcoal-500 text-charcoal-200">
+      <div className="bg-charcoal-400 text-charcoal-100">
         <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
           <div className="md:flex md:items-center md:order-1">
             <p className="text-center text-sm md:text-left">

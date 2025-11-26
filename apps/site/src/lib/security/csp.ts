@@ -38,7 +38,12 @@ export function formatNonceForCSP(nonce: string): string {
 
 /**
  * Inject nonce into CSP directives
- * Adds nonce to script-src and style-src directives
+ * Adds nonce to script-src only (not style-src)
+ *
+ * Note: We don't inject nonce into style-src because:
+ * 1. Next.js and React inject inline styles without nonces
+ * 2. When a nonce is present in CSP, 'unsafe-inline' is ignored
+ * 3. We use 'unsafe-inline' for styles to support framework-injected styles
  *
  * @param directives - Original CSP directives
  * @param nonce - Nonce to inject
@@ -56,10 +61,8 @@ function injectNonceIntoDirectives(
     updated['script-src'] = [formattedNonce, ...updated['script-src']];
   }
 
-  // Inject nonce into style-src if present
-  if (updated['style-src']) {
-    updated['style-src'] = [formattedNonce, ...updated['style-src']];
-  }
+  // DO NOT inject nonce into style-src - see function comment above
+  // The 'unsafe-inline' in proxy.ts handles inline styles
 
   return updated;
 }

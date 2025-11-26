@@ -23,7 +23,7 @@ describe('CSP Security Validation - Nonce Requirements', () => {
     expect(cspResult.headerValue).toMatch(/script-src[^;]*'nonce-[^']+'/);
   });
 
-  it('should inject nonce into style-src directive', () => {
+  it('should NOT inject nonce into style-src directive', () => {
     const nonceContext = generateNonce();
     const cspResult = buildCSPHeader(
       {
@@ -33,9 +33,11 @@ describe('CSP Security Validation - Nonce Requirements', () => {
       nonceContext.nonce,
     );
 
+    // Nonce should appear in script-src but NOT in style-src
+    // This allows 'unsafe-inline' to work for styles (Next.js requirement)
     const formattedNonce = formatNonceForCSP(nonceContext.nonce);
-    expect(cspResult.headerValue).toContain(formattedNonce);
-    expect(cspResult.headerValue).toMatch(/style-src[^;]*'nonce-[^']+'/);
+    expect(cspResult.headerValue).toContain(formattedNonce); // In script-src
+    expect(cspResult.headerValue).not.toMatch(/style-src[^;]*'nonce-[^']+'/); // NOT in style-src
   });
 
   it('should place nonce at the beginning of directive sources', () => {

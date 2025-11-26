@@ -56,7 +56,7 @@ export default function Newsletter() {
               className="w-full max-w-md"
               suppressHydrationWarning={true}
             >
-              <div className="flex gap-x-4">
+              <div className="flex gap-x-4" suppressHydrationWarning={true}>
                 <label htmlFor="email-address" className="sr-only">
                   Email address
                 </label>
@@ -71,11 +71,13 @@ export default function Newsletter() {
                   placeholder="Enter your email address"
                   autoComplete="email"
                   className="min-w-0 flex-auto rounded-md bg-white/10 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-white/75 focus:outline-2 focus:-outline-offset-2 focus:outline-white sm:text-sm/6"
+                  suppressHydrationWarning={true}
                 />
                 <button
                   type="submit"
                   disabled={status === 'loading'}
                   className="flex-none rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-eucalyptus-600 shadow-xs hover:bg-eucalyptus-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:opacity-70"
+                  suppressHydrationWarning={true}
                 >
                   {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
                 </button>
