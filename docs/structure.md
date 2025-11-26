@@ -148,10 +148,12 @@ The current route structure includes (not exhaustive):
 - `/recipes/[recipe]` → `src/app/recipes/[recipe]/page.tsx`.
 - `/legal/[slug]` → `src/app/legal/[slug]/page.tsx`.
 - `/subscribe` → `src/app/subscribe/page.tsx`.
+- `/contact` → `src/app/(www)/contact/page.tsx` (✓ new).
 
 API routes:
 
 - `/api/subscribe` → `src/app/api/subscribe/route.ts`.
+- `/api/contact` → `src/app/api/contact/route.ts` (✓ new).
 - `/api/cookie` → `src/app/api/cookie/route.ts`.
 - `/api/sentry` → `src/app/api/sentry/route.ts`.
 - `/api/cron` → `src/app/api/cron/route.ts`.
@@ -190,9 +192,14 @@ Any structural shift (e.g., introducing route groups like `(marketing)` or `(app
 
 - Live under `src/components/` with subfolders by concern:
   - `sections/` for large page sections (hero, story grids, etc.).
-  - `forms/` for reusable form elements (subscribe, contact).
+  - `forms/` for reusable form elements:
+    - `SubscribeForm.tsx` - newsletter subscription form
+    - `ContactForm.tsx` - contact inquiry form (✓ new)
+    - `SubscribeModal.tsx` - modal wrapper for subscription
   - `ui/` for wrappers around shared UI primitives from `@repo/ui`.
   - `pages/` and `posts/` for page-specific and post-specific components.
+  - `providers/` for React context providers:
+    - `Providers.tsx` - TanStack Query provider wrapper (✓ new)
 
 **Naming convention:**
 
@@ -229,6 +236,15 @@ Any structural shift (e.g., introducing route groups like `(marketing)` or `(app
 Examples of established folder patterns:
 
 - `src/lib/metadata/` – metadata generation helpers with barrel export.
+- `src/lib/security/` – CSP, headers, and cache control utilities.
+- `src/lib/validation/` – Zod schemas and sanitization (✓ new):
+  - `contact-schema.ts` - Contact form validation schema
+  - `contact-schema.test.ts` - Colocated unit tests
+  - `sanitize.ts` - DOMPurify wrapper utilities
+  - `sanitize.test.ts` - Colocated unit tests
+- `src/lib/email/` – Email service integration (✓ new):
+  - `send-contact-notification.ts` - Resend SDK integration
+  - `templates/contact-notification.ts` - Email HTML templates
 - `src/lib/schema/` – schema generators (article, breadcrumb, recipe) with tests.
 - `src/lib/session/` – session management with types, server functions, and barrel export.
 - `src/lib/security/` – security utilities (CSP, headers, caching) with types and tests.

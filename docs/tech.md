@@ -180,6 +180,32 @@ If an alternative host is used, document:
 - Start command (`pnpm start` from `apps/site`).
 - Required environment variables and configuration differences.
 
+## Form handling & validation
+
+### Form libraries (✓ standardised)
+
+- **Form state**: React Hook Form `^7.66.1` for performant form management
+- **Validation**: Zod `^4.1.13` for type-safe schema validation
+- **Resolver**: `@hookform/resolvers` `^5.2.2` for Zod integration with React Hook Form
+- **Data fetching**: TanStack Query `^5.90.11` for mutations and server state
+- **Sanitization**: `isomorphic-dompurify` `^2.33.0` for XSS prevention
+
+**Rationale (✓):**
+- Single source of truth for validation (Zod schemas shared between client and server)
+- Reduced boilerplate compared to manual state management
+- Type-safe form handling with automatic TypeScript inference
+- Consistent patterns across all forms (contact, newsletter, future forms)
+
+### Email services
+
+- **Transactional emails**: Resend SDK `^6.5.2` (contact form notifications)
+- **Marketing emails**: MailerLite (newsletter subscriptions) - existing integration
+- **Email templates**: HTML templates in `apps/site/src/lib/email/templates/`
+
+**Configuration:**
+- Email service credentials via environment variables
+- SPF/DKIM records required for production deliverability
+
 ## Observability & Analytics
 
 - **Sentry**:
@@ -227,10 +253,28 @@ Accessibility is treated as a ✓ requirement, not a “nice to have”.
 
 ## Security & Privacy
 
+### Security module
+
+- **Location**: `apps/site/src/lib/security/` - centralised security utilities
+- **Content Security Policy (CSP)**: Dynamic CSP generation with nonce support
+- **Security headers**: Comprehensive headers (HSTS, X-Frame-Options, etc.)
+- **Cache control**: Route-based cache directives for sensitive/public paths
+
+### Rate limiting & spam protection
+
+- **Rate limiting**: In-memory Map pattern (3 requests per email per 24h)
+- **Spam detection**: 
+  - Honeypot fields (hidden from users)
+  - Submission timing checks (min 2 seconds)
+  - Email pattern validation via `validateEmailForAPI()`
+- **Implementation**: Used in `/api/subscribe` and `/api/contact` routes
+
+### Privacy & data
+
 - **Secrets management**:
   - Secrets (API keys, mailing list credentials, Sentry DSN, etc.) must live in environment variables (`.env.local`, environment configuration in Vercel), never committed to Git.
 - **Data handling**:
-  - Minimal personal data is collected; primarily email addresses for newsletter subscriptions.
+  - Minimal personal data is collected; primarily email addresses for newsletter subscriptions and contact form submissions.
   - Legal content in `apps/site/content/legal/` defines commitments; implementations (e.g., cookie handling in `app/api/cookie/`) must align.
 - **Dependencies**:
   - Use maintained, up-to-date dependencies; run periodic upgrades, especially for security-sensitive packages (`next`, `react`, `sentry`, `jose`).

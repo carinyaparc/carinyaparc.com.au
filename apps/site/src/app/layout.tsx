@@ -12,6 +12,7 @@ import Newsletter from '@/src/components/ui/Newsletter';
 import Footer from '@/src/components/layouts/Footer';
 import CookiePolicy from '@/src/components/ui/Policy';
 import { Toaster } from '@repo/ui/toaster';
+import { Providers } from '@/src/components/providers/Providers';
 
 import { GoogleTagManager } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/next';
@@ -119,16 +120,18 @@ export default async function RootLayout({
       {/* Only load Google Tag Manager if user consented */}
       {hasConsentedToAnalytics && <GoogleTagManager gtmId={GTM_ID || ''} />}
       <body className="flex flex-col min-h-screen">
-        <Banner />
-        <Header navigation={navigation} />
-        <main className="flex-1">{children}</main>
-        <Newsletter />
-        <Footer />
-        <CookiePolicy />
-        <Toaster />
-        {/* Only load Analytics if user consented */}
-        {hasConsentedToAnalytics && <Analytics />}
-        <SpeedInsights />
+        <Providers>
+          <Banner />
+          <Header navigation={navigation} />
+          <main className="flex-1">{children}</main>
+          <Newsletter />
+          <Footer />
+          <CookiePolicy />
+          <Toaster />
+          {/* Only load Analytics if user consented */}
+          {hasConsentedToAnalytics && <Analytics />}
+          <SpeedInsights />
+        </Providers>
       </body>
     </html>
   );

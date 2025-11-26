@@ -1,0 +1,95 @@
+/**
+ * Contact form Zod validation schema
+ * Implements: T1.2, FR-002, FR-003, FR-005, NFR-006
+ */
+
+import { z } from 'zod';
+import { validateEmailForAPI } from '@/utils/validateEmail';
+
+/**
+ * Inquiry type enum matching requirements
+ * Maps to: FR-002
+ */
+export const inquiryTypes = ['general', 'tours', 'volunteer', 'partnership'] as const;
+
+/**
+ * Contact form Zod schema with comprehensive validation
+ * Single source of truth for client and server validation (satisfies NFR-006)
+ */
+export const contactFormSchema = z.object({
+  firstName: z
+    .string()
+    .min(1, 'First name is required')
+    .max(50, 'First name must be 50 characters or less')
+    .regex(
+      /^[a-zA-Z\s'-]+$/,
+      'First name can only contain letters, spaces, hyphens, and apostrophes',
+    ),
+
+  lastName: z
+    .string()
+    .min(1, 'Last name is required')
+    .max(50, 'Last name must be 50 characters or less')
+    .regex(
+      /^[a-zA-Z\s'-]+$/,
+      'Last name can only contain letters, spaces, hyphens, and apostrophes',
+    ),
+
+  email: z
+    .string()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .refine(
+      (email) => {
+        // Leverage existing spam detection from validateEmailForAPI
+        const { isValid, isSpam } = validateEmailForAPI(email);
+        return isValid && !isSpam;
+      },
+      { message: 'This email address appears to be invalid' },
+    ),
+
+  phone: z
+    .string()
+    .regex(/^(\+61|0)[0-9]{9}$/, 'Please enter a valid Australian phone number')
+    .optional()
+    .or(z.literal('')),
+
+  inquiryType: z.enum(inquiryTypes),
+
+  message: z
+    .string()
+    .min(50, 'Message must be at least 50 characters')
+    .max(500, 'Message must be 500 characters or less'),
+
+  // Honeypot field - should be empty to pass validation (FR-011)
+  website: z.string().max(0, 'Invalid submission').optional().or(z.literal('')),
+
+  // Submission timing check - minimum 2 seconds (FR-011, anti-bot)
+  submissionTime: z
+    .number()
+    .min(2000, 'Submission too fast')
+    .optional(),
+});
+
+/**
+ * Infer TypeScript type from Zod schema
+ * Provides type-safe form data throughout application
+ */
+export type ContactFormData = z.infer<typeof contactFormSchema>;
+
+/**
+ * Inquiry type extracted from schema
+ */
+export type InquiryType = (typeof inquiryTypes)[number];
+
+/**
+ * Client-safe schema (excludes anti-bot fields from client validation display)
+ * Used for React Hook Form zodResolver
+ */
+export const contactFormClientSchema = contactFormSchema.omit({
+  website: true,
+  submissionTime: true,
+});
+
+export type ContactFormClientData = z.infer<typeof contactFormClientSchema>;
+
