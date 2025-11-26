@@ -1,6 +1,5 @@
 /**
  * Email service integration for contact form notifications
- * Implements: T3.5, FR-006, NFR-005
  */
 
 import { Resend } from 'resend';
@@ -24,8 +23,6 @@ export interface EmailSendResult {
 
 /**
  * Send contact form notification email
- * FR-006: Send email notification to property owners
- * NFR-005: Email delivery success rate must be > 95%
  */
 export async function sendContactNotification(
   data: ContactFormData & { sourceIP?: string; userAgent?: string }

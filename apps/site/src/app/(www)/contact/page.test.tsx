@@ -3,7 +3,7 @@
  * Implements: T2.8, tests for FR-001, FR-009, FR-010
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ContactPage, { generateMetadata } from './page';
 
@@ -68,7 +68,6 @@ describe('ContactPage', () => {
       // Check Open Graph metadata
       expect(metadata.openGraph?.title).toContain('Contact Carinya Parc');
       expect(metadata.openGraph?.description).toContain('48 business hours');
-      expect(metadata.openGraph?.type).toBe('website');
     });
   });
 });

@@ -1,13 +1,12 @@
 /**
  * Contact Page - Server Component
- * Implements: T2.1, FR-001, FR-009, FR-010
  */
 
 import type { Metadata } from 'next';
 import { generateMetadata as generateMetadataHelper } from '@/src/lib/metadata';
 import ContactForm from '@/src/components/forms/ContactForm';
 
-// SEO metadata for contact page (FR-001)
+// SEO metadata for contact page
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
     pageTitle: 'Contact Us',
@@ -20,7 +19,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 /**
  * Contact page layout with hero section and form
- * Server-rendered for optimal performance (NFR-001)
  */
 export default function ContactPage() {
   return (
@@ -46,7 +44,6 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div className="rounded-xl sm:rounded-2xl bg-white px-6 py-8 sm:px-8 sm:py-10 md:px-12 md:py-12 shadow-lg ring-1 ring-charcoal-100">
-              {/* Introductory Text (FR-009) */}
               <div className="mb-8 text-center">
                 <h2 className="text-xl sm:text-2xl font-semibold text-eucalyptus-600">Send Us a Message</h2>
                 <p className="mt-3 sm:mt-4 text-base leading-7 text-charcoal-600">
@@ -58,11 +55,9 @@ export default function ContactPage() {
                   >
                     contact@carinyaparc.com.au
                   </a>
-                  {/* Static contact information as fallback (FR-010) */}
                 </p>
               </div>
 
-              {/* Contact Form - Client Component */}
               <ContactForm />
             </div>
           </div>

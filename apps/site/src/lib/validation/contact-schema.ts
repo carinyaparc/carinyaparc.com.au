@@ -1,20 +1,18 @@
 /**
  * Contact form Zod validation schema
- * Implements: T1.2, FR-002, FR-003, FR-005, NFR-006
  */
 
 import { z } from 'zod';
 import { validateEmailForAPI } from '@/utils/validateEmail';
 
 /**
- * Inquiry type enum matching requirements
- * Maps to: FR-002
+ * Inquiry type options
  */
 export const inquiryTypes = ['general', 'tours', 'volunteer', 'partnership'] as const;
 
 /**
- * Contact form Zod schema with comprehensive validation
- * Single source of truth for client and server validation (satisfies NFR-006)
+ * Contact form Zod schema
+ * Single source of truth for client and server validation
  */
 export const contactFormSchema = z.object({
   firstName: z
@@ -41,7 +39,6 @@ export const contactFormSchema = z.object({
     .email('Please enter a valid email address')
     .refine(
       (email) => {
-        // Leverage existing spam detection from validateEmailForAPI
         const { isValid, isSpam } = validateEmailForAPI(email);
         return isValid && !isSpam;
       },
@@ -61,10 +58,10 @@ export const contactFormSchema = z.object({
     .min(50, 'Message must be at least 50 characters')
     .max(500, 'Message must be 500 characters or less'),
 
-  // Honeypot field - should be empty to pass validation (FR-011)
+  // Honeypot field - should be empty to pass validation
   website: z.string().max(0, 'Invalid submission').optional().or(z.literal('')),
 
-  // Submission timing check - minimum 2 seconds (FR-011, anti-bot)
+  // Submission timing check - minimum 2 seconds
   submissionTime: z
     .number()
     .min(2000, 'Submission too fast')

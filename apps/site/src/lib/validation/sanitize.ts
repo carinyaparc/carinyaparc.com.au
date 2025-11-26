@@ -1,6 +1,5 @@
 /**
  * Input sanitization utilities using DOMPurify
- * Implements: T1.3, NFR-004 (XSS prevention)
  */
 
 import DOMPurify from 'isomorphic-dompurify';

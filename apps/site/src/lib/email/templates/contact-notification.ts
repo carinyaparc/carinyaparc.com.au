@@ -1,13 +1,11 @@
 /**
  * Email template for contact form notifications
- * Implements: T3.6, FR-006
  */
 
 import { sanitizeForEmailGeneration, type ContactFormInput } from '@/src/lib/validation/sanitize';
 
 /**
  * Generate HTML email template for contact form submission
- * FR-006: Email must include all form fields and timestamp
  */
 export function generateContactNotificationEmail(params: {
   firstName: string;

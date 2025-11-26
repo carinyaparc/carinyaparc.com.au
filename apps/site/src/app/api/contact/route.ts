@@ -1,7 +1,5 @@
 /**
  * Contact Form API Route Handler
- * Implements: T3.1, T3.2, T3.3, T3.4, T3.7, T3.8
- * Requirements: FR-004, FR-005, FR-006, FR-011, NFR-001, NFR-004, NFR-005
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -42,10 +40,6 @@ if (typeof globalThis.contactRateLimitCleanup === 'undefined') {
 
 /**
  * POST /api/contact
- * FR-004: Form submission must POST to `/api/contact` endpoint
- * FR-005: API endpoint must validate server-side
- * FR-006: Valid submissions must trigger email notification
- * FR-011: Form must implement rate limiting
  */
 export async function POST(request: NextRequest) {
   try {
@@ -68,7 +62,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Server-side validation using Zod schema (T3.2, FR-005)
+    // Server-side validation using Zod schema
     const validation = contactFormSchema.safeParse(body);
 
     if (!validation.success) {
@@ -154,7 +148,12 @@ export async function POST(request: NextRequest) {
 
     // Send email notification (T3.5, T3.6, FR-006)
     const emailResult = await sendContactNotification({
-      ...sanitizedData,
+      firstName: sanitizedData.firstName,
+      lastName: sanitizedData.lastName,
+      email: sanitizedData.email,
+      phone: sanitizedData.phone,
+      inquiryType: data.inquiryType, // Use unsanitized for exact type match
+      message: sanitizedData.message,
       website: data.website,
       submissionTime: data.submissionTime,
       sourceIP,
