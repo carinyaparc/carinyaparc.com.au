@@ -49,9 +49,7 @@ export default async function HomePage() {
               </HeroText>
               <HeroLocation>The Branch NSW 2425</HeroLocation>
               <HeroActions>
-                <HeroButton href="/our-farm">
-                  Learn Our Story <span aria-hidden="true">→</span>
-                </HeroButton>
+                <HeroButton href="/our-farm">Learn Our Story →</HeroButton>
               </HeroActions>
             </HeroContent>
           </Hero>
@@ -128,9 +126,7 @@ export default async function HomePage() {
                 combines evidence-based ecological practices with community engagement.
               </SectionText>
               <SectionActions>
-                <SectionButton href="/about" variant="dark">
-                  Read Our Story<span aria-hidden="true">&nbsp;→</span>
-                </SectionButton>
+                <SectionButton href="/about" variant="dark">Read Our Story →</SectionButton>
               </SectionActions>
             </SectionContent>
           </SectionWithImage>
@@ -183,9 +179,7 @@ export default async function HomePage() {
                 </ul>
               </SectionText>
               <SectionActions>
-                <SectionButton href="/regeneration" variant="light">
-                  Get Involved<span aria-hidden="true">&nbsp;→</span>
-                </SectionButton>
+                <SectionButton href="/regeneration" variant="light">Get Involved →</SectionButton>
               </SectionActions>
             </SectionContent>
           </SectionWithImage>
