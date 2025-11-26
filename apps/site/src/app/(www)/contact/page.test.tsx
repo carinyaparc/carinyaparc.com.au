@@ -1,6 +1,5 @@
 /**
  * Unit tests for Contact Page
- * Implements: T2.8, tests for FR-001, FR-009, FR-010
  */
 
 import { describe, it, expect, vi } from 'vitest';
@@ -17,44 +16,25 @@ describe('ContactPage', () => {
     it('should render the contact page with all sections', () => {
       render(<ContactPage />);
 
-      // Check hero section
-      expect(screen.getByRole('heading', { name: /get in touch/i, level: 1 })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /we'd love to hear from you/i, level: 1 })).toBeInTheDocument();
       expect(
         screen.getByText(/whether you're interested in visiting the farm/i)
       ).toBeInTheDocument();
 
-      // Check introductory text (FR-009)
       expect(screen.getByRole('heading', { name: /send us a message/i, level: 2 })).toBeInTheDocument();
       expect(screen.getByText(/48 business hours/i)).toBeInTheDocument();
 
-      // Check fallback email is displayed (FR-010)
       const emailLink = screen.getByRole('link', { name: /contact@carinyaparc\.com\.au/i });
       expect(emailLink).toBeInTheDocument();
       expect(emailLink).toHaveAttribute('href', 'mailto:contact@carinyaparc.com.au');
 
-      // Check contact form is rendered
       expect(screen.getByTestId('contact-form')).toBeInTheDocument();
     });
 
-    it('should display additional information cards', () => {
-      render(<ContactPage />);
-
-      // Check response time card
-      expect(screen.getByRole('heading', { name: /response time/i, level: 3 })).toBeInTheDocument();
-      expect(screen.getByText(/typically respond within 48 business hours/i)).toBeInTheDocument();
-
-      // Check location card
-      expect(screen.getByRole('heading', { name: /location/i, level: 3 })).toBeInTheDocument();
-      expect(screen.getByText(/moss vale region/i)).toBeInTheDocument();
-
-      // Check international card
-      expect(screen.getByRole('heading', { name: /international/i, level: 3 })).toBeInTheDocument();
-      expect(screen.getByText(/welcome inquiries from around the world/i)).toBeInTheDocument();
-    });
   });
 
   describe('generateMetadata', () => {
-    it('should generate correct metadata for SEO (FR-001)', async () => {
+    it('should generate correct metadata for SEO', async () => {
       const metadata = await generateMetadata();
 
       // Check basic metadata

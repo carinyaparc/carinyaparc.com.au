@@ -1,6 +1,5 @@
 /**
  * Unit tests for Contact API Route
- * Implements: T3.9, tests for FR-004, FR-005, FR-006, FR-011
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';

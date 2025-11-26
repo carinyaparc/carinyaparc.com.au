@@ -1,6 +1,5 @@
 /**
  * Unit tests for contact form Zod schema
- * Implements: T1.4, tests for FR-002, FR-003, FR-005, NFR-006
  */
 
 import { describe, it, expect } from 'vitest';

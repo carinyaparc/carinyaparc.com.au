@@ -78,8 +78,7 @@ export async function POST(request: NextRequest) {
 
     const data = validation.data;
 
-    // Spam detection checks (T3.4, FR-011)
-    // 1. Honeypot check (already validated by Zod schema)
+    // Spam detection checks
     if (data.website && data.website.length > 0) {
       // Silent rejection to avoid bot learning
       console.log('Contact form submission rejected: honeypot triggered');
@@ -89,7 +88,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Submission timing check (already validated by Zod)
     if (data.submissionTime && data.submissionTime < 2000) {
       // Silent rejection to avoid bot learning
       console.log('Contact form submission rejected: too fast');
@@ -99,7 +97,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Rate limiting (T3.3, FR-011)
+    // Rate limiting
     if (CONTACT_FORM_RATE_LIMITING) {
       const now = Date.now();
       const rateLimitKey = data.email.toLowerCase();
@@ -146,7 +144,7 @@ export async function POST(request: NextRequest) {
     // Sanitize form data before sending email
     const sanitizedData = sanitizeContactFormData(data);
 
-    // Send email notification (T3.5, T3.6, FR-006)
+    // Send email notification
     const emailResult = await sendContactNotification({
       firstName: sanitizedData.firstName,
       lastName: sanitizedData.lastName,
@@ -161,7 +159,6 @@ export async function POST(request: NextRequest) {
     });
 
     if (!emailResult.success) {
-      // Log email failure to Sentry (T3.7, NFR-005)
       console.error('Failed to send contact notification email:', emailResult.error);
       
       // Capture to Sentry with context (but no PII)
@@ -176,7 +173,6 @@ export async function POST(request: NextRequest) {
         },
       });
 
-      // Return user-friendly error message (FR-008)
       return NextResponse.json(
         {
           error: 'Failed to process your inquiry. Please try again or contact us directly at contact@carinyaparc.com.au',
@@ -185,7 +181,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Success response (FR-007)
     console.log(
       `Contact form submitted successfully: ${data.inquiryType} inquiry from ${data.email.split('@')[1]}`
     );
@@ -198,10 +193,8 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    // Unexpected error handling (T3.7, NFR-005)
     console.error('Unexpected error in contact API route:', error);
 
-    // Capture to Sentry
     captureException(error, {
       tags: {
         feature: 'contact_form',
@@ -209,7 +202,6 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Return generic error message to avoid leaking internal details
     return NextResponse.json(
       {
         error: 'An unexpected error occurred. Please try again or contact us directly at contact@carinyaparc.com.au',

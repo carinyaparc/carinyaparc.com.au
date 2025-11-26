@@ -1,6 +1,5 @@
 /**
  * Unit tests for DOMPurify sanitization utilities
- * Implements: T1.5, tests for NFR-004 (XSS prevention)
  */
 
 import { describe, it, expect } from 'vitest';

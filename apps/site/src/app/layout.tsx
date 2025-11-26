@@ -108,13 +108,14 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Inline critical CSS for immediate rendering (T3.2, SEC-002) */}
-        <style nonce={nonce} dangerouslySetInnerHTML={{ __html: criticalCSS }} />
-        {/* Organization schema present on all pages (T3.3, SEC-002) */}
+        {/* Inline critical CSS for immediate rendering */}
+        <style nonce={nonce} dangerouslySetInnerHTML={{ __html: criticalCSS }} suppressHydrationWarning />
+        {/* Organization schema present on all pages */}
         <script
           nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          suppressHydrationWarning
         />
       </head>
       {/* Only load Google Tag Manager if user consented */}
