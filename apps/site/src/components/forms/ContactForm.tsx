@@ -35,7 +35,9 @@ const trackEvent = (eventName: string, properties?: Record<string, unknown>) => 
 /**
  * Submit contact form data to API endpoint
  */
-async function submitContact(data: ContactFormData): Promise<{ success: boolean; message: string }> {
+async function submitContact(
+  data: ContactFormData,
+): Promise<{ success: boolean; message: string }> {
   const response = await fetch('/api/contact', {
     method: 'POST',
     headers: {
@@ -148,7 +150,8 @@ export default function ContactForm() {
           <div>
             <p className="text-sm font-semibold">Unable to send message</p>
             <p className="text-sm mt-1">
-              {error?.message || 'Please try again or contact us directly at contact@carinyaparc.com.au'}
+              {error?.message ||
+                'Please try again or contact us directly at contact@carinyaparc.com.au'}
             </p>
           </div>
         </Alert>

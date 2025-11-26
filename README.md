@@ -2,33 +2,13 @@
 
 This repository contains the website for Carinya Parc, a regenerative farm committed to sustainable practices and community engagement.
 
-## Technology Stack
+## Getting Started
 
-- Next.js App Router v16 with TypeScript
-- React v19 with React DOM v19
-- Tailwind CSS
-- MDX
-- Vercel
+...
 
-## Development Workflow
+### Deploying to Vercel
 
-### Local Development
-
-```bash
-# Install and build the site
-pnpm install && pnpm build
-
-# Start development server
-pnpm dev
-```
-
-### Deployment Pipeline
-
-We use an automated CI/CD pipeline:
-
-1. Push to `dev` branch → CI checks run → auto-promote to `staging`
-2. Test on `staging` → Manually trigger promotion to `main` when ready
-3. `main` branch is automatically deployed to production
+...
 
 ## Contributing
 

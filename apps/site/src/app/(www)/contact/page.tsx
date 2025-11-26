@@ -45,7 +45,9 @@ export default function ContactPage() {
           <div className="mx-auto max-w-4xl">
             <div className="rounded-xl sm:rounded-2xl bg-white px-6 py-8 sm:px-8 sm:py-10 md:px-12 md:py-12 shadow-lg ring-1 ring-charcoal-100">
               <div className="mb-8 text-center">
-                <h2 className="text-xl sm:text-2xl font-semibold text-eucalyptus-600">Send Us a Message</h2>
+                <h2 className="text-xl sm:text-2xl font-semibold text-eucalyptus-600">
+                  Send Us a Message
+                </h2>
                 <p className="mt-3 sm:mt-4 text-base leading-7 text-charcoal-600">
                   We aim to respond to all inquiries within 48 business hours. For urgent matters,
                   you can also reach us directly at{' '}

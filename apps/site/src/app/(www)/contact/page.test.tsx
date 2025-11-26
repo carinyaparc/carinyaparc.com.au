@@ -16,12 +16,16 @@ describe('ContactPage', () => {
     it('should render the contact page with all sections', () => {
       render(<ContactPage />);
 
-      expect(screen.getByRole('heading', { name: /we'd love to hear from you/i, level: 1 })).toBeInTheDocument();
       expect(
-        screen.getByText(/whether you're interested in visiting the farm/i)
+        screen.getByRole('heading', { name: /we'd love to hear from you/i, level: 1 }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/whether you're interested in visiting the farm/i),
       ).toBeInTheDocument();
 
-      expect(screen.getByRole('heading', { name: /send us a message/i, level: 2 })).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { name: /send us a message/i, level: 2 }),
+      ).toBeInTheDocument();
       expect(screen.getByText(/48 business hours/i)).toBeInTheDocument();
 
       const emailLink = screen.getByRole('link', { name: /contact@carinyaparc\.com\.au/i });
@@ -30,7 +34,6 @@ describe('ContactPage', () => {
 
       expect(screen.getByTestId('contact-form')).toBeInTheDocument();
     });
-
   });
 
   describe('generateMetadata', () => {

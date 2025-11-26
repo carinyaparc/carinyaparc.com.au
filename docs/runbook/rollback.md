@@ -51,6 +51,7 @@ Is the contact form causing data loss or security issues?
 **Impact:** Removes all contact page functionality
 
 1. **Identify last known good deployment:**
+
    ```bash
    vercel ls
    # Find deployment before contact page merge
@@ -64,13 +65,14 @@ Is the contact form causing data loss or security issues?
    - Confirm promotion
 
 3. **OR revert via Git:**
+
    ```bash
    # Find commit before contact page
    git log --oneline -10
-   
+
    # Revert commits
    git revert HEAD~N..HEAD  # N = number of commits to revert
-   
+
    # Push revert
    git push origin main
    ```
@@ -87,6 +89,7 @@ Is the contact form causing data loss or security issues?
 **Impact:** Shows fallback message instead of form
 
 1. **Update environment variable in Vercel:**
+
    ```
    CONTACT_FORM_ENABLE=false
    ```
@@ -98,6 +101,7 @@ Is the contact form causing data loss or security issues?
    - Trigger redeployment
 
 3. **Update contact page to show fallback:**
+
    ```typescript
    // Quick patch to apps/site/src/app/(www)/contact/page.tsx
    if (process.env.CONTACT_FORM_ENABLE === 'false') {
@@ -106,7 +110,7 @@ Is the contact form causing data loss or security issues?
          <div className="mx-auto max-w-3xl px-4 text-center">
            <h1 className="text-3xl font-bold">Contact Us</h1>
            <p className="mt-4 text-lg">
-             Our contact form is temporarily unavailable. 
+             Our contact form is temporarily unavailable.
              Please email us directly at contact@carinyaparc.com.au
            </p>
          </div>
@@ -128,6 +132,7 @@ Is the contact form causing data loss or security issues?
 1. **Switch to backup email service (if Resend fails):**
 
    **Option 1: Use existing MailerLite:**
+
    ```bash
    # Update env vars in Vercel
    CONTACT_EMAIL_PROVIDER=mailerlite
@@ -135,12 +140,14 @@ Is the contact form causing data loss or security issues?
    ```
 
    **Option 2: Disable email, log to database:**
+
    ```bash
    CONTACT_EMAIL_PROVIDER=log
    # Requires code change to log instead of email
    ```
 
 2. **Quick code patch for MailerLite:**
+
    ```typescript
    // Update send-contact-notification.ts
    if (process.env.CONTACT_EMAIL_PROVIDER === 'mailerlite') {
@@ -160,8 +167,10 @@ Is the contact form causing data loss or security issues?
    - [ ] Marketing (if promoted)
 
 2. **Document the issue:**
+
    ```markdown
    ## Incident Report
+
    Date: [DATE]
    Time: [TIME]
    Issue: [DESCRIPTION]
@@ -171,10 +180,11 @@ Is the contact form causing data loss or security issues?
    ```
 
 3. **Preserve evidence:**
+
    ```bash
    # Export logs
    vercel logs carinyaparc.com.au --since 2h > incident-logs.txt
-   
+
    # Screenshot Sentry errors
    # Download any error submissions
    ```
@@ -203,6 +213,7 @@ Is the contact form causing data loss or security issues?
 ### After fixing the issue:
 
 1. **Re-enable in preview first:**
+
    ```bash
    # Deploy fix to preview
    git checkout -b fix/contact-page-issue
@@ -246,16 +257,17 @@ After any rollback method:
 
 ## Emergency Contacts
 
-| Role | Name | Contact | When to Contact |
-|------|------|---------|-----------------|
-| Engineering Lead | TBD | email/phone | Code rollback decisions |
-| DevOps | TBD | email/phone | Deployment issues |
-| Product Owner | TBD | email/phone | Feature disable decisions |
-| Email Service Support | Resend | support@resend.com | Email delivery issues |
+| Role                  | Name   | Contact            | When to Contact           |
+| --------------------- | ------ | ------------------ | ------------------------- |
+| Engineering Lead      | TBD    | email/phone        | Code rollback decisions   |
+| DevOps                | TBD    | email/phone        | Deployment issues         |
+| Product Owner         | TBD    | email/phone        | Feature disable decisions |
+| Email Service Support | Resend | support@resend.com | Email delivery issues     |
 
 ## Common Issues & Quick Fixes
 
 ### Issue: "Rate limit exceeded" for all users
+
 ```bash
 # Quick fix: Increase limit temporarily
 CONTACT_RATE_LIMIT_MAX=100
@@ -263,6 +275,7 @@ CONTACT_RATE_LIMIT_WINDOW_HOURS=1
 ```
 
 ### Issue: Spam flood
+
 ```bash
 # Quick fix: Disable form
 CONTACT_FORM_ENABLE=false
@@ -270,12 +283,14 @@ CONTACT_FORM_ENABLE=false
 ```
 
 ### Issue: Wrong email recipient
+
 ```bash
 # Quick fix: Update recipient
 CONTACT_EMAIL_RECIPIENT=correct@email.com
 ```
 
 ### Issue: Email not sending but no errors
+
 ```bash
 # Check: API key is production key, not test
 RESEND_API_KEY=re_live_xxx  # not re_test_xxx
@@ -283,12 +298,12 @@ RESEND_API_KEY=re_live_xxx  # not re_test_xxx
 
 ## Lessons Learned Log
 
-| Date | Issue | Root Cause | Prevention |
-|------|-------|------------|------------|
-| TBD | Example: Email service down | API key expired | Add key expiry monitoring |
+| Date | Issue                       | Root Cause      | Prevention                |
+| ---- | --------------------------- | --------------- | ------------------------- |
+| TBD  | Example: Email service down | API key expired | Add key expiry monitoring |
 
 ## Change Log
 
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2025-11-26 | 1.0 | Initial rollback runbook | AI Agent |
+| Date       | Version | Changes                  | Author   |
+| ---------- | ------- | ------------------------ | -------- |
+| 2025-11-26 | 1.0     | Initial rollback runbook | AI Agent |

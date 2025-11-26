@@ -62,10 +62,7 @@ export const contactFormSchema = z.object({
   website: z.string().max(0, 'Invalid submission').optional().or(z.literal('')),
 
   // Submission timing check - minimum 2 seconds
-  submissionTime: z
-    .number()
-    .min(2000, 'Submission too fast')
-    .optional(),
+  submissionTime: z.number().min(2000, 'Submission too fast').optional(),
 });
 
 /**
@@ -89,4 +86,3 @@ export const contactFormClientSchema = contactFormSchema.omit({
 });
 
 export type ContactFormClientData = z.infer<typeof contactFormClientSchema>;
-

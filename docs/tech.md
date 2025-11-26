@@ -191,6 +191,7 @@ If an alternative host is used, document:
 - **Sanitization**: `isomorphic-dompurify` `^2.33.0` for XSS prevention
 
 **Rationale (✓):**
+
 - Single source of truth for validation (Zod schemas shared between client and server)
 - Reduced boilerplate compared to manual state management
 - Type-safe form handling with automatic TypeScript inference
@@ -203,6 +204,7 @@ If an alternative host is used, document:
 - **Email templates**: HTML templates in `apps/site/src/lib/email/templates/`
 
 **Configuration:**
+
 - Email service credentials via environment variables
 - SPF/DKIM records required for production deliverability
 
@@ -263,7 +265,7 @@ Accessibility is treated as a ✓ requirement, not a “nice to have”.
 ### Rate limiting & spam protection
 
 - **Rate limiting**: In-memory Map pattern (3 requests per email per 24h)
-- **Spam detection**: 
+- **Spam detection**:
   - Honeypot fields (hidden from users)
   - Submission timing checks (min 2 seconds)
   - Email pattern validation via `validateEmailForAPI()`

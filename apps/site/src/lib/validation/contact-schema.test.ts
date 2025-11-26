@@ -18,7 +18,8 @@ describe('contactFormSchema', () => {
     email: 'jane.smith@example.com',
     phone: '+61412345678',
     inquiryType: 'tours' as InquiryType,
-    message: 'I am interested in booking a farm tour for two people in December. Would love to learn more about regenerative farming practices.',
+    message:
+      'I am interested in booking a farm tour for two people in December. Would love to learn more about regenerative farming practices.',
     website: '',
     submissionTime: 5000,
   };
@@ -90,11 +91,7 @@ describe('contactFormSchema', () => {
 
   describe('email validation', () => {
     it('should accept valid email addresses', () => {
-      const emails = [
-        'user@example.com',
-        'jane.smith@company.co.uk',
-        'test+tag@domain.com.au',
-      ];
+      const emails = ['user@example.com', 'jane.smith@company.co.uk', 'test+tag@domain.com.au'];
 
       emails.forEach((email) => {
         const result = contactFormSchema.safeParse({
@@ -106,7 +103,12 @@ describe('contactFormSchema', () => {
     });
 
     it('should reject invalid email formats', () => {
-      const invalidEmails = ['notanemail', 'missing@domain', '@nodomain.com', 'spaces in@email.com'];
+      const invalidEmails = [
+        'notanemail',
+        'missing@domain',
+        '@nodomain.com',
+        'spaces in@email.com',
+      ];
 
       invalidEmails.forEach((email) => {
         const result = contactFormSchema.safeParse({
@@ -364,4 +366,3 @@ describe('contactFormSchema', () => {
     });
   });
 });
-

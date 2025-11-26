@@ -23,12 +23,10 @@ const navigation: {
     { name: 'Regeneration Project', href: '/regenerate' },
     { name: 'Future Produce', href: '/products' },
   ],
-  FooterList3: [
-    { name: 'Read Life on Pasture', href: '/blog' }
-  ],
+  FooterList3: [{ name: 'Read Life on Pasture', href: '/blog' }],
   FooterList4: [
     { name: 'Contact Us', href: '/contact' },
-    { name: 'Subscribe', href: '/subscribe' }
+    { name: 'Subscribe', href: '/subscribe' },
   ],
 };
 

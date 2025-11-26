@@ -45,10 +45,7 @@ export async function POST(request: NextRequest) {
   try {
     // Check if contact form is enabled
     if (!CONTACT_FORM_ENABLE) {
-      return NextResponse.json(
-        { error: 'Contact form is temporarily disabled' },
-        { status: 503 }
-      );
+      return NextResponse.json({ error: 'Contact form is temporarily disabled' }, { status: 503 });
     }
 
     // Parse request body
@@ -56,10 +53,7 @@ export async function POST(request: NextRequest) {
     try {
       body = await request.json();
     } catch (error) {
-      return NextResponse.json(
-        { error: 'Invalid request format' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid request format' }, { status: 400 });
     }
 
     // Server-side validation using Zod schema
@@ -72,7 +66,7 @@ export async function POST(request: NextRequest) {
           error: 'Validation failed',
           details: validation.error.format(),
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -83,8 +77,11 @@ export async function POST(request: NextRequest) {
       // Silent rejection to avoid bot learning
       console.log('Contact form submission rejected: honeypot triggered');
       return NextResponse.json(
-        { success: true, message: 'Thank you for your inquiry. We\'ll respond within 48 business hours.' },
-        { status: 200 }
+        {
+          success: true,
+          message: "Thank you for your inquiry. We'll respond within 48 business hours.",
+        },
+        { status: 200 },
       );
     }
 
@@ -92,8 +89,11 @@ export async function POST(request: NextRequest) {
       // Silent rejection to avoid bot learning
       console.log('Contact form submission rejected: too fast');
       return NextResponse.json(
-        { success: true, message: 'Thank you for your inquiry. We\'ll respond within 48 business hours.' },
-        { status: 200 }
+        {
+          success: true,
+          message: "Thank you for your inquiry. We'll respond within 48 business hours.",
+        },
+        { status: 200 },
       );
     }
 
@@ -113,9 +113,10 @@ export async function POST(request: NextRequest) {
             console.log(`Contact form rate limit exceeded for: ${data.email.split('@')[1]}`);
             return NextResponse.json(
               {
-                error: 'Rate limit exceeded. This email address has already submitted an inquiry recently. Please try again in 24 hours.',
+                error:
+                  'Rate limit exceeded. This email address has already submitted an inquiry recently. Please try again in 24 hours.',
               },
-              { status: 429 }
+              { status: 429 },
             );
           }
 
@@ -160,7 +161,7 @@ export async function POST(request: NextRequest) {
 
     if (!emailResult.success) {
       console.error('Failed to send contact notification email:', emailResult.error);
-      
+
       // Capture to Sentry with context (but no PII)
       captureException(new Error(emailResult.error || 'Email send failed'), {
         tags: {
@@ -175,22 +176,23 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json(
         {
-          error: 'Failed to process your inquiry. Please try again or contact us directly at contact@carinyaparc.com.au',
+          error:
+            'Failed to process your inquiry. Please try again or contact us directly at contact@carinyaparc.com.au',
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     console.log(
-      `Contact form submitted successfully: ${data.inquiryType} inquiry from ${data.email.split('@')[1]}`
+      `Contact form submitted successfully: ${data.inquiryType} inquiry from ${data.email.split('@')[1]}`,
     );
 
     return NextResponse.json(
       {
         success: true,
-        message: 'Thank you for your inquiry. We\'ll respond within 48 business hours.',
+        message: "Thank you for your inquiry. We'll respond within 48 business hours.",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error('Unexpected error in contact API route:', error);
@@ -204,19 +206,17 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        error: 'An unexpected error occurred. Please try again or contact us directly at contact@carinyaparc.com.au',
+        error:
+          'An unexpected error occurred. Please try again or contact us directly at contact@carinyaparc.com.au',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 // Only accept POST requests
 export async function GET() {
-  return NextResponse.json(
-    { error: 'Method not allowed' },
-    { status: 405 }
-  );
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
 }
 
 // Export global type for cleanup interval

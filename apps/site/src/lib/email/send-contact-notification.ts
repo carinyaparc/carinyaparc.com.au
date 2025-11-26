@@ -25,7 +25,7 @@ export interface EmailSendResult {
  * Send contact form notification email
  */
 export async function sendContactNotification(
-  data: ContactFormData & { sourceIP?: string; userAgent?: string }
+  data: ContactFormData & { sourceIP?: string; userAgent?: string },
 ): Promise<EmailSendResult> {
   // Validate required environment variables
   if (!process.env.RESEND_API_KEY) {
@@ -117,7 +117,7 @@ export async function sendContactNotification(
       };
     } catch (error) {
       clearTimeout(timeoutId);
-      
+
       if (error instanceof Error && error.name === 'AbortError') {
         console.error('Email send timeout after 10 seconds');
         return {

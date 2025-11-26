@@ -107,4 +107,3 @@ export function sanitizeForEmailGeneration(data: ContactFormInput): ContactFormI
     message: sanitizeForEmail(data.message), // Preserve line breaks in email
   };
 }
-

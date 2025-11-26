@@ -36,9 +36,10 @@ export function generateContactNotificationEmail(params: {
   }).format(params.submittedAt);
 
   // Format inquiry type for display
-  const inquiryTypeDisplay = sanitized.inquiryType === 'tours' 
-    ? 'Farm Tours' 
-    : sanitized.inquiryType.charAt(0).toUpperCase() + sanitized.inquiryType.slice(1);
+  const inquiryTypeDisplay =
+    sanitized.inquiryType === 'tours'
+      ? 'Farm Tours'
+      : sanitized.inquiryType.charAt(0).toUpperCase() + sanitized.inquiryType.slice(1);
 
   return `
 <!DOCTYPE html>
@@ -153,9 +154,10 @@ export function generateContactNotificationText(params: {
     timeZone: 'Australia/Sydney',
   }).format(params.submittedAt);
 
-  const inquiryTypeDisplay = sanitized.inquiryType === 'tours' 
-    ? 'Farm Tours' 
-    : sanitized.inquiryType.charAt(0).toUpperCase() + sanitized.inquiryType.slice(1);
+  const inquiryTypeDisplay =
+    sanitized.inquiryType === 'tours'
+      ? 'Farm Tours'
+      : sanitized.inquiryType.charAt(0).toUpperCase() + sanitized.inquiryType.slice(1);
 
   let text = `NEW CONTACT FORM INQUIRY
 ========================

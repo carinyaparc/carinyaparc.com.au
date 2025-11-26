@@ -14,7 +14,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
 ### Code Quality (\u2713 required)
 
 - [ ] All unit tests passing: `pnpm test:unit`
-- [ ] Integration tests passing: `pnpm test:integration` 
+- [ ] Integration tests passing: `pnpm test:integration`
 - [ ] Smoke tests passing: `pnpm test:smoke`
 - [ ] Security tests passing: `pnpm test:security`
 - [ ] TypeScript compilation: `pnpm typecheck`
@@ -45,6 +45,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
 #### Steps:
 
 1. **Configure preview environment variables in Vercel:**
+
    ```
    CONTACT_FORM_ENABLE=true
    CONTACT_FORM_RATE_LIMITING=true
@@ -56,6 +57,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
    ```
 
 2. **Deploy to preview:**
+
    ```bash
    git checkout feature/contact-page
    git push origin feature/contact-page
@@ -73,6 +75,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
    - [ ] Check Vercel Analytics events
 
 4. **Load testing:**
+
    ```bash
    # Run from local machine
    npx artillery quick --count 10 --num 5 https://preview-url.vercel.app/api/contact
@@ -84,6 +87,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
    - Document any issues found
 
 **Success Criteria:**
+
 - \u2713 All verification tests pass
 - \u2713 Email delivery rate > 95%
 - \u2713 API response time P95 < 500ms
@@ -96,6 +100,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
 #### Steps:
 
 1. **Configure production environment variables:**
+
    ```
    CONTACT_FORM_ENABLE=true
    CONTACT_FORM_RATE_LIMITING=true
@@ -107,6 +112,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
    ```
 
 2. **Merge to main branch:**
+
    ```bash
    git checkout main
    git merge feature/contact-page
@@ -132,6 +138,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
    - Review submission quality
 
 **Success Criteria:**
+
 - \u2713 Page accessible at production URL
 - \u2713 First 20 submissions processed successfully
 - \u2713 Spam rate < 15%
@@ -144,21 +151,24 @@ This runbook documents the phased deployment procedure for the Contact Page feat
 #### Steps:
 
 1. **Add navigation links:**
+
    ```typescript
    // Update apps/site/src/app/navigation.ts
    export const navigation = [
      // ... existing items
-     { name: 'Contact', href: '/contact' }
+     { name: 'Contact', href: '/contact' },
    ];
    ```
 
 2. **Add footer link:**
+
    ```typescript
    // Update apps/site/src/components/layouts/Footer.tsx
    // Add contact link to footer navigation
    ```
 
 3. **Deploy navigation updates:**
+
    ```bash
    git add -A
    git commit -m "feat: add contact page to navigation"
@@ -178,6 +188,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
    - [ ] User feedback collection
 
 **Success Criteria:**
+
 - \u2713 Navigation links working
 - \u2713 Submission volume as expected (50-200/month)
 - \u2713 Spam rate < 10%
@@ -187,6 +198,7 @@ This runbook documents the phased deployment procedure for the Contact Page feat
 ## Verification Commands
 
 ### Local Testing
+
 ```bash
 # Start dev server
 pnpm dev
@@ -203,6 +215,7 @@ curl -X POST http://localhost:3000/api/contact \
 ```
 
 ### Production Testing
+
 ```bash
 # Check deployment status
 vercel ls
@@ -226,11 +239,13 @@ curl -X POST https://carinyaparc.com.au/api/contact \
 ## Known Issues & Workarounds
 
 ### Issue: Rate limiting resets on server restart
+
 **Impact:** Low - acceptable for current volume  
 **Workaround:** None needed for MVP  
 **Future fix:** Migrate to Redis when volume > 500/month
 
 ### Issue: Email delivery delays
+
 **Impact:** Medium  
 **Workaround:** Set expectation of 48-hour response  
 **Monitoring:** Check Resend dashboard for delivery status
@@ -242,12 +257,13 @@ See [rollback.md](./rollback.md) for detailed rollback instructions.
 ## Contact
 
 For deployment issues or questions:
+
 - Engineering Lead: [Contact]
 - DevOps: [Contact]
 - Product Owner: [Contact]
 
 ## Change Log
 
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2025-11-26 | 1.0 | Initial deployment runbook | AI Agent |
+| Date       | Version | Changes                    | Author   |
+| ---------- | ------- | -------------------------- | -------- |
+| 2025-11-26 | 1.0     | Initial deployment runbook | AI Agent |

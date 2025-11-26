@@ -80,7 +80,7 @@ describe('Contact API Route', () => {
           lastName: 'Smith',
           email: 'jane.smith@example.com',
           inquiryType: 'tours',
-        })
+        }),
       );
     });
   });
@@ -281,7 +281,7 @@ describe('Contact API Route', () => {
 
     it('should skip rate limiting when disabled', async () => {
       process.env.CONTACT_FORM_RATE_LIMITING = 'false';
-      
+
       vi.mocked(sendContactNotification).mockResolvedValue({
         success: true,
         messageId: 'msg_123',
@@ -322,9 +322,7 @@ describe('Contact API Route', () => {
     });
 
     it('should handle email service exceptions', async () => {
-      vi.mocked(sendContactNotification).mockRejectedValue(
-        new Error('Network error')
-      );
+      vi.mocked(sendContactNotification).mockRejectedValue(new Error('Network error'));
 
       const request = new NextRequest('http://localhost:3000/api/contact', {
         method: 'POST',

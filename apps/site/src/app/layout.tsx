@@ -109,7 +109,11 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
         {/* Inline critical CSS for immediate rendering */}
-        <style nonce={nonce} dangerouslySetInnerHTML={{ __html: criticalCSS }} suppressHydrationWarning />
+        <style
+          nonce={nonce}
+          dangerouslySetInnerHTML={{ __html: criticalCSS }}
+          suppressHydrationWarning
+        />
         {/* Organization schema present on all pages */}
         <script
           nonce={nonce}
