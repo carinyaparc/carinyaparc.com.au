@@ -16,7 +16,7 @@ const navigation: {
 } = {
   FooterList1: [
     { name: 'Our Story', href: '/about' },
-    { name: 'Meet Jonathan', href: '/about/jonathan' },
+    { name: 'Meet Jonno', href: '/about/jonathan' },
     { name: 'The Property', href: '/about/the-property' },
   ],
   FooterList2: [
@@ -89,18 +89,18 @@ export default function Footer() {
   return (
     <footer>
       {/* Main Footer */}
-      <div className="bg-eucalyptus-600">
+      <div className="bg-charcoal-50 text-charcoal-600">
         <div className="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
-                <h3 className="text-xl font-semibold text-white">Carinya Parc</h3>
+                <h3 className="text-xl font-semibold text-eucalyptus-600">Carinya Parc</h3>
               </div>
-              <p className="text-sm text-eucalyptus-100 max-w-xs">
+              <p className="text-sm text-charcoal-400 max-w-xs">
                 A regenerative farm focused on restoring the land and sustainable agricultural
                 practices.
               </p>
-              <p className="text-sm text-eucalyptus-100 max-w-xs">
+              <p className="text-sm text-charcoal-400 max-w-xs">
                 <span>
                   Made with &nbsp;
                   <Heart className="inline-block h-4 w-4" />
@@ -111,13 +111,13 @@ export default function Footer() {
             <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
-                  <h3 className="text-sm font-semibold text-white">About Carinya Parc</h3>
+                  <h3 className="text-sm font-semibold text-charcoal-600">About Carinya Parc</h3>
                   <ul role="list" className="mt-4 space-y-3">
                     {navigation.FooterList1.map((item) => (
                       <li key={item.name}>
                         <Link
                           href={item.href}
-                          className="text-sm text-eucalyptus-100 hover:text-charcoal-600 dark:text-gray-300 dark:hover:text-eucalyptus-600"
+                          className="text-sm text-charcoal-400 hover:text-eucalyptus-600 dark:text-charcoal-400 dark:hover:text-charcoal-100"
                         >
                           {item.name}
                         </Link>
@@ -126,13 +126,13 @@ export default function Footer() {
                   </ul>
                 </div>
                 <div className="mt-10 md:mt-0">
-                  <h3 className="text-sm font-semibold text-white">Explore</h3>
+                  <h3 className="text-sm font-semibold text-charcoal-600">Explore</h3>
                   <ul role="list" className="mt-4 space-y-3">
                     {navigation.FooterList2.map((item) => (
                       <li key={item.name}>
                         <Link
                           href={item.href}
-                          className="text-sm text-eucalyptus-100 hover:text-charcoal-600 dark:text-gray-300 dark:hover:text-eucalyptus-600"
+                          className="text-sm text-charcoal-400 hover:text-eucalyptus-600 dark:text-charcoal-400 dark:hover:text-charcoal-100"
                         >
                           {item.name}
                         </Link>
@@ -143,13 +143,13 @@ export default function Footer() {
               </div>
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
-                  <h3 className="text-sm font-semibold text-white">Resources</h3>
+                  <h3 className="text-sm font-semibold text-charcoal-600">Resources</h3>
                   <ul role="list" className="mt-4 space-y-3">
                     {navigation.FooterList3.map((item) => (
                       <li key={item.name}>
                         <Link
                           href={item.href}
-                          className="text-sm text-eucalyptus-100 hover:text-charcoal-600 dark:text-gray-300 dark:hover:text-eucalyptus-600"
+                          className="text-sm text-charcoal-400 hover:text-eucalyptus-600 dark:text-charcoal-400 dark:hover:text-charcoal-100"
                         >
                           {item.name}
                         </Link>
@@ -158,13 +158,13 @@ export default function Footer() {
                   </ul>
                 </div>
                 <div className="mt-10 md:mt-0">
-                  <h3 className="text-sm font-semibold text-white">Community</h3>
+                  <h3 className="text-sm font-semibold text-charcoal-600">Community</h3>
                   <ul role="list" className="mt-4 space-y-3">
                     {navigation.FooterList4.map((item) => (
                       <li key={item.name}>
                         <Link
                           href={item.href}
-                          className="text-sm text-eucalyptus-100 hover:text-charcoal-600 dark:text-gray-300 dark:hover:text-eucalyptus-600"
+                          className="text-sm text-charcoal-400 hover:text-eucalyptus-600 dark:text-charcoal-400 dark:hover:text-charcoal-100"
                         >
                           {item.name}
                         </Link>
@@ -179,17 +179,17 @@ export default function Footer() {
       </div>
 
       {/* SubFooter */}
-      <div className="bg-eucalyptus-600 text-white">
-        <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8 border-t border-eucalyptus-400">
+      <div className="bg-charcoal-50 text-charcoal-400">
+        <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8 border-t border-charcoal-100">
           <div className="md:flex md:items-center md:order-1">
-            <p className="text-center text-sm text-eucalyptus-100 md:text-left">
+            <p className="text-center text-sm text-charcoal-400 md:text-left">
               &copy; {currentYear} Carinya Parc. All rights reserved.
             </p>
             <div className="ml-0 mt-4 md:ml-6 md:mt-0 flex justify-center md:justify-start space-x-4 text-sm">
-              <Link href="/legal/privacy-policy" className="text-eucalyptus-100 hover:text-white">
+              <Link href="/legal/privacy-policy" className="text-charcoal-400 hover:text-eucalyptus-600">
                 Privacy
               </Link>
-              <Link href="/legal/terms-of-service" className="text-eucalyptus-100 hover:text-white">
+              <Link href="/legal/terms-of-service" className="text-charcoal-400 hover:text-eucalyptus-600">
                 Terms
               </Link>
             </div>
@@ -199,7 +199,7 @@ export default function Footer() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-eucalyptus-100 hover:text-white mx-2 transition-colors"
+                className="text-charcoal-400 hover:text-eucalyptus-600 mx-2 transition-colors"
                 aria-label={`${item.name} social link`}
                 target="_blank"
                 rel="noopener noreferrer"
