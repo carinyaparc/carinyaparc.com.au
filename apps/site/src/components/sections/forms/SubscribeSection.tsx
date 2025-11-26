@@ -2,7 +2,7 @@
  * SubscribeSection organism - Consolidated from SubscribeForm and SubscribeModal
  * Maps to: FR-5, NFR-3
  * Task: T4.4
- * 
+ *
  * Consolidated subscribe form and modal into single component
  */
 
@@ -109,7 +109,8 @@ export default function SubscribeSection({
             <div>
               <p className="text-sm font-semibold">Thank you for subscribing!</p>
               <p className="text-sm mt-1">
-                We've sent a confirmation email to your inbox. Please check your email to complete your subscription.
+                We've sent a confirmation email to your inbox. Please check your email to complete
+                your subscription.
               </p>
             </div>
           </Alert>
@@ -231,4 +232,3 @@ export default function SubscribeSection({
     </div>
   );
 }
-

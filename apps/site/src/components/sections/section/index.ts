@@ -13,4 +13,3 @@ export {
   SectionButton,
   SectionLink,
 } from './SectionWithImage';
-

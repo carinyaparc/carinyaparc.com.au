@@ -2,7 +2,7 @@
  * ContactFormSection organism - Refactored with FormField molecule
  * Maps to: FR-5, NFR-3
  * Task: T4.3
- * 
+ *
  * Uses FormField molecule from @repo/ui
  * Preserved all existing validation and submission logic
  */
@@ -33,6 +33,7 @@ import { sanitizeContactFormData } from '@/src/lib/validation/sanitize';
 // Vercel Analytics tracking (if available)
 const trackEvent = (eventName: string, properties?: Record<string, unknown>) => {
   if (typeof window !== 'undefined' && 'va' in window) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).va('track', eventName, properties);
   }
 };
@@ -67,8 +68,13 @@ interface ContactFormSectionProps {
 
 export default function ContactFormSection({ onSuccess, onError }: ContactFormSectionProps = {}) {
   // Track form load time for anti-bot measures
-  const formLoadTime = useRef<number>(Date.now());
+  const formLoadTime = useRef<number>(0);
   const [isFormReady, setIsFormReady] = useState(false);
+
+  // Initialize form load time on mount
+  useEffect(() => {
+    formLoadTime.current = Date.now();
+  }, []);
 
   // React Hook Form setup with Zod validation
   const {
@@ -113,7 +119,7 @@ export default function ContactFormSection({ onSuccess, onError }: ContactFormSe
   const onSubmit = (data: ContactFormClientData) => {
     trackEvent('contact_form_submitted', { inquiry_type: data.inquiryType });
 
-    const submissionTime = Date.now() - formLoadTime.current;
+    const submissionTime = formLoadTime.current > 0 ? Date.now() - formLoadTime.current : 0;
     const sanitizedData = sanitizeContactFormData(data);
 
     const fullData: ContactFormData = {
@@ -159,7 +165,8 @@ export default function ContactFormSection({ onSuccess, onError }: ContactFormSe
           <div>
             <p className="text-sm font-semibold">Unable to send message</p>
             <p className="text-sm mt-1">
-              {error?.message || 'Please try again or contact us directly at contact@carinyaparc.com.au'}
+              {error?.message ||
+                'Please try again or contact us directly at contact@carinyaparc.com.au'}
             </p>
           </div>
         </Alert>
@@ -168,12 +175,7 @@ export default function ContactFormSection({ onSuccess, onError }: ContactFormSe
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           {/* First Name */}
-          <FormField
-            name="firstName"
-            label="First Name"
-            error={errors.firstName?.message}
-            required
-          >
+          <FormField name="firstName" label="First Name" error={errors.firstName?.message} required>
             <Input
               id="firstName"
               type="text"
@@ -185,12 +187,7 @@ export default function ContactFormSection({ onSuccess, onError }: ContactFormSe
           </FormField>
 
           {/* Last Name */}
-          <FormField
-            name="lastName"
-            label="Last Name"
-            error={errors.lastName?.message}
-            required
-          >
+          <FormField name="lastName" label="Last Name" error={errors.lastName?.message} required>
             <Input
               id="lastName"
               type="text"
@@ -202,12 +199,7 @@ export default function ContactFormSection({ onSuccess, onError }: ContactFormSe
 
           {/* Email Address */}
           <div className="sm:col-span-2">
-            <FormField
-              name="email"
-              label="Email Address"
-              error={errors.email?.message}
-              required
-            >
+            <FormField name="email" label="Email Address" error={errors.email?.message} required>
               <Input
                 id="email"
                 type="email"
@@ -325,4 +317,3 @@ export default function ContactFormSection({ onSuccess, onError }: ContactFormSe
     </div>
   );
 }
-

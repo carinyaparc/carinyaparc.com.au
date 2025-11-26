@@ -43,4 +43,3 @@ export default function FooterNav({ sections }: FooterNavProps) {
     </div>
   );
 }
-

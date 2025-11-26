@@ -1,4 +1,4 @@
-import HeaderWithStats from '@/src/components/sections/HeaderWithStats';
+import { HeaderWithStats } from '@/src/components/sections/page-header';
 import { SchemaMarkup } from '@/src/components/ui/SchemaMarkup';
 import { Breadcrumb } from '@/src/components/ui/Breadcrumb';
 

@@ -151,7 +151,9 @@ export default async function HomePage() {
             </SectionImage>
             <SectionContent imagePosition="left">
               <SectionSubtitle variant="light">Regenerate with Us</SectionSubtitle>
-              <SectionTitle variant="light">Help Restore Diversity, For our Native Wildlife</SectionTitle>
+              <SectionTitle variant="light">
+                Help Restore Diversity, For our Native Wildlife
+              </SectionTitle>
               <SectionText variant="light">
                 How are we restoring biodiversity? Through planting 30,000+ native trees, enhancing
                 waterways and creating wildlife corridors spanning our Branch River frontage. You
@@ -204,7 +206,9 @@ export default async function HomePage() {
             </SectionImage>
             <SectionContent imagePosition="right">
               <SectionSubtitle variant="dark">Experience the Farm</SectionSubtitle>
-              <SectionTitle variant="dark">Explore Regenerative Farming, Reconnect with Nature</SectionTitle>
+              <SectionTitle variant="dark">
+                Explore Regenerative Farming, Reconnect with Nature
+              </SectionTitle>
               <SectionText variant="dark">
                 Discover regerative farming. Immerse yourself through guided tours, hands-on
                 workshops and eco-stays. Explore our permaculture gardens, syntropic food forest and
@@ -234,8 +238,12 @@ export default async function HomePage() {
                 </ul>
               </SectionText>
               <SectionActions>
-                <SectionButton href="#" variant="dark">Coming Soon!</SectionButton>
-                <SectionLink href="#" variant="dark">Sign Up! Be the first to know</SectionLink>
+                <SectionButton href="#" variant="dark">
+                  Coming Soon!
+                </SectionButton>
+                <SectionLink href="#" variant="dark">
+                  Sign Up! Be the first to know
+                </SectionLink>
               </SectionActions>
             </SectionContent>
           </SectionWithImage>

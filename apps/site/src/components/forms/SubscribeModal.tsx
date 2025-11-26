@@ -10,7 +10,7 @@ import {
   DialogClose,
 } from '@repo/ui/dialog';
 import { cn } from '@/src/lib/cn';
-import SubscribeForm from '@/src/components/forms/SubscribeForm';
+import { SubscribeSection } from '@/src/components/sections/forms';
 
 interface SubscribeModalProps {
   open: boolean;
@@ -58,7 +58,7 @@ export default function SubscribeModal({ open, onOpenChange }: SubscribeModalPro
             </ul>
           </div>
         </DialogHeader>
-        <SubscribeForm showName={false} showInterests={false} />
+        <SubscribeSection showName={false} showInterests={false} />
       </DialogContent>
     </Dialog>
   );

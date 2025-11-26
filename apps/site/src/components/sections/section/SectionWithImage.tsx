@@ -2,7 +2,7 @@
  * SectionWithImage organism - Refactored without React Context
  * Maps to: FR-5, NFR-3
  * Task: T3.4
- * 
+ *
  * Removed React Context, uses explicit props
  * Preserved existing styling and layout
  */
@@ -29,13 +29,17 @@ export function SectionWithImage({
   const bgColor = variant === 'dark' ? 'bg-eucalyptus-600' : 'bg-white';
   const sectionClasses = cn('relative', bgColor);
 
-  return <div className={sectionClasses} data-image-position={imagePosition} data-variant={variant}>{children}</div>;
+  return (
+    <div className={sectionClasses} data-image-position={imagePosition} data-variant={variant}>
+      {children}
+    </div>
+  );
 }
 
-export function SectionImage({ 
+export function SectionImage({
   children,
-  imagePosition = 'left'
-}: { 
+  imagePosition = 'left',
+}: {
   children: ReactNode;
   imagePosition?: 'left' | 'right';
 }) {
@@ -54,10 +58,10 @@ export function SectionImage({
   );
 }
 
-export function SectionContent({ 
+export function SectionContent({
   children,
-  imagePosition = 'left'
-}: { 
+  imagePosition = 'left',
+}: {
   children: ReactNode;
   imagePosition?: 'left' | 'right';
 }) {
@@ -73,7 +77,13 @@ export function SectionContent({
   );
 }
 
-export function SectionTitle({ children, variant = 'light' }: { children: ReactNode; variant?: 'dark' | 'light' }) {
+export function SectionTitle({
+  children,
+  variant = 'light',
+}: {
+  children: ReactNode;
+  variant?: 'dark' | 'light';
+}) {
   const textColor = variant === 'dark' ? 'text-white' : 'text-eucalyptus-600';
   return (
     <h2 className={cn('text-4xl font-semibold tracking-tight sm:text-5xl', textColor)}>
@@ -82,12 +92,24 @@ export function SectionTitle({ children, variant = 'light' }: { children: ReactN
   );
 }
 
-export function SectionSubtitle({ children, variant = 'light' }: { children: ReactNode; variant?: 'dark' | 'light' }) {
+export function SectionSubtitle({
+  children,
+  variant = 'light',
+}: {
+  children: ReactNode;
+  variant?: 'dark' | 'light';
+}) {
   const textColor = variant === 'dark' ? 'text-eucalyptus-200' : 'text-eucalyptus-300';
   return <p className={cn('text-base/7 font-semibold', textColor)}>{children}</p>;
 }
 
-export function SectionText({ children, variant = 'light' }: { children: ReactNode; variant?: 'dark' | 'light' }) {
+export function SectionText({
+  children,
+  variant = 'light',
+}: {
+  children: ReactNode;
+  variant?: 'dark' | 'light';
+}) {
   const textColor = variant === 'dark' ? 'text-eucalyptus-100' : 'text-charcoal-400';
   return <div className={cn('mt-6 text-base/7', textColor)}>{children}</div>;
 }
@@ -96,7 +118,15 @@ export function SectionActions({ children }: { children: ReactNode }) {
   return <div className="mt-8 flex gap-4">{children}</div>;
 }
 
-export function SectionButton({ href, children, variant = 'light' }: { href: string; children: ReactNode; variant?: 'dark' | 'light' }) {
+export function SectionButton({
+  href,
+  children,
+  variant = 'light',
+}: {
+  href: string;
+  children: ReactNode;
+  variant?: 'dark' | 'light';
+}) {
   const buttonClasses =
     variant === 'dark'
       ? 'bg-white text-eucalyptus-600 hover:bg-gray-100'
@@ -109,7 +139,15 @@ export function SectionButton({ href, children, variant = 'light' }: { href: str
   );
 }
 
-export function SectionLink({ href, children, variant = 'light' }: { href: string; children: ReactNode; variant?: 'dark' | 'light' }) {
+export function SectionLink({
+  href,
+  children,
+  variant = 'light',
+}: {
+  href: string;
+  children: ReactNode;
+  variant?: 'dark' | 'light';
+}) {
   const textColor = variant === 'dark' ? 'text-white' : 'text-eucalyptus-600';
 
   return (
@@ -118,4 +156,3 @@ export function SectionLink({ href, children, variant = 'light' }: { href: strin
     </Link>
   );
 }
-

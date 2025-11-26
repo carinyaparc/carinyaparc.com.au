@@ -1,8 +1,10 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
-  "include": ["src"],
-  "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "outDir": "dist"
-  }
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
 }

@@ -9,10 +9,11 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [react()],
   test: {
-    globals: true,
+    globals: false,
     environment: 'jsdom',
     setupFiles: [resolve(__dirname, './vitest.setup.ts')],
-    include: ['**/*.test.{ts,tsx}'],
+    include: ['src/**/*.test.{ts,tsx}'],
+    exclude: ['**/node_modules/**', '**/dist/**'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
@@ -21,7 +22,7 @@ export default defineConfig({
         'node_modules/',
         'dist/',
         '**/*.test.{ts,tsx}',
-        '**/*.config.{ts,js}',
+        '**/*.config.{ts,js,mts}',
         '**/index.ts',
       ],
     },

@@ -13,7 +13,7 @@ export * from './label';
 export * from './checkbox';
 export * from './switch';
 export * from './radio-group';
-export * from './select-native';
+export { Select } from './select-native';
 export * from './select-radix';
 export * from './heading';
 export * from './text';
@@ -31,7 +31,7 @@ export * from './slider';
 export * from './progress';
 
 // Compositions (at root level)
-export * from './form-field';
+export { FormField } from './form-field';
 export * from './nav-link';
 export * from './stat-card';
 export * from './empty-state';

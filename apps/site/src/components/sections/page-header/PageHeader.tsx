@@ -2,7 +2,7 @@
  * PageHeader organism - Refactored
  * Maps to: FR-5, NFR-3
  * Task: T3.5
- * 
+ *
  * Standard page header with title and description
  * Minimal changes, moved to subdirectory for consistency
  */
@@ -129,4 +129,3 @@ export default function PageHeader({
     </div>
   );
 }
-

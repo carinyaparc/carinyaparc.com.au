@@ -2,24 +2,13 @@
  * PostCard molecule - Extracted from LatestPosts
  * Maps to: FR-4, FR-5, NFR-3
  * Task: T4.5
- * 
+ *
  * Reusable blog post card component
  */
 
 import Image from 'next/image';
 import Link from 'next/link';
-
-interface Post {
-  id: string;
-  title: string;
-  description?: string;
-  imageUrl: string;
-  author?: string;
-  authorImageUrl?: string;
-  datetime: string;
-  formattedDate: string;
-  href: string;
-}
+import type { Post } from '@/src/lib/posts';
 
 interface PostCardProps {
   post: Post;
@@ -78,4 +67,3 @@ export default function PostCard({ post }: PostCardProps) {
     </article>
   );
 }
-

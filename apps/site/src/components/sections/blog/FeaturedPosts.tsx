@@ -82,4 +82,3 @@ export default async function FeaturedPosts({ limit = 1 }: FeaturedPostsProps) {
     </section>
   );
 }
-

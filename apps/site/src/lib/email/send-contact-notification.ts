@@ -10,7 +10,8 @@ import {
 import type { ContactFormData } from '@/src/lib/validation/contact-schema';
 
 // Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Use dummy key during build if not available
+const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder_key_for_build');
 
 /**
  * Email send result type

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Shovel, Sprout, Newspaper } from 'lucide-react';
 import { PageHeader } from '@/src/components/sections/page-header';
 import { generatePageMetadata } from '@/src/lib/metadata';
-import SubscribeForm from '@/src/components/forms/SubscribeForm';
+import { SubscribeSection } from '@/src/components/sections/forms';
 import { SchemaMarkup } from '@/src/components/ui/SchemaMarkup';
 import { Breadcrumb } from '@/src/components/ui/Breadcrumb';
 
@@ -14,7 +14,7 @@ import {
   SectionSubtitle,
   SectionTitle,
   SectionText,
-} from '@/src/components/sections/SectionWithImage';
+} from '@/src/components/sections/section';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Subscribe - Carinya Parc',
@@ -61,13 +61,13 @@ export default function SubscribePage() {
         </section>
 
         <SectionWithImage variant="light" imagePosition="left">
-          <SectionImage>
+          <SectionImage imagePosition="left">
             <Image src="/images/img_5.jpg" alt="Farm gate" fill className="object-cover" priority />
           </SectionImage>
-          <SectionContent>
-            <SectionSubtitle>Join the Community</SectionSubtitle>
-            <SectionTitle>Subscribe to our Newsletter</SectionTitle>
-            <SectionText>
+          <SectionContent imagePosition="left">
+            <SectionSubtitle variant="light">Join the Community</SectionSubtitle>
+            <SectionTitle variant="light">Subscribe to our Newsletter</SectionTitle>
+            <SectionText variant="light">
               When you join our mailing list, you'll be the first to receive:
               <ul role="list" className="mt-8 space-y-6">
                 <li className="flex gap-x-3">
@@ -92,7 +92,7 @@ export default function SubscribePage() {
                   </span>
                 </li>
               </ul>
-              <SubscribeForm />
+              <SubscribeSection />
             </SectionText>
           </SectionContent>
         </SectionWithImage>
