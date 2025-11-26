@@ -3,4 +3,10 @@ packages:
   - packages/*
 
 onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@sentry/cli'
   - '@vercel/speed-insights'
+  - esbuild
+  - msw
+  - sharp
+  - unrs-resolver
