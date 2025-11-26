@@ -1,4 +1,4 @@
-// app/blog/[post]/page.tsx
+// app/blog/[slug]/page.tsx
 import '@/src/styles/pages/blog.css';
 
 import fs from 'fs';
@@ -54,12 +54,12 @@ function getBlogPostPath(slug: string): string | null {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ post: string }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   // Await the params promise
-  const { post } = await params;
+  const { slug } = await params;
 
-  const postPath = getBlogPostPath(post);
+  const postPath = getBlogPostPath(slug);
 
   if (!postPath) {
     return {
@@ -79,7 +79,7 @@ export async function generateMetadata({
   } as PostFrontmatter;
 
   return {
-    title: `${postData.title || post} - Blog - Carinya Parc`,
+    title: `${postData.title || slug} - Blog - Carinya Parc`,
     description: postData.excerpt || postData.description || 'Blog post from Carinya Parc',
     openGraph: {
       title: postData.title,
@@ -97,27 +97,27 @@ export async function generateMetadata({
       images: postData.image ? [`${BASE_URL}${postData.image}`] : undefined,
     },
     alternates: {
-      canonical: `${BASE_URL}/blog/${post}`,
+      canonical: `${BASE_URL}/blog/${slug}`,
     },
   };
 }
 
 // Generate static paths for the blog posts
-export function generateStaticParams(): Array<{ post: string }> {
+export function generateStaticParams(): Array<{ slug: string }> {
   const postsDir = path.join(process.cwd(), 'content', 'posts');
   const fileNames = fs.readdirSync(postsDir);
 
   return fileNames.map((fileName) => {
     // Extract the slug from the filename (format: YYYYMMDD-slug.mdx)
-    const slug = fileName.replace(/^\d{8}-(.+)\.mdx$/, '$1');
-    return { post: slug };
+    const extractedSlug = fileName.replace(/^\d{8}-(.+)\.mdx$/, '$1');
+    return { slug: extractedSlug };
   });
 }
 
 // Blog post page component
-export default async function BlogPostPage({ params }: { params: Promise<{ post: string }> }) {
-  const { post } = await params;
-  const postPath = getBlogPostPath(post);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const postPath = getBlogPostPath(slug);
 
   if (!postPath) {
     notFound();
@@ -140,7 +140,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ post:
 
   const articleData = {
     title: postData.title || 'Blog Post',
-    slug: post,
+    slug: slug,
     author: postData.author,
     datePublished: publishDate as string, // We know this is always a string due to fallback
     dateModified: postData.date || dateFromFilename || undefined,

@@ -1,4 +1,4 @@
-// app/recipes/[recipe]/page.tsx
+// app/recipes/[slug]/page.tsx
 import '@/src/styles/pages/recipes.css';
 
 import fs from 'fs';
@@ -39,11 +39,11 @@ function getRecipePath(slug: string): string | null {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ recipe: string }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   // Await the params promise
-  const { recipe } = await params;
-  const recipePath = getRecipePath(recipe);
+  const { slug } = await params;
+  const recipePath = getRecipePath(slug);
 
   if (!recipePath) {
     return {
@@ -57,7 +57,7 @@ export async function generateMetadata({
   const { data: frontmatter } = matter(source) as { data: RecipeFrontmatter };
 
   return {
-    title: `${frontmatter.title || recipe} - Recipe - Carinya Parc`,
+    title: `${frontmatter.title || slug} - Recipe - Carinya Parc`,
     description: frontmatter.description || 'A delicious recipe from Carinya Parc',
     openGraph: {
       title: frontmatter.title,
@@ -70,19 +70,19 @@ export async function generateMetadata({
 }
 
 // Generate static paths for the recipes
-export function generateStaticParams(): Array<{ recipe: string }> {
+export function generateStaticParams(): Array<{ slug: string }> {
   const recipesDir = path.join(process.cwd(), 'content', 'recipes');
   const fileNames = fs.readdirSync(recipesDir);
 
   return fileNames.map((fileName) => ({
-    recipe: fileName.replace(/\.mdx$/, ''),
+    slug: fileName.replace(/\.mdx$/, ''),
   }));
 }
 
 // Recipe page component
-export default async function RecipePage({ params }: { params: Promise<{ recipe: string }> }) {
-  const { recipe } = await params;
-  const recipePath = getRecipePath(recipe);
+export default async function RecipePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const recipePath = getRecipePath(slug);
 
   if (!recipePath) {
     notFound();
@@ -94,7 +94,7 @@ export default async function RecipePage({ params }: { params: Promise<{ recipe:
 
   try {
     // Import the MDX file directly
-    const Content = (await import(`@/content/recipes/${recipe}.mdx`)).default;
+    const Content = (await import(`@/content/recipes/${slug}.mdx`)).default;
 
     // Function to format ISO duration to human readable format
     const formatDuration = (isoDuration?: string) => {
@@ -116,7 +116,7 @@ export default async function RecipePage({ params }: { params: Promise<{ recipe:
 
     // Prepare recipe data for schema
     const recipeData = {
-      name: frontmatter.title || recipe,
+      name: frontmatter.title || slug,
       description: frontmatter.description || '',
       author: frontmatter.author || 'Carinya Parc',
       datePublished: frontmatter.date,
