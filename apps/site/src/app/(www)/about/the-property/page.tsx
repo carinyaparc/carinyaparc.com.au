@@ -133,7 +133,9 @@ export default function ThePropertyPage() {
                       href="/about/"
                       className="text-sm font-semibold leading-6 text-charcoal-900"
                     >
-                      Learn more about us <span aria-hidden="true">→</span>
+                      <span>
+                        Learn more about us <span aria-hidden="true">→</span>
+                      </span>
                     </Link>
                   </div>
                 </div>

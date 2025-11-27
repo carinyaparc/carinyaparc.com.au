@@ -57,8 +57,10 @@ export default function PostCard({ post }: PostCardProps) {
       </div>
       <h3 className="mt-3 text-lg/6 font-semibold text-white">
         <Link href={post.href}>
-          <span className="absolute inset-0" />
-          {post.title}
+          <span>
+            <span className="absolute inset-0" />
+            {post.title}
+          </span>
         </Link>
       </h3>
       {post.description && (

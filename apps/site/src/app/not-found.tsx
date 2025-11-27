@@ -23,7 +23,9 @@ export default function NotFound() {
         </p>
         <div className="mt-10 flex justify-center">
           <Link href="/" className="text-sm/7 font-semibold text-white">
-            <span aria-hidden="true">&larr;</span> Return Home
+            <span>
+              <span aria-hidden="true">&larr;</span> Return Home
+            </span>
           </Link>
         </div>
       </div>

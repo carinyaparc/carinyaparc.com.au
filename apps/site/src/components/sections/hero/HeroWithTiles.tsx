@@ -115,7 +115,9 @@ export default function HeroWithTiles({
                       href={secondaryButton.href}
                       className={cn('text-sm/6 font-semibold', secondaryButtonClass)}
                     >
-                      {secondaryButton.label} <span aria-hidden="true">→</span>
+                      <span>
+                        {secondaryButton.label} <span aria-hidden="true">→</span>
+                      </span>
                     </Link>
                   )}
                 </div>

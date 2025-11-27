@@ -50,8 +50,10 @@ export async function LatestPosts({
               href={viewAllLink}
               className="inline-flex rounded-md bg-eucalyptus-600 text-white hover:bg-eucalyptus-700 px-3.5 py-2.5 text-sm font-semibold shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eucalyptus-600"
             >
-              View All Posts
-              <span className="ml-2">→</span>
+              <span>
+                View All Posts
+                <span className="ml-2">→</span>
+              </span>
             </Link>
           </div>
         )}
