@@ -70,7 +70,9 @@ export default async function FeaturedPosts({ limit = 1 }: FeaturedPostsProps) {
                   </p>
                   <Button className="bg-eucalyptus-600 hover:bg-eucalyptus-400" asChild>
                     <Link href={featuredPost.href}>
-                      Read Full Article <ArrowRight className="ml-2 h-4 w-4" />
+                      <span className="flex items-center">
+                        Read Full Article <ArrowRight className="ml-2 h-4 w-4" />
+                      </span>
                     </Link>
                   </Button>
                 </CardContent>

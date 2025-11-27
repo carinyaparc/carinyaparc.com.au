@@ -35,8 +35,10 @@ export default async function BlogPage() {
 
           <Button asChild variant="ghost" className="text-green-600 hover:text-green-700">
             <Link href="/">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
+              <span className="flex items-center">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Home
+              </span>
             </Link>
           </Button>
         </div>
