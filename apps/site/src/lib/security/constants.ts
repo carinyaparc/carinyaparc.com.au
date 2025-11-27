@@ -16,6 +16,7 @@ export const CSP_DIRECTIVES: Record<string, Record<string, string[]>> = {
     'default-src': ["'self'"],
     'script-src': [
       "'self'",
+      'blob:',
       'https://www.googletagmanager.com',
       'https://www.google-analytics.com',
       'https://*.vercel-scripts.com',
@@ -36,6 +37,7 @@ export const CSP_DIRECTIVES: Record<string, Record<string, string[]>> = {
       'https://*.sentry.io',
       'https://vitals.vercel-insights.com',
     ],
+    'worker-src': ["'self'", 'blob:'],
     'frame-src': ["'self'", 'https://www.googletagmanager.com'],
     'object-src': ["'none'"],
     'base-uri': ["'self'"],

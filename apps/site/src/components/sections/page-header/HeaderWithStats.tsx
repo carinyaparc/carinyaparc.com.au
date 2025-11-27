@@ -94,7 +94,9 @@ export default function HeaderWithStats({
                   href={link.href}
                   className="hover:text-eucalyptus-200 transition-colors"
                 >
-                  {link.name} <span aria-hidden="true">→</span>
+                  <span>
+                    {link.name} <span aria-hidden="true">→</span>
+                  </span>
                 </Link>
               ))}
             </div>
@@ -114,4 +116,3 @@ export default function HeaderWithStats({
     </div>
   );
 }
-

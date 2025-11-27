@@ -72,12 +72,12 @@ export default function MobileMenu({
                     onClick={onClose}
                   >
                     {item.label ? (
-                      item.label
+                      <span>{item.label}</span>
                     ) : (
-                      <div className="flex flex-col">
+                      <span className="flex flex-col">
                         <span className="text-base font-bold text-eucalyptus-400">{item.verb}</span>
                         <span className="text-sm font-normal">{item.rest}</span>
-                      </div>
+                      </span>
                     )}
                   </Link>
                 ))}

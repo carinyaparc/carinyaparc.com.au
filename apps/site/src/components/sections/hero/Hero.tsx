@@ -167,7 +167,9 @@ export function HeroButton({ href, children }: { href: string; children: ReactNo
 export function HeroLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link href={href} className="text-sm font-semibold leading-6 text-white">
-      {children} <span aria-hidden="true">→</span>
+      <span>
+        {children} <span aria-hidden="true">→</span>
+      </span>
     </Link>
   );
 }

@@ -152,7 +152,9 @@ export function SectionLink({
 
   return (
     <Link href={href} className={cn('px-3.5 py-2.5 text-sm font-semibold leading-6', textColor)}>
-      {children} <span aria-hidden="true">→</span>
+      <span>
+        {children} <span aria-hidden="true">→</span>
+      </span>
     </Link>
   );
 }

@@ -126,7 +126,9 @@ export default async function HomePage() {
                 combines evidence-based ecological practices with community engagement.
               </SectionText>
               <SectionActions>
-                <SectionButton href="/about" variant="dark">Read Our Story →</SectionButton>
+                <SectionButton href="/about" variant="dark">
+                  Read Our Story →
+                </SectionButton>
               </SectionActions>
             </SectionContent>
           </SectionWithImage>
@@ -179,7 +181,9 @@ export default async function HomePage() {
                 </ul>
               </SectionText>
               <SectionActions>
-                <SectionButton href="/regeneration" variant="light">Get Involved →</SectionButton>
+                <SectionButton href="/regeneration" variant="light">
+                  Get Involved →
+                </SectionButton>
               </SectionActions>
             </SectionContent>
           </SectionWithImage>

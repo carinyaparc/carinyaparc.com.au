@@ -118,14 +118,14 @@ export default function Header({ navigation }: HeaderProps) {
                   )}
                 >
                   {item.label ? (
-                    item.label
+                    <span>{item.label}</span>
                   ) : (
-                    <>
+                    <span className="flex flex-col items-start">
                       <span className="text-base font-bold text-eucalyptus-400">{item.verb}</span>
                       <span className="text-xs font-normal mt-1 whitespace-nowrap">
                         {item.rest}
                       </span>
-                    </>
+                    </span>
                   )}
                 </Link>
               ))}
